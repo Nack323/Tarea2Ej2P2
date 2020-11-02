@@ -9,7 +9,7 @@ private:
     User* usuarios;
 public:
     UserManager(FacultyManager*, StudentManager*);
-    User* ValidateCredentials(std::string, std::string);
+    User* validateCredentials(std::string, std::string);
     void editUser(User*);
     void showUser(User*);
     std::string getNewBannerID();
