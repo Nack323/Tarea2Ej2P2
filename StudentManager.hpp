@@ -2,10 +2,12 @@
 #define StudentManager_hpp
 #include "Student.hpp"
 #include "UserManager.hpp"
+#include <fstream>
 
 class StudentManager{
 private:
     Student* estudiantes;
+    int totalEstudiantes;
     char* pathUndergraduate;
     void loadUnderGrads();
     void updateUnderGrads();
