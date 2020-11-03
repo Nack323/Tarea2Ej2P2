@@ -1,6 +1,7 @@
 #ifndef StudentManager_hpp
 #define StudentManager_hpp
-
+#include "Student.hpp"
+#include "UserManager.hpp"
 class StudentManager{
 private:
     Student* estudiantes;

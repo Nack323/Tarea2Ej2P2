@@ -1,20 +1,24 @@
 #ifndef CourseManager_hpp
 #define CourseManager_hpp
+#include <iostream>
+#include "Course.hpp"
+class StudentManager;
+class FacultyManager;
 
 class CourseManager{
 private:
     Course* cursos;
-    char pathCursos[]:;
+    char pathCursos;
     StudentManager* sm;
     FacultyManager* fm;
     void loadCourses();
     void updateCourses();
 public:
-    CourseManager(path[]:, StudentManager*, FacultyManager*);
+    CourseManager(char * , StudentManager*, FacultyManager*);
     void createNewCourse();
     void editCourse();
     void showCourses();
-    void showClassBtID(std::string);
+    void showClassByID(std::string);
     void deleteCourse();
 };
 

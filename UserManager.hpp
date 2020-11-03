@@ -3,7 +3,8 @@
 
 #include <stdio.h>
 #include <string>
-
+class FacultyManager;
+class StudentManager;
 class UserManager{
 private:
     User* usuarios;

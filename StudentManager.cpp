@@ -9,7 +9,7 @@ void StudentManager::updateUnderGrads(){
 
 };
 
-StudentManager::StudentManager(char path[]:){
+StudentManager::StudentManager(char* path){
 
 };
 
