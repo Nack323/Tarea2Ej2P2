@@ -11,12 +11,13 @@ User* UserManager::validateCredentials(std::string userName, std::string contras
   std::cout<<"Ingrese contrasenia"<<std::endl;
   std::cin>>contrasenia;
   
-  if (userName==User::getUser and contrasenia==User::getContrasenia){
+  if (userName==User::getUser() and contrasenia==User::getContrasenia){
       std::cout<<"Credenciales validas"<<std::endl;
   }
   else{ 
-    std::cerr<<"Credenciales no validas">>std::endl;
+    std::cerr<<"Credenciales no validas" << std::endl;
   }
+  //return nullptr;
 };
 
 void UserManager::editUser(User* usuario){
@@ -29,4 +30,6 @@ void UserManager::showUser(User* usuario){
 
 std::string UserManager::getNewBannerID(){
   //averiguar como modificar funciones de user (setBannerID)
+    std::string s{""};
+  return s;
 };

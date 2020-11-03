@@ -1,6 +1,6 @@
 #ifndef UserManager_hpp
 #define UserManager_hpp
-
+#include "User.hpp"
 #include <stdio.h>
 #include <string>
 class FacultyManager;
@@ -15,5 +15,6 @@ public:
     void showUser(User*);
     std::string getNewBannerID();
 };
+
 
 #endif /* UserManager_hpp */
