@@ -9,7 +9,7 @@ void FacultyManager::updateFaculty(){
 
 };
 
-FacultyManager::FacultyManager(char path[]:){
+FacultyManager::FacultyManager(char path[]){
 
 };
 

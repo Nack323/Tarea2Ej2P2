@@ -1,8 +1,13 @@
+
 #ifndef UserManager_hpp
 #define UserManager_hpp
 
 #include <stdio.h>
 #include <string>
+#include "User.hpp"
+
+class FacultyManager{};
+class StudentManager{};
 
 class UserManager{
 private:
