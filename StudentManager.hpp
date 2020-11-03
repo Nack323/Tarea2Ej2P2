@@ -2,14 +2,15 @@
 #define StudentManager_hpp
 #include "Student.hpp"
 #include "UserManager.hpp"
+
 class StudentManager{
 private:
     Student* estudiantes;
-    char pathUndergraduate[]:;
+    char* pathUndergraduate;
     void loadUnderGrads();
     void updateUnderGrads();
 public:
-    StudentManager(char);
+    StudentManager(char*);
     void createNewStudent(UserManager*);
     Student* getStudentByID(std::string);
     Student* getAllStudents();

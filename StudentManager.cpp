@@ -19,10 +19,11 @@ void StudentManager::createNewStudent(UserManager* um){
 
 Student* StudentManager::getStudentByID(std::string BannerID){
 
+    return nullptr;
 };
 
 Student* StudentManager::getAllStudents(){
-
+    return nullptr;
 };
 
 void StudentManager::editStudent(){
