@@ -7,7 +7,7 @@
 class StudentManager{
 private:
     Student* estudiantes;
-    int totalEstudiantes;
+    int totalEstudiantes;//preguntar le agregue esto, ta bien?
     char* pathUndergraduate;
     void loadUnderGrads();
     void updateUnderGrads();
