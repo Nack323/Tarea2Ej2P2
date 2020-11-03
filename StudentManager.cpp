@@ -27,9 +27,10 @@ Student* StudentManager::getStudentByID(string BannerID){
     return nullptr;
 };
 
-Student* StudentManager::getAllStudents(){
-    return nullptr;
-};
+Student* StudentManager::getAllStudents(int &total){
+    total = totalEstudiantes;
+    return estudiantes;
+}
 
 void StudentManager::editStudent(){
 

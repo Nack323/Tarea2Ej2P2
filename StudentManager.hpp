@@ -15,7 +15,7 @@ public:
     StudentManager(char*);
     void createNewStudent(UserManager*);
     Student* getStudentByID(std::string);
-    Student* getAllStudents();
+    Student* getAllStudents(int&);
     void editStudent();
     void showStudents();
     void deleteStudent();
