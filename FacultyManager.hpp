@@ -1,14 +1,15 @@
 #ifndef FacultyManager_hpp
 #define FacultyManager_hpp
-
+class Faculty;
+class UserManager;
 class FacultyManager{
 private:
     Faculty* profesores;
-    char pathFaculty[]:;
+    char* pathFaculty;
     void loadFaculty();
     void updateFaculty();
 public:
-    FacultyManager(char);
+    FacultyManager(char*);
     void createNewFaculty(UserManager*);
     Faculty* getFacultyByID(std::string);
     Faculty* getAllFaculty();
