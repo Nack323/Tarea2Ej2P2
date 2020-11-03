@@ -4,7 +4,7 @@
 class StudentManager{
 private:
     Student* estudiantes;
-    char pathUndergraduate[];
+    char pathUndergraduate[]:;
     void loadUnderGrads();
     void updateUnderGrads();
 public:
