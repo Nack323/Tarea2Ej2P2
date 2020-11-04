@@ -5,9 +5,9 @@
 #include <stdio.h>
 #include <string>
 #include "User.hpp"
+#include "StudentManager.hpp"
+#include "FacultyManager.hpp"
 
-class FacultyManager;
-class StudentManager;
 
 class UserManager{
 private:

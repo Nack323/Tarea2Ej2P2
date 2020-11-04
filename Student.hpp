@@ -23,7 +23,6 @@ private:
     std::string carrera;
     Course *clases;
     int totalClases;
-    float gpa=0.0; 
 public:
     Student();
     virtual ~Student();

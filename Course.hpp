@@ -29,10 +29,11 @@ private:
     Grade *notas;
     int totalEstudiantes;
     int totalCreditos;
+    std::string path;
 public:
     Course();
     ~Course();
-    Course(std::string,std::string, Faculty*, Student*, Grade*, int, int);
+    Course(std::string,std::string, Faculty*, Student*, Grade*, int, int,std::string);
     void setProfesor(Faculty*);
     void setNotas(Student*, Grade*, int);
     Faculty* getProfesor();
@@ -42,7 +43,7 @@ public:
     int getCreditos();
     std::string getNRC();
     std::string getName();
-    
+    std::string getPath();
 
 };
 
