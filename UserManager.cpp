@@ -2,20 +2,20 @@
 #include "UserManager.hpp"
 
 UserManager::UserManager(FacultyManager* _facultyManager, StudentManager* _studentManager):facultyManager(_facultyManager), studentManager(_studentManager){
-  std::cout<<"UserManager constructor"<<std::endl;
 };
 
 User* UserManager::validateCredentials(std::string userName, std::string contrasenia){
-  std::cout<<"Ingrese nombre de nsuario"<<std::endl;
+  std::cout<<"Ingrese nombre de Usuario"<<std::endl;
   std::cin>>userName;
-  std::cout<<"Ingrese contrasenia"<<std::endl;
+  std::cout<<"Ingrese Contrasenia"<<std::endl;
   std::cin>>contrasenia;
+
   
-  if (userName==User::getUsuario and contrasenia==User::getContrasenia()){
-      std::cout<<"Credenciales validas"<<std::endl;
+  if (userName==User::getNombre() and contrasenia==User::getContrasenia()){
+    std::cout<<"Credenciales validas"<<std::endl;
   }
-  else{ 
-    std::cerr<<"Credenciales no validas">>std::endl;
+  else{   
+    std::cerr<<"Credenciales no validas"<<std::endl;
   }
 };
 

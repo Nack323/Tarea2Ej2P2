@@ -18,6 +18,7 @@ private:
     Proxy representante;
 public:
     UnderGraduateStudent();
+    virtual ~UnderGraduateStudent();
     UnderGraduateStudent(std::string, std::string, std::string, std::string, std::string, std::string, Proxy);
     void setRepresentante(Proxy);
     Proxy getRepresentante();

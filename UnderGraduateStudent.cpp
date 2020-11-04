@@ -22,3 +22,5 @@ void UnderGraduateStudent::setRepresentante(Proxy _representante){
 Proxy UnderGraduateStudent::getRepresentante(){
     return representante;
 }
+
+UnderGraduateStudent::~UnderGraduateStudent(){}

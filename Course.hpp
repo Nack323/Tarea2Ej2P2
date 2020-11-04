@@ -23,6 +23,7 @@ class Faculty;
 class Course{
 private:
     std::string nrc;
+    std::string name;
     Faculty *profesor;
     Student *estudiantes;
     Grade *notas;
@@ -30,11 +31,19 @@ private:
     int totalCreditos;
 public:
     Course();
-    Course(std::string, Faculty*, Student*, Grade*, int, int);
+    ~Course();
+    Course(std::string,std::string, Faculty*, Student*, Grade*, int, int);
     void setProfesor(Faculty*);
     void setNotas(Student*, Grade*, int);
     Faculty* getProfesor();
     Grade *getGradeByStudent(Student*);
+    Student* getStudents();
+    int getTotalEstudiantes();
+    int getCreditos();
+    std::string getNRC();
+    std::string getName();
+    
+
 };
 
 #endif /* Course_hpp */

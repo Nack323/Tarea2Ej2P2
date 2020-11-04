@@ -1,9 +1,8 @@
-#include"Faculty.hpp"
-#include"UserManager.hpp"
-
 #ifndef FacultyManager_hpp
 #define FacultyManager_hpp
+#include "Faculty.hpp""
 
+class UserManager;
 class FacultyManager{
 private:
     Faculty* profesores;

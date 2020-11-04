@@ -6,8 +6,8 @@
 #include <string>
 #include "User.hpp"
 
-class FacultyManager{};
-class StudentManager{};
+class FacultyManager;
+class StudentManager;
 
 class UserManager{
 private:

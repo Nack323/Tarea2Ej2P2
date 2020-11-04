@@ -6,6 +6,7 @@
 //
 
 #include "Interfaz.hpp"
+#include "UserManager.hpp"
 
 void Interfaz::pantallaInit(){
     std::string option;
@@ -49,14 +50,12 @@ void Interfaz::pantalla1(){
 
 
 void Interfaz::pantallaVer(){
-    std::string usuarioAux;
-    std::string contraseniaAux;
-    std::cout<<"Usuario: "<<std::endl;
-    std::cin>>usuarioAux;
-    std::cout<<"\nContrasenia: "<<std::endl;
-    std::cin>>contraseniaAux;
-    std::ifstream file;
+    FacultyManager facuAux;
+    StudentManager studAux;
+    UserManager userAux(facuAux.getAllFaculty(),studAux.getAllStudents());
+    ;
 
+    userAux.validateCredentials(); 
 }
 void Interfaz::pantalla1_1(){
     std::cout<<"1.Mostrar Usuarios\n2.Editar Usuarios\n3.Regresar"<<std::endl;

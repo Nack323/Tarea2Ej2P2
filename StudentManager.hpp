@@ -1,8 +1,12 @@
 #include "Student.hpp"
-#include "UserManager.hpp"
+#include <fstream>
+#include "Proxy.hpp"
+#include "UnderGraduateStudent.hpp"
 
 #ifndef StudentManager_hpp
 #define StudentManager_hpp
+
+class UserManager{};
 
 class StudentManager{
 private:

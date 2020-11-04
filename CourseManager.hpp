@@ -2,6 +2,7 @@
 #include "Course.hpp"
 #include "StudentManager.hpp"
 #include "FacultyManager.hpp"
+#include <iomanip>
 #include <fstream>
 
 #ifndef CourseManager_hpp
@@ -10,6 +11,7 @@
 class CourseManager{
 private:
     Course* cursos;
+    int numCursos;
     char* pathCursos;
     StudentManager* sm;
     FacultyManager* fm;
@@ -21,7 +23,7 @@ public:
     void editCourse();
     void showCourses();
     void showClassByID(std::string);
-    void deleteCourse();
+    void deleteCourse(std::string);
 };
 
 #endif /* CourseManager_hpp */
