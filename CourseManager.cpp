@@ -23,6 +23,7 @@ void CourseManager::updateCourses(){
 
 
 CourseManager::CourseManager(char path[], StudentManager* sm, FacultyManager* fm){
+};
 
 CourseManager::CourseManager(char* path, StudentManager* sm, FacultyManager* fm){
 
@@ -64,7 +65,7 @@ void CourseManager::showClassByID(std::string nrc){
     }
 }
 
-void CourseManager::showClassByID(string nrc){
+void CourseManager::showClassByID(std::string nrc){
 
 };
 

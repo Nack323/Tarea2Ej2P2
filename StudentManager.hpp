@@ -14,12 +14,7 @@ class UserManager{};
 class StudentManager{
 private:
     Student* estudiantes;
-<<<<<<< HEAD
     char pathUndergraduate[];
-=======
-    int totalEstudiantes;//preguntar le agregue esto, ta bien?
-    char* pathUndergraduate;
->>>>>>> 0b486ab78e619afc68a0593d7fa56c82ac3f2b0a
     void loadUnderGrads();
     void updateUnderGrads();
 public:

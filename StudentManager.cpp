@@ -2,7 +2,6 @@
 #include "StudentManager.hpp"
 using namespace std;
 
-<<<<<<< HEAD
 void StudentManager::loadUnderGrads(){
     int numberUnder;
     std::ifstream input;
@@ -39,19 +38,6 @@ void StudentManager::updateUnderGrads(){
 };
 
 StudentManager::StudentManager(char path[]){
-=======
-StudentManager::StudentManager(char* path){//preguntar hay que pasarle dos paths de undergrads y grads?
-    ifstream input(path);
-    
-};
-
-void StudentManager::loadUnderGrads(){
-
-};
-
-void StudentManager::updateUnderGrads(){
-    // preguntar para que sirve esta funcion
->>>>>>> 0b486ab78e619afc68a0593d7fa56c82ac3f2b0a
 
 };
 void StudentManager::createNewStudent(UserManager* um){
