@@ -9,13 +9,13 @@ void FacultyManager::updateFaculty(){
 
 };
 
-FacultyManager::FacultyManager(char* path){
+FacultyManager::FacultyManager(char path[]){
 
 };
 
-void FacultyManager::createNewFaculty(UserManager* um){
+//void FacultyManager::createNewFaculty(UserManager* um){
 
-};
+//};
 
 Faculty* FacultyManager::getFacultyByID(std::string BannerID){
     return nullptr;

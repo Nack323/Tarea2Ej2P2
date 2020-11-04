@@ -1,8 +1,15 @@
+#include "Student.hpp"
+#include <fstream>
+#include "Proxy.hpp"
+#include "UnderGraduateStudent.hpp"
+
 #ifndef StudentManager_hpp
 #define StudentManager_hpp
 #include "Student.hpp"
 #include "UserManager.hpp"
 #include <fstream>
+
+class UserManager{};
 
 class StudentManager{
 private:
@@ -10,6 +17,8 @@ private:
     int totalEstudiantes;//cambiar por arraylist
     char* pathUndergraduate;
     void loadUnderGrads();//cambiar agregar lo mismo para grads
+    char pathUndergraduate[];
+    void loadUnderGrads();
     void updateUnderGrads();
 public:
     StudentManager(char*);

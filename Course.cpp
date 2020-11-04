@@ -11,10 +11,13 @@
 
 Course::Course(){ }
 
-Course::Course(std::string _nrc, Faculty* _profesor, Student* _estudiantes, Grade *_notas, int _totalEstudiantes, int _totalCreditos):
-nrc(_nrc), profesor(_profesor), estudiantes(_estudiantes), totalCreditos(_totalCreditos), notas(_notas)
+Course::~Course(){
+    std::cout<<"La clase con NRC:"<<nrc<<" fue eliminada.";
+}
+
+Course::Course(std::string _name,std::string _nrc, Faculty* _profesor, Student* _estudiantes, Grade *_notas, int _totalEstudiantes, int _totalCreditos,std::string _path):
+name(_name),nrc(_nrc), profesor(_profesor), estudiantes(_estudiantes), totalEstudiantes(_totalEstudiantes),totalCreditos(_totalCreditos), notas(_notas),path(_path)
 {
-    std::cout << "Course constructor" << std::endl;
 }
 
 void Course::setProfesor(Faculty* _profesor){
@@ -38,4 +41,28 @@ Grade* Course::getGradeByStudent(Student * estudiante){
         }
     }
     return nullptr;
+}
+
+Student* Course::getStudents(){
+    return estudiantes;
+}
+
+int Course::getTotalEstudiantes(){
+    return totalEstudiantes;
+}
+
+std::string Course::getNRC(){
+    return nrc;
+}
+
+int Course::getCreditos(){
+    return totalCreditos;
+}
+
+std::string Course::getName(){
+    return name;
+}
+
+std::string Course::getPath(){
+    return path;
 }
