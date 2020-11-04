@@ -9,6 +9,10 @@
 #include "FacultyManager.hpp"
 
 
+
+class FacultyManager;
+class StudentManager;
+
 class UserManager{
 private:
     User* usuarios;

@@ -17,7 +17,9 @@ private:
     Course* cursos;
     int numCursos;
     char* pathCursos;
+
     char pathCursos;
+
     StudentManager* sm;
     FacultyManager* fm;
     void loadCourses();
