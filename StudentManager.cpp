@@ -2,7 +2,7 @@
 #include "StudentManager.hpp"
 using namespace std;
 
-StudentManager::StudentManager(char* path){//preguntar hay que pasarle dos paths de undergrads y grads?
+StudentManager::StudentManager(char* path){//cambiar para dos paths
     ifstream input(path);
     
 };
@@ -10,9 +10,10 @@ StudentManager::StudentManager(char* path){//preguntar hay que pasarle dos paths
 void StudentManager::loadUnderGrads(){
 
 };
-
+//cambiar implementar updateGrads 
+//cambiar implemebtar loadGrads
 void StudentManager::updateUnderGrads(){
-    // preguntar para que sirve esta funcion
+    // Esto actualiza el archivo
 
 };
 void StudentManager::createNewStudent(UserManager* um){
@@ -25,7 +26,7 @@ Student* StudentManager::getStudentByID(string BannerID){
         if (estudiantes[i].getBannerID() == BannerID){
             return &estudiantes[i];
         }
-    }//preguntar esta bien dejar con un int que guarde la longitud?
+    }//cambiar por array list
     return nullptr;
 };
 
@@ -35,7 +36,7 @@ Student* StudentManager::getAllStudents(int &total){
 }
 
 void StudentManager::editStudent(){
-    //preguntar debería tener de input in student
+    //cambiar con input student
 };
 
 void StudentManager::showStudents(){

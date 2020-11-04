@@ -7,15 +7,15 @@
 class StudentManager{
 private:
     Student* estudiantes;
-    int totalEstudiantes;//preguntar le agregue esto, ta bien?
+    int totalEstudiantes;//cambiar por arraylist
     char* pathUndergraduate;
-    void loadUnderGrads();
+    void loadUnderGrads();//cambiar agregar lo mismo para grads
     void updateUnderGrads();
 public:
     StudentManager(char*);
     void createNewStudent(UserManager*);
     Student* getStudentByID(std::string);
-    Student* getAllStudents(int&);
+    Student* getAllStudents(int&);//cambiar quitar int por referencia cuando sepamos arraylist
     void editStudent();
     void showStudents();
     void deleteStudent();
