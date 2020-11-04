@@ -4,16 +4,13 @@
 #include "User.hpp"
 #include <stdio.h>
 #include <string>
-<<<<<<< HEAD
 #include "User.hpp"
 #include "StudentManager.hpp"
 #include "FacultyManager.hpp"
 
 
-=======
 class FacultyManager;
 class StudentManager;
->>>>>>> 0b486ab78e619afc68a0593d7fa56c82ac3f2b0a
 class UserManager{
 private:
     User* usuarios;

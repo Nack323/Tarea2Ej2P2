@@ -11,9 +11,6 @@
 #include <stdio.h>
 #include<iostream>
 #include<fstream>
-#include <unistd.h>
-#include <term.h>
-#include<curses.h>
 #include<string>
 
 class Interfaz{

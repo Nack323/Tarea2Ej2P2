@@ -11,19 +11,11 @@ User* UserManager::validateCredentials(std::string userName, std::string contras
   std::cin>>contrasenia;
 
   
-<<<<<<< HEAD
   if (userName==User::getNombre() and contrasenia==User::getContrasenia()){
     std::cout<<"Credenciales validas"<<std::endl;
   }
   else{   
     std::cerr<<"Credenciales no validas"<<std::endl;
-=======
-  if (userName==User::getUser() and contrasenia==User::getContrasenia){
-      std::cout<<"Credenciales validas"<<std::endl;
-  }
-  else{ 
-    std::cerr<<"Credenciales no validas" << std::endl;
->>>>>>> 0b486ab78e619afc68a0593d7fa56c82ac3f2b0a
   }
   //return nullptr;
 };
