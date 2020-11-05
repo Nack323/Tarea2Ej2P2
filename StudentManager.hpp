@@ -2,7 +2,7 @@
 #include <fstream>
 #include "Proxy.hpp"
 #include "UnderGraduateStudent.hpp"
-
+#include "GraduateStudent.hpp"
 #ifndef StudentManager_hpp
 #define StudentManager_hpp
 #include "Student.hpp"
