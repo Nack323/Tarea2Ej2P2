@@ -9,7 +9,7 @@
 #include "UserManager.hpp"
 #include <fstream>
 
-class UserManager{};
+class UserManager;
 
 class StudentManager{
 private:
