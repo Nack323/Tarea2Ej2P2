@@ -1,0 +1,4 @@
+# ignorar los logs y ejecutables.
+*.exe
+*.out
+*.log
