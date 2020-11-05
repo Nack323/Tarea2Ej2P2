@@ -17,11 +17,11 @@ private:
     int totalEstudiantes;//cambiar por arraylist
     char* pathUndergraduate;
     void loadUnderGrads();//cambiar agregar lo mismo para grads
-    char pathUndergraduate[];
-    void loadUnderGrads();
+    char* pathGraduate;
+    void loadGrads();
     void updateUnderGrads();
 public:
-    StudentManager(char*);
+    StudentManager(char*, char*);
     void createNewStudent(UserManager*);
     Student* getStudentByID(std::string);
     Student* getAllStudents(int&);//cambiar quitar int por referencia cuando sepamos arraylist

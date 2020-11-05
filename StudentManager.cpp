@@ -2,18 +2,10 @@
 #include "StudentManager.hpp"
 using namespace std;
 
-<<<<<<< HEAD
-StudentManager::StudentManager(char* path){//cambiar para dos paths
-    ifstream input(path);
-    
-};
-
-=======
->>>>>>> b31bc87c645c754c396c81b323ce96c0a2742dd6
 void StudentManager::loadUnderGrads(){
     int numberUnder;
     std::ifstream input;
-    input.open("estudiantes_pregrado.txt");
+    input.open(this->pathUndergraduate);
     input>>numberUnder;
     estudiantes=new Student[numberUnder];
     UnderGraduateStudent* UnderGrad=dynamic_cast<UnderGraduateStudent*>(estudiantes);
@@ -29,8 +21,6 @@ void StudentManager::loadUnderGrads(){
         std::string papellidoAux;
         std::string pemailAux;
         std::string ptelefAux;
-        
-        
         input>>bannerIDAux>>nombreAux>>apellidoAux>>usuarioAux>>contraseniaAux>>carreraAux>>pnombreAux>>papellidoAux>>pemailAux>>ptelefAux;
         Proxy proxyAux(pnombreAux,papellidoAux,pemailAux,ptelefAux);
 
@@ -42,17 +32,14 @@ void StudentManager::loadUnderGrads(){
 //cambiar implementar updateGrads 
 //cambiar implemebtar loadGrads
 void StudentManager::updateUnderGrads(){
-<<<<<<< HEAD
     // Esto actualiza el archivo
-=======
+};
+
+StudentManager::StudentManager(char* pathUndergrad, char* pathGrad) : pathUndergraduate(pathUndergrad), pathGraduate(pathGrad){
     loadUnderGrads();
-     
+    loadGrads();
 };
 
-StudentManager::StudentManager(char path[]){
->>>>>>> b31bc87c645c754c396c81b323ce96c0a2742dd6
-
-};
 void StudentManager::createNewStudent(UserManager* um){
     //preguntar como se hace esto :<
 
