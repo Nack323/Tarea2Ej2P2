@@ -15,6 +15,8 @@ class StudentManager{
 private:
     Student* estudiantes;
     int totalEstudiantes;//cambiar por arraylist
+    int totalUnderGraduate;
+    int totalGraduate;
     char* pathUndergraduate;
     void loadUnderGrads();//cambiar agregar lo mismo para grads
     char* pathGraduate;

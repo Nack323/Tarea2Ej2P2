@@ -7,9 +7,7 @@ void StudentManager::loadUnderGrads(){
     std::ifstream input;
     input.open(this->pathUndergraduate);
     input>>numberUnder;
-    estudiantes=new Student[numberUnder];
-    UnderGraduateStudent* UnderGrad=dynamic_cast<UnderGraduateStudent*>(estudiantes);
-
+    UnderGraduateStudent* UnderGrad=dynamic_cast<UnderGraduateStudent*>(estudiantes);//preguntar dynamic cast va a devolver 0 en toda esta parte?
     for(int i=0;i<numberUnder;i++){
         std::string bannerIDAux;
         std::string nombreAux;
@@ -27,15 +25,27 @@ void StudentManager::loadUnderGrads(){
         UnderGrad[i]=UnderGraduateStudent(bannerIDAux,nombreAux,apellidoAux,usuarioAux,contraseniaAux,carreraAux,proxyAux);
     
     }
-
 };
+void StudentManager::loadGrads(){
+
+}
 //cambiar implementar updateGrads 
 //cambiar implemebtar loadGrads
 void StudentManager::updateUnderGrads(){
     // Esto actualiza el archivo
 };
 
+//para poder hacer esta parte pongamos primero los undergrads y luego los grads en el
+//arreglo de estudiantes. así cuando queramos iterar por la lista de undergrads podemos 
+//ir desde 0 hasta numUndergrads y si queremos iterar por los grads vamos desde numundergrads+1 hasta 
+//num undergrads+numgrads
 StudentManager::StudentManager(char* pathUndergrad, char* pathGrad) : pathUndergraduate(pathUndergrad), pathGraduate(pathGrad){
+    ifstream Under(this->pathUndergraduate);//leo la primera linea para saber el total de cada tipo
+    ifstream Grad(this->pathGraduate);
+    Under >> totalUnderGraduate;//creé una variable de total para poder iterar despues
+    Grad >> totalGraduate;
+    totalEstudiantes = totalUnderGraduate + totalGraduate;
+    estudiantes=new Student[totalEstudiantes]; //cambiar, hay que hacer que sume los graduados tambien
     loadUnderGrads();
     loadGrads();
 };
