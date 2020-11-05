@@ -7,7 +7,7 @@ void StudentManager::loadUnderGrads(){
     std::ifstream input;
     input.open(this->pathUndergraduate);
     input>>numberUnder;
-    UnderGraduateStudent* UnderGrad=dynamic_cast<UnderGraduateStudent*>(estudiantes);//preguntar dynamic cast va a devolver 0 en toda esta parte?
+    UnderGraduateStudent* UnderGrad= new UnderGraduateStudent[numberUnder];
     for(int i=0;i<numberUnder;i++){
         std::string bannerIDAux;
         std::string nombreAux;
@@ -23,14 +23,35 @@ void StudentManager::loadUnderGrads(){
         Proxy proxyAux(pnombreAux,papellidoAux,pemailAux,ptelefAux);
 
         UnderGrad[i]=UnderGraduateStudent(bannerIDAux,nombreAux,apellidoAux,usuarioAux,contraseniaAux,carreraAux,proxyAux);
-    
+    }
+    for(int i = 0; i < numberUnder; i ++){
+        estudiantes[i] = UnderGrad[i];
     }
 };
-void StudentManager::loadGrads(){
 
-}
-//cambiar implementar updateGrads 
-//cambiar implemebtar loadGrads
+void StudentManager::loadGrads(){
+    int numberUnder;
+    std::ifstream input;
+    input.open(this->pathUndergraduate);
+    input>>numberUnder;
+
+    GraduateStudent* Grad= new GraduateStudent[numberUnder];
+    for(int i=0;i<numberUnder;i++){
+        std::string bannerIDAux;
+        std::string nombreAux;
+        std::string apellidoAux;
+        std::string usuarioAux;
+        std::string contraseniaAux;
+        std::string carreraAux;
+        std::string nivelAux;
+        input>>bannerIDAux>>nombreAux>>apellidoAux>>usuarioAux>>contraseniaAux>>carreraAux>>nivelAux;
+
+        Grad[i]=GraduateStudent(bannerIDAux,nombreAux,apellidoAux,contraseniaAux,usuarioAux,carreraAux,nivelAux);
+    }
+    for(int i = 0; i < numberUnder; i ++){
+        estudiantes[i] = Grad[i];
+    }
+};
 void StudentManager::updateUnderGrads(){
     // Esto actualiza el archivo
 };
@@ -52,7 +73,6 @@ StudentManager::StudentManager(char* pathUndergrad, char* pathGrad) : pathUnderg
 
 void StudentManager::createNewStudent(UserManager* um){
     //preguntar como se hace esto :<
-
 };
 
 Student* StudentManager::getStudentByID(string BannerID){
