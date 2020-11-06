@@ -7,6 +7,7 @@
 #define StudentManager_hpp
 #include "Student.hpp"
 #include "UserManager.hpp"
+#include "GraduateStudent.hpp"
 #include <fstream>
 
 class UserManager;
