@@ -30,13 +30,13 @@ void StudentManager::loadUnderGrads(){
 };
 
 void StudentManager::loadGrads(){
-    int numberUnder;
+    int numberGrad;
     std::ifstream input;
-    input.open(this->pathUndergraduate);
-    input>>numberUnder;
+    input.open(this->pathGraduate);
+    input>>numberGrad;
 
-    GraduateStudent* Grad= new GraduateStudent[numberUnder];
-    for(int i=0;i<numberUnder;i++){
+    GraduateStudent* Grad= new GraduateStudent[numberGrad];
+    for(int i=0;i<numberGrad;i++){
         std::string bannerIDAux;
         std::string nombreAux;
         std::string apellidoAux;
@@ -46,9 +46,9 @@ void StudentManager::loadGrads(){
         std::string nivelAux;
         input>>bannerIDAux>>nombreAux>>apellidoAux>>usuarioAux>>contraseniaAux>>carreraAux>>nivelAux;
 
-        Grad[i]=GraduateStudent(bannerIDAux,nombreAux,apellidoAux,contraseniaAux,usuarioAux,carreraAux,nivelAux);
+        Grad[i + totalUnderGraduate]=GraduateStudent(bannerIDAux,nombreAux,apellidoAux,contraseniaAux,usuarioAux,carreraAux,nivelAux);
     }
-    for(int i = 0; i < numberUnder; i ++){
+    for(int i = 0; i < numberGrad; i ++){
         estudiantes[i] = Grad[i];
     }
 };

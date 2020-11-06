@@ -1,22 +1,27 @@
 #ifndef FacultyManager_hpp
 #define FacultyManager_hpp
 #include "Faculty.hpp"
+#include <fstream>
+#include <iostream>
+
+class UserManager;
 
 
 class FacultyManager{
 private:
     Faculty* profesores;
-    char pathFaculty[];
+    int totalProfesores; // cambiar cuando aprendamos array lists
+    std::string pathFaculty;
     void loadFaculty();
     void updateFaculty();
 public:
-    FacultyManager(char*);
+    FacultyManager(std::string);
     //void createNewFaculty(UserManager*);
     Faculty* getFacultyByID(std::string);
     Faculty* getAllFaculty();
-    void editFaculty();
-    void showFaculty();
-    void deleteFaculty();
+    void editFaculty(Faculty*);
+    void showFaculty(std::string);
+    void deleteFaculty(std::string);
 };
 
 #endif /* FacultyManager_hpp */
