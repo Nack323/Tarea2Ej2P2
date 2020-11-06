@@ -46,13 +46,36 @@ Faculty* FacultyManager::getAllFaculty(int &total){ //cambiar referencia cuando 
     return profesores;
 };
 
-void FacultyManager::editFaculty(Faculty* faculty){
+void FacultyManager::editFaculty(Faculty* profesor){
+    //buscar la que tiene el mismo banner id y reemplazarle en la memoria
+    for(int i = 0; i < this->totalProfesores; i ++){
+        if (profesor->getBannerID() == profesores[i].getBannerID()){
+            profesores[i] = *profesor;
+        }
+    }
 };
 
 void FacultyManager::showFaculty(string BannerId){
-
 };
 
-void FacultyManager::deleteFaculty(string BannerId){
-
+void FacultyManager::deleteFaculty(string BannerId){//cambiar cuando aprendamos array lists
+    Faculty* profesoresAux = new Faculty[this->totalProfesores - 1];
+    int offset = 0;
+    bool facultyExists = false;
+    for (int i = 0; i < this->totalProfesores ; i ++){
+        if (profesores[i].getBannerID() != BannerId){
+            profesoresAux[i - offset] = profesores[i];
+        } else {
+            facultyExists = true;
+            offset += 1;
+        }
+    }// si sale core dumped esto puede ser
+    if (facultyExists){
+        delete profesores;
+        this->totalProfesores = this->totalProfesores -1;
+        profesores = new Faculty[this->totalProfesores];
+        for (int i = 0; i < this->totalProfesores ; i ++){
+            profesores[i] = profesoresAux[i];
+        }
+    }
 };
