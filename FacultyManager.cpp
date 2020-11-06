@@ -32,10 +32,17 @@ FacultyManager::FacultyManager(string path) : pathFaculty(path){
 //};
 
 Faculty* FacultyManager::getFacultyByID(string BannerID){
+    for(int i = 0; i < totalProfesores; i ++){
+        if(profesores[i].getBannerID() == BannerID){
+            return &profesores[i];
+        }
+    }
+    cerr << "No match found for banner Id " << BannerID << "\nReturning nullptr";
     return nullptr;
 };
 
-Faculty* FacultyManager::getAllFaculty(){
+Faculty* FacultyManager::getAllFaculty(int &total){ //cambiar referencia cuando aprendamos array list
+    total = this->totalProfesores;
     return profesores;
 };
 
