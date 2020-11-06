@@ -50,7 +50,6 @@ void FacultyManager::editFaculty(Faculty* faculty){
 };
 
 void FacultyManager::showFaculty(string BannerId){
-
 };
 
 void FacultyManager::deleteFaculty(string BannerId){
