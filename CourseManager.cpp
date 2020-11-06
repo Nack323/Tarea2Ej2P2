@@ -22,9 +22,6 @@ void CourseManager::updateCourses(){
 };
 
 
-CourseManager::CourseManager(char path[], StudentManager* sm, FacultyManager* fm){
-};
-
 CourseManager::CourseManager(char* path, StudentManager* sm, FacultyManager* fm){
 
 
@@ -64,11 +61,6 @@ void CourseManager::showClassByID(std::string nrc){
         
     }
 }
-
-void CourseManager::showClassByID(std::string nrc){
-
-};
-
 void CourseManager::deleteCourse(std::string nrc){
     for(int i=0;i<numCursos;i++){
         if(cursos[i].getNRC()==nrc){
