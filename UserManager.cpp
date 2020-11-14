@@ -4,7 +4,8 @@
 UserManager::UserManager(FacultyManager* _facultyManager, StudentManager* _studentManager):facultyManager(_facultyManager), studentManager(_studentManager){
 };
 
-User* UserManager::validateCredentials(std::string userName, std::string contrasenia){
+User* UserManager::validateCredentials(std::string userName, std::string contrasenia)
+{
   for(int i=0;i<userSize;i++)
   {
     if(usuario->getUsuario()==usuarios[i].getUsuario() and usuario->getContrasenia()==usuarios[i].getContrasenia())
@@ -15,16 +16,20 @@ User* UserManager::validateCredentials(std::string userName, std::string contras
         std::cin>>contrasenia;
 
 
-        if (userName==usuarios[i].getUsuario() and contrasenia==usuario[i].getContrasenia()){
+        if (userName==usuarios[i].getUsuario() and contrasenia==usuario[i].getContrasenia())
+        {
           std::cout<<"Credenciales validas"<<std::endl;
         }
-        else{   
+        else
+        {   
           std::cerr<<"Credenciales no validas"<<std::endl;
+        }
       }
-  }
+ }
 };
 
-void UserManager::editUser(User* usuario){
+void UserManager::editUser(User* usuario)
+{
   for(int i=0;i<userSize;i++)
   {
     if(usuario->getUsuario()==usuarios[i].getUsuario() and usuario->getBannerID()==usuarios[i].getBnnerID() and usuario->getContrasenia()==usuarios[i].getContrasenia() and usuario->getNombre()==usuarios[i].getNombre() and usuario->getApellido()==usuarios[i].getApellido()
@@ -58,7 +63,8 @@ void UserManager::editUser(User* usuario){
   }
 };
 
-void UserManager::showUser(User* usuario){
+void UserManager::showUser(User* usuario)
+{
   for(int i=0;i<userSize;i++)
   {
     if(usuario->getUsuario()==usuarios[i].getUsuario() and usuario->getBannerID()==usuarios[i].getBnnerID() and usuario->getContrasenia()==usuarios[i].getContrasenia() and usuario->getNombre()==usuarios[i].getNombre() and usuario->getApellido()==usuarios[i].getApellido()
@@ -69,7 +75,7 @@ void UserManager::showUser(User* usuario){
          std::cout<<"Nombre:"<< usuarios[i].getNombre()<<std::endl;
          std::cout<<"Apellido:"<< usuarios[i].getApellido()<<std::endl;
        }
-    
+   }
 };
 
 std::string UserManager::getNewBannerID(){
