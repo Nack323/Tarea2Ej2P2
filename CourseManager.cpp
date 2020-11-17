@@ -44,14 +44,22 @@ void CourseManager::loadCourses(){
             notas[i].setNota(stoi(nota));
             //Problema con la funcion getStudentByID
             //clase[i]=sm.getStudentByID(ban);
-  
+        fileEst.close();
         }
         cursos[i]=Course(nrcAux,profesor,clase,notas,numberEst,stoi(creditosAux),pathAux);
     }
+    input.close();
 };
 
 void CourseManager::updateCourses(){
-    
+    std::ofstream file;
+    file.open(pathCursos,std::ofstream::out | std::ofstream::trunc);
+    file<<numCursos;
+    for(int i=0;i<numCursos;i++){
+        file<<cursos[i].getNRC()<<" "<<cursos[i].getCreditos()<<" "<<cursos[i].getProfesor()->getBannerID()<<" "<<cursos[i].getPath()<<std::endl;
+    }   
+    file.close();
+    loadCourses();
 };
 
 
@@ -61,7 +69,23 @@ CourseManager::CourseManager(std::string pathCursos_, StudentManager* sm, Facult
 };  
 
 void CourseManager::createNewCourse(){
-    
+    std::string NRXAux,creditosAux,ProfesorAux;
+    std::cout<<"NRC de la nueva Clase"<<std::endl;
+    std::cin>>NRCAux;
+    std::cout<<"Creditos de la Nueva Clase"<<std::endl; 
+    std::cin>>creditosAux;
+    std::cout<<"BannerID del profesor de la Clase"<<std::endl;
+    std::cin>>ProfesorAux,
+    std::ofstream file;
+    std::string newpath=nrcAux+"_"+BannerID+"txt";
+    std::ofstram newfile;
+    newfile.open(newpath);
+    newfile<<"0";
+    newfile.close()
+    file.open(pathCursos,std::ios::app);
+    file<<NRXAux<<" "<<creditosAux<<" "<<ProfesorAux<<" "<<newpath<<std::endl;
+    delete[] cursos;
+    loadCourses();
 };
 
 void CourseManager::editCourse(){
@@ -94,6 +118,7 @@ void CourseManager::showClassByID(std::string nrc){
         
     }
 }
+
 void CourseManager::deleteCourse(std::string nrc){
     for(int i=0;i<numCursos;i++){
         if(cursos[i].getNRC()==nrc){
