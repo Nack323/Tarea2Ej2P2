@@ -104,7 +104,7 @@ void Interfaz::pantalla1_3(){
     if(option=="1"){
         
     }else if(option=="2"){
-        std::cout<<"Hola"<<std::endl;
+       
     }else if(option=="3"){
        
     }else if(option=="4"){

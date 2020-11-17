@@ -79,3 +79,4 @@ void FacultyManager::deleteFaculty(string BannerId){//cambiar cuando aprendamos 
         }
     }
 };
+

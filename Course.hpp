@@ -33,7 +33,7 @@ private:
 public:
     Course();
     ~Course();
-    Course(std::string,std::string, Faculty*, Student*, Grade*, int, int,std::string);
+    Course(std::string, Faculty*, Student*, Grade*, int, int,std::string);
     void setProfesor(Faculty*);
     void setNotas(Student*, Grade*, int);
     Faculty* getProfesor();
@@ -41,6 +41,7 @@ public:
     Student* getStudents();
     int getTotalEstudiantes();
     int getCreditos();
+    void setTotalEstudiantes();
     std::string getNRC();
     std::string getName();
     std::string getPath();

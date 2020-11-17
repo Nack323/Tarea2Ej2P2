@@ -15,8 +15,8 @@ Course::~Course(){
     std::cout<<"La clase con NRC:"<<nrc<<" fue eliminada.";
 }
 
-Course::Course(std::string _name,std::string _nrc, Faculty* _profesor, Student* _estudiantes, Grade *_notas, int _totalEstudiantes, int _totalCreditos,std::string _path):
-name(_name),nrc(_nrc), profesor(_profesor), estudiantes(_estudiantes), totalEstudiantes(_totalEstudiantes),totalCreditos(_totalCreditos), notas(_notas),path(_path)
+Course::Course(std::string _nrc, Faculty* _profesor, Student* _estudiantes, Grade *_notas, int _totalEstudiantes, int _totalCreditos,std::string _path):
+nrc(_nrc), profesor(_profesor), estudiantes(_estudiantes), totalEstudiantes(_totalEstudiantes),totalCreditos(_totalCreditos), notas(_notas),path(_path)
 {
 }
 
