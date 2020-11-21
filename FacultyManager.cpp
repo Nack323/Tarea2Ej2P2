@@ -56,6 +56,11 @@ void FacultyManager::editFaculty(Faculty* profesor){
 };
 
 void FacultyManager::showFaculty(string BannerId){
+    for (int i = 0; i < totalProfesores; i ++)  {
+        if (profesores[i].getBannerID() == BannerId) {
+            cout << profesores[i].getBannerID() << "\t" << profesores[i].getNombre() << "\t" << profesores[i].getApellido() << "\t" << profesores[i].getUsuario() << "\t" << profesores[i].getContrasenia() << "\t" << profesores[i].getCarrera() << endl;
+        }
+    }
 };
 
 void FacultyManager::deleteFaculty(string BannerId){//cambiar cuando aprendamos array lists
