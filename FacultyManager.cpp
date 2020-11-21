@@ -20,6 +20,16 @@ void FacultyManager::loadFaculty(){
 };
 
 void FacultyManager::updateFaculty(){
+    //volver a escribir todos los datos dentro de los archivos
+    ofstream output(this->pathFaculty);
+    if (output.is_open()) {
+        output << totalProfesores << endl;
+        for (int i = 0; i < totalProfesores ; i++) {
+            output << profesores[i].getBannerID() << " " << profesores[i].getNombre() << " " << profesores[i].getApellido() << " " << profesores[i].getUsuario() << profesores[i].getContrasenia() << profesores[i].getCarrera() << endl;
+        }
+    } else {
+        cerr << "No se pudo encontrar el archivo para guardar. No se pudo actualizar." << this->pathFaculty<< endl;
+    }
 };
 
 FacultyManager::FacultyManager(string path) : pathFaculty(path){
