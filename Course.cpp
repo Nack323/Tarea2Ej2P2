@@ -59,10 +59,17 @@ int Course::getCreditos(){
     return totalCreditos;
 }
 
-std::string Course::getName(){
-    return name;
-}
 
 std::string Course::getPath(){
     return path;
+}
+
+void Course::setNRC(std::string NRC_){
+    this->nrc=NRC_
+
+}
+
+void Course::setCreditos(int creditos){
+    this->totalCreditos=creditos
+
 }

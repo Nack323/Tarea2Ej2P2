@@ -26,10 +26,11 @@ int main(int argc, const char * argv[]) {
     UnderGraduateStudent estudiante_03("0044", "Daniel_4", "Riofrio_4", "1234", "driofrioa4", "cmp4", representante);
     Grade nota(100);
     Faculty profesor("0099", "Daniel_9", "Riofrio_9", "1234", "driofrioa9", "cmp9");
-    Course curso("0012330231", &profesor, &estudiante_03, &nota, 1, 3);
-    curso.setNotas(&estudiante_03, &nota, 1);
-    estudiante_03.setClases(&curso, 1);
+    //Course curso("0012330231", &profesor, &estudiante_03, &nota, 1, 3);
+    //curso.setNotas(&estudiante_03, &nota, 1);
+    /*estudiante_03.setClases(&curso, 1);
     estudiante_03.calculateGPA();
     cout << "GPA: " << estudiante_03.getGPA() << endl;
+    */
     return 0;
 }

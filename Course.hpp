@@ -43,9 +43,9 @@ public:
     int getCreditos();
     void setTotalEstudiantes();
     std::string getNRC();
-    std::string getName();
     std::string getPath();
-
+    void setNRC(std::string);
+    void setCreditos(int);
 };
 
 #endif /* Course_hpp */
