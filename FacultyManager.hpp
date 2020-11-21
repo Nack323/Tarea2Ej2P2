@@ -15,6 +15,7 @@ private:
     void loadFaculty();
     void updateFaculty();
 public:
+    ~FacultyManager();
     FacultyManager(std::string);
     //void createNewFaculty(UserManager*);
     Faculty* getFacultyByID(std::string);

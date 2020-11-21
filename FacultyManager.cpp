@@ -95,3 +95,6 @@ void FacultyManager::deleteFaculty(string BannerId){//cambiar cuando aprendamos 
     }
 };
 
+FacultyManager::~FacultyManager(){
+    updateFaculty();
+}
