@@ -16,6 +16,8 @@ class StudentManager;
 class UserManager{
 private:
     User* usuarios;
+    StudentManager* sm;
+    FacultyManager* fm;
 public:
     UserManager(FacultyManager*, StudentManager*);
     User* validateCredentials(std::string, std::string);
