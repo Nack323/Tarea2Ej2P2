@@ -1,10 +1,10 @@
+#ifndef StudentManager_hpp
+#define StudentManager_hpp
 #include "Student.hpp"
 #include <fstream>
 #include "Proxy.hpp"
 #include "UnderGraduateStudent.hpp"
 #include "GraduateStudent.hpp"
-#ifndef StudentManager_hpp
-#define StudentManager_hpp
 #include "Student.hpp"
 #include "UserManager.hpp"
 #include "GraduateStudent.hpp"
