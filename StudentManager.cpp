@@ -89,8 +89,12 @@ Student* StudentManager::getAllStudents(int &total){
     return estudiantes;
 }
 
-void StudentManager::editStudent(){
-    //cambiar con input student
+void StudentManager::editStudent(Student* estudiante){
+    for (int i = 0; i < totalEstudiantes; i ++){
+        if( estudiantes[i].getBannerID() == estudiante->getBannerID()){
+            estudiantes[i] = *estudiante;
+        }
+    }
 };
 
 void StudentManager::showStudents(){

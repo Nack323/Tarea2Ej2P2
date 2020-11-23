@@ -29,7 +29,7 @@ public:
     void createNewStudent(UserManager*);
     Student* getStudentByID(std::string);
     Student* getAllStudents(int&);//cambiar quitar int por referencia cuando sepamos arraylist
-    void editStudent();
+    void editStudent(Student*);
     void showStudents();
     void deleteStudent();
 
