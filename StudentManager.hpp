@@ -32,7 +32,6 @@ public:
     void editStudent(Student*);
     void showStudents();
     void deleteStudent(std::string);
-    void showStudent(std::string);
 };
 
 #endif /* StudentManager_hpp */

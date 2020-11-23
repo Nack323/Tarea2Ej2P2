@@ -97,8 +97,10 @@ void StudentManager::editStudent(Student* estudiante){//cambiar polimosfismo
     }
 };
 
-void StudentManager::showStudent(std::string bannerID){
-    //preguntar aqui se imprime todos?
+void StudentManager::showStudents(){
+    for (int i = 0; i < totalEstudiantes; i ++) {
+        cout << estudiantes[i].to_string() << endl;
+    }
 };
 
 void StudentManager::deleteStudent(std::string bannerID_){
