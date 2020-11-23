@@ -32,7 +32,7 @@ public:
     void pantalla1_2();
     void pantalla1_3();
     void pantalla1_4();
-    void pantalla2_1();
-    void pantalla2_2();
+    void pantalla2_1(User*);
+    void pantalla2_2(User*);
 };
 #endif

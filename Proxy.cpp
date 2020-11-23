@@ -48,3 +48,8 @@ std::string Proxy::getEmail(){
 std::string Proxy::getNumeroTelefonico(){
     return numeroTelefonico;
 }
+
+std::string Proxy::to_string(){
+    return this->getNombre() + " " + this->getApellido() + " " + this->getEmail() + " " + this->getNumeroTelefonico();
+}
+

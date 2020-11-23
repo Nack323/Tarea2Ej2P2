@@ -56,3 +56,8 @@ std::string User::getContrasenia(){
 std::string User::getUsuario(){
     return usuario;
 }
+
+
+std::string User::to_string(){
+    return this->getBannerID() + " " + this->getNombre() + " " + this->getApellido() + " " + this->getUsuario() + " " + this->getContrasenia();
+}

@@ -89,7 +89,7 @@ Student* StudentManager::getAllStudents(int &total){
     return estudiantes;
 }
 
-void StudentManager::editStudent(Student* estudiante){
+void StudentManager::editStudent(Student* estudiante){//cambiar polimosfismo
     for (int i = 0; i < totalEstudiantes; i ++){
         if( estudiantes[i].getBannerID() == estudiante->getBannerID()){
             estudiantes[i] = *estudiante;
@@ -97,10 +97,10 @@ void StudentManager::editStudent(Student* estudiante){
     }
 };
 
-void StudentManager::showStudents(){
+void StudentManager::showStudent(std::string bannerID){
     //preguntar aqui se imprime todos?
 };
 
-void StudentManager::deleteStudent(){
+void StudentManager::deleteStudent(std::string bannerID_){
     //preguntar aqui se tendria que pasar un banner id?
 };

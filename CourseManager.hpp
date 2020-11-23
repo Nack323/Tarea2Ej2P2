@@ -31,6 +31,10 @@ public:
     void showCourses();
     void showClassByID(std::string);
     void deleteCourse(std::string);
+
+    Course* getCourseByNRC(std::string);
+    void addStudentToClass(Course*,Student*);
+    void addFacultyToClass(Course*,Faculty*);
 };
 
 #endif /* CourseManager_hpp */

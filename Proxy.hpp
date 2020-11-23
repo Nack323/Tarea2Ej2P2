@@ -29,6 +29,7 @@ public:
     std::string getApellido();
     std::string getEmail();
     std::string getNumeroTelefonico();
+    std::string to_string();
 };
 
 #endif /* Proxy_hpp */

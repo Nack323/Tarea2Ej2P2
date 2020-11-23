@@ -31,9 +31,8 @@ public:
     Student* getAllStudents(int&);//cambiar quitar int por referencia cuando sepamos arraylist
     void editStudent(Student*);
     void showStudents();
-    void deleteStudent();
-
-   
+    void deleteStudent(std::string);
+    void showStudent(std::string);
 };
 
 #endif /* StudentManager_hpp */
