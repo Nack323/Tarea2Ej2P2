@@ -64,6 +64,8 @@ void CourseManager::loadCourses(){
 };
 
 void CourseManager::updateCourses(){
+
+
     std::ofstream file;
     file.open(pathCursos,std::ofstream::out | std::ofstream::trunc);
     file<<numCursos;
@@ -125,7 +127,7 @@ void CourseManager::editCourse(){
                 std::cout<< "Nuevo NRC:    ";
                 std::cin>>nrcAux;
 
-                std::string newPath=nrcAux+"_"+cursos[i].getProfesor()->getBannerID()".txt";
+                std::string newPath=nrcAux+"_"+cursos[i].getProfesor()->getBannerID()+".txt";
                 rename(cursos[i].getPath(),newPath);
                 cursos[i].setPath(newPath);
                 cursos[i].setNRC(nrcAux);
@@ -142,7 +144,7 @@ void CourseManager::editCourse(){
                 
                 Faculty* nuevoProfesor=fm->getFacultyByID(ID);
                 std::string newPath=cursos[i].getNRC()+"_"+ID+".txt";
-                rename(cursos[i].getPath(),newPath);
+                rename(c_str(cursos[i].getPath()),c_str(newPath));
                 cursos[i].setPath(newPath);
                 cursos[i].setProfesor(nuevoProfesor);
                 
@@ -168,7 +170,9 @@ void CourseManager::editCourse(){
                 std::cout<<"No se ingreso una opcion valida"<<std::endl,
                 editCourse();
 
-            }         
+            }    
+
+            showClassByID(cursos[i].getNRC());     
         }
     }
 }    ;
@@ -249,3 +253,53 @@ void CourseManager::deleteCourse(std::string nrc){
     delete[] cursos;
     loadCourses();
 };
+
+Course* CourseManager::getCourseByNRC(std::string nrc_){
+
+    for(int i = 0; i<numCursos;i++){
+
+        if(cursos[i].getNRC()==nrc_){
+
+            return &cursos[i];
+
+        }
+    
+    }
+
+}
+
+void CourseManager::addStudentToClass(Course* curso_,Student* estudiante_){
+    
+    for(int i =0; i <numCursos;i++){
+
+        if(curso_==&cursos[i]){
+
+            std::ofstream estudiantes;
+            estudiantes.open(cursos[i].getPath(),std::ios::app);
+            estudiantes<<estudiante_->getBannerID()<<" "<<"0";
+            estudiantes.close();
+            delete[] cursos;
+            loadCourses();
+
+        }
+
+    }
+
+}
+
+
+void CourseManager::addFacultyToClass(Course* curso_,Faculty* profesor_){
+
+    for(int i=0 ;i<numCursos;i++){
+
+        if(curso_==&cursos[i]){
+
+            cursos[i].setProfesor(profesor_);
+            std::string newPath=cursos[i].getNRC()+"_"+profesor_->getBannerID()+".txt";
+            rename(cursos[i].getPath(),newPath)
+            cursos[i].setPath(newPath);
+            updateCourses();
+
+        }
+    }
+}

@@ -65,11 +65,15 @@ std::string Course::getPath(){
 }
 
 void Course::setNRC(std::string NRC_){
-    this->nrc=NRC_
+    this->nrc=NRC_;
 
 }
 
 void Course::setCreditos(int creditos){
-    this->totalCreditos=creditos
+    this->totalCreditos=creditos;
 
+}
+
+void Course::setPath(std::string path_){
+    this->path=path_;
 }

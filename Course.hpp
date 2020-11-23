@@ -46,6 +46,7 @@ public:
     std::string getPath();
     void setNRC(std::string);
     void setCreditos(int);
+    void setPath(std::string);
 };
 
 #endif /* Course_hpp */

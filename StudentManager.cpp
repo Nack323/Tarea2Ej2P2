@@ -89,14 +89,14 @@ Student* StudentManager::getAllStudents(int &total){
     return estudiantes;
 }
 
-void StudentManager::editStudent(){
+void StudentManager::editStudent(Student* student_){
     //cambiar con input student
 };
 
-void StudentManager::showStudents(){
+void StudentManager::showStudent(Student* estudiante){
     //preguntar aqui se imprime todos?
 };
 
-void StudentManager::deleteStudent(){
+void StudentManager::deleteStudent(std::string bannerID_){
     //preguntar aqui se tendria que pasar un banner id?
 };
