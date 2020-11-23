@@ -19,11 +19,11 @@ public:
     FacultyManager(std::string);
     FacultyManager(){};
     //void createNewFaculty(UserManager*);
-    Faculty* getFacultyByID(std::string);
-    Faculty* getAllFaculty(int&);
-    void editFaculty(Faculty*);
-    void showFaculty(std::string);
-    void deleteFaculty(std::string);
+    Faculty* getFacultyByID(std::string);//listo
+    Faculty* getAllFaculty(int&);//cambiar si aprendemos arraylist
+    void editFaculty(Faculty*);//listo
+    void showFaculty(std::string);//listo. Depende de to_string
+    void deleteFaculty(std::string);//listo. Posible core dumped
 };
 
 #endif /* FacultyManager_hpp */
