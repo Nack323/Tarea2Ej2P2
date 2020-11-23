@@ -37,9 +37,18 @@ FacultyManager::FacultyManager(string path) : pathFaculty(path){
 };
 
 
-//void FacultyManager::createNewFaculty(UserManager* um){
-
-//};
+void FacultyManager::createNewFaculty(UserManager* um){
+    totalProfesores ++;
+    string _bannerId = um->getNewBannerID();
+    Faculty* _profesores = new Faculty[totalProfesores];
+    for (int i = 0; i < totalProfesores - 1; i ++){
+        _profesores[i] = profesores[i];
+    }//cambiar, como obtengo los nuevos valores de la nueva faculty?
+    Faculty _newFac{};
+    _profesores[totalProfesores - 1] = _newFac;
+    delete[] profesores;
+    profesores = _profesores;
+};
 
 Faculty* FacultyManager::getFacultyByID(string BannerID){
     for(int i = 0; i < totalProfesores; i ++){
@@ -87,7 +96,7 @@ void FacultyManager::deleteFaculty(string BannerId){//cambiar cuando aprendamos 
         }
     }// si sale core dumped esto puede ser
     if (facultyExists){
-        delete profesores;
+        delete[] profesores;
         this->totalProfesores = this->totalProfesores -1;
         profesores = new Faculty[this->totalProfesores];
         for (int i = 0; i < this->totalProfesores ; i ++){

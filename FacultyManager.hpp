@@ -1,6 +1,7 @@
 #ifndef FacultyManager_hpp
 #define FacultyManager_hpp
 #include "Faculty.hpp"
+#include "UserManager.hpp"
 #include <fstream>
 #include <iostream>
 
@@ -18,7 +19,7 @@ public:
     ~FacultyManager();
     FacultyManager(std::string);
     FacultyManager(){};
-    //void createNewFaculty(UserManager*);
+    void createNewFaculty(UserManager*);
     Faculty* getFacultyByID(std::string);//listo
     Faculty* getAllFaculty(int&);//cambiar si aprendemos arraylist
     void editFaculty(Faculty*);//listo
