@@ -22,3 +22,7 @@ void GraduateStudent::setNivel(std::string _nivel){
 std::string GraduateStudent::getNivel(){
     return nivel;
 }
+
+std::string GraduateStudent::to_string(){
+    return Student::to_string() + " " + this->getNivel();
+}

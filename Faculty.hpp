@@ -29,6 +29,7 @@ public:
     void setCursos(Course*, int);
     std::string getCarrera();
     Course* getCursos(int&);
+    std::string to_string() override;
 };
 
 #endif /* Faculty_hpp */

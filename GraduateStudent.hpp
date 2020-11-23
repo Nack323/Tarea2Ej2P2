@@ -21,6 +21,7 @@ public:
     GraduateStudent(std::string, std::string, std::string, std::string, std::string, std::string, std::string);
     void setNivel(std::string);
     std::string getNivel();
+    std::string to_string() override;
 };
 
 #endif /* GraduateStudent_hpp */

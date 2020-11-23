@@ -32,3 +32,7 @@ Course* Faculty::getCursos(int & _totalCursos){
     _totalCursos = totalCursos;
     return cursos;
 }
+
+std::string Student::to_string(){
+    return User::to_string() + " " + this->getCarrera();
+}

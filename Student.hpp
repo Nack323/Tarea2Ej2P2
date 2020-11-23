@@ -33,6 +33,7 @@ public:
     std::string getCarrera();
     Course* getClases(int&);
     float getGPA();
+    std::string to_string() override;
 };
 
 #endif /* Student_hpp */

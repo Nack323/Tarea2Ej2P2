@@ -32,6 +32,7 @@ public:
     std::string getApellido();
     std::string getContrasenia();
     std::string getUsuario();
+    virtual std::string to_string();
 };
 
 #endif /* User_hpp */

@@ -22,6 +22,7 @@ public:
     UnderGraduateStudent(std::string, std::string, std::string, std::string, std::string, std::string, Proxy);
     void setRepresentante(Proxy);
     Proxy getRepresentante();
+    std::string to_string() override;
 };
 
 #endif /* UnderGraduateStudent_hpp */

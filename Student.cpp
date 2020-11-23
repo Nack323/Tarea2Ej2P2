@@ -47,3 +47,7 @@ Course* Student::getClases(int &_totalClases){
     _totalClases = totalClases;
     return clases;
 }
+
+std::string Student::to_string(){
+    return User::to_string() + " " + this->getCarrera();
+}
