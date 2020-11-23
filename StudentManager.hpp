@@ -25,12 +25,15 @@ private:
     void updateUnderGrads();
 public:
     StudentManager(char*, char*);
+    StudentManager(){};
     void createNewStudent(UserManager*);
     Student* getStudentByID(std::string);
     Student* getAllStudents(int&);//cambiar quitar int por referencia cuando sepamos arraylist
     void editStudent();
     void showStudents();
     void deleteStudent();
+
+   
 };
 
 #endif /* StudentManager_hpp */

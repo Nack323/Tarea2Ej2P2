@@ -15,15 +15,19 @@ void Interfaz::pantallaInit(){
     while(option!="3"){
         std::cin>>option;
         if(option=="1"){
+            system("cls");
             pantalla1();
         }else if(option=="2"){
+            system("cls");
             pantallaVer();
         }else{
+            system("cls");
             std::cout<<"Ingrese una opción válida"<<std::endl;
             pantallaInit();
             
         }
     }
+    exit(-1);
 }
 
 void Interfaz::pantalla1(){
@@ -50,18 +54,34 @@ void Interfaz::pantalla1(){
 
 
 void Interfaz::pantallaVer(){
-    FacultyManager facuAux;
-    StudentManager studAux;
-    UserManager userAux(facuAux.getAllFaculty(),studAux.getAllStudents());
-    ;
+    std::string userAux,contraseniaAux,opcion;
+    std::cout<<"Si desea regresar al inicio ingrese el numero 0 en Usuario"<<std::endl;
+    std::cout<<"Usuario:    ";
+    std::cin>>userAux;
+    std::cout<<"Contrasenia:    ";
+    std::cin>>contraseniaAux;
+    if(userAux=="0"){
+        pantalla1();
+    }
+    this->userActual=um.validateCredentials(userAux,contraseniaAux);
 
-    userAux.validateCredentials(); 
+
+    if (userActual==nullptr){
+        system("cls");
+        std::cout<<"Credenciales invalidas"<<std::endl;
+        pantallaVer();
+    }else{
+        pantalla2(userActual);
+    }
+
 }
+
 void Interfaz::pantalla1_1(){
     std::cout<<"1.Mostrar Usuarios\n2.Editar Usuarios\n3.Regresar"<<std::endl;
     std::string option;
     std::cin>>option;
     if(option=="1"){
+
         
     }else if(option=="2"){
         
@@ -80,6 +100,7 @@ void Interfaz::pantalla1_2(){
     std::string option;
     std::cin>>option;
     if(option=="1"){
+        
         
     }else if(option=="2"){
         
@@ -120,38 +141,33 @@ void Interfaz::pantalla1_3(){
 }
 
 void Interfaz::pantalla1_4(){
-    std::cout<<"1.Crear Curso\n2.Editar Curso\n3.Mostrar Curso\n4.Borrar Curso\n5.Asociar Profesor a Curso\n6.Asociar Estudiante a Curso\n7.Mostrar Lista de Curso\n8.Regresar"<<std::endl;
+    std::cout<<"1.Crear Profesor\n2.Editar Profesor\n3.Mostrar Profesores\n4.Borrar Profesor\n5.Regresar"<<std::endl;
     std::string option;
     std::cin>>option;
     if(option=="1"){
         
     }else if(option=="2"){
-        
+       
     }else if(option=="3"){
        
     }else if(option=="4"){
         
     }else if(option=="5"){
-        
-    }else if(option=="6"){
-        
-    }else if(option=="7"){
-        
-    }else if(option=="8"){
         system("cls");
         pantalla1();
+
     }else{
-        std::cout<<"Ingresar una de las opciones"<<std::endl;
-        pantalla1_4();
+        system("cls");
+        pantalla1_3();
     }
 }
 
-void Interfaz::pantalla2(){
+void Interfaz::pantalla2(User* usuario_){
     std::cout<<"1.Mostrar Datos\n2.Editar Datos\n3.Regresar"<<std::endl;
     std::string option;
     std::cin>>option;
     if(option=="1"){
-        
+        um.sho
     }else if(option=="2"){
         
     }else if(option=="3"){

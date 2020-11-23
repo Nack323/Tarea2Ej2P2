@@ -4,11 +4,11 @@
 void CourseManager::loadCourses(){
 
     std::ifstream input;
-    input.open(pathCursos);
+    input.open(this->pathCursos);
     input>>numCursos;
-    cursos=new Course[numCursos];
+    cursos=new Course[this->numCursos];
 
-    for(int i=0;i<numCursos;i++){
+    for(int i=0;i<this->numCursos;i++){
 
         std::string nrcAux,creditosAux,profeAux,pathAux;
 
@@ -78,7 +78,6 @@ void CourseManager::updateCourses(){
 };
 
 
-
 CourseManager::CourseManager(std::string pathCursos_, StudentManager* sm, FacultyManager* fm):pathCursos(pathCursos_),sm(sm),fm(fm){
     loadCourses();
 };  
@@ -126,7 +125,7 @@ void CourseManager::editCourse(){
                 std::cout<< "Nuevo NRC:    ";
                 std::cin>>nrcAux;
 
-                std::string newPath=nrcAux+"_"+cursos[i].getProfesor()->getBannerID();
+                std::string newPath=nrcAux+"_"+cursos[i].getProfesor()->getBannerID()".txt";
                 rename(cursos[i].getPath(),newPath);
                 cursos[i].setPath(newPath);
                 cursos[i].setNRC(nrcAux);
@@ -142,7 +141,7 @@ void CourseManager::editCourse(){
                 std::cin>>ID;
                 
                 Faculty* nuevoProfesor=fm->getFacultyByID(ID);
-                std::string newPath=cursos[i].getNRC()+"_"+ID;
+                std::string newPath=cursos[i].getNRC()+"_"+ID+".txt";
                 rename(cursos[i].getPath(),newPath);
                 cursos[i].setPath(newPath);
                 cursos[i].setProfesor(nuevoProfesor);
@@ -246,7 +245,7 @@ void CourseManager::deleteCourse(std::string nrc){
         }
 
     }
-    
+
     delete[] cursos;
     loadCourses();
 };

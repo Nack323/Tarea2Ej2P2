@@ -17,6 +17,7 @@ private:
 public:
     ~FacultyManager();
     FacultyManager(std::string);
+    FacultyManager(){};
     //void createNewFaculty(UserManager*);
     Faculty* getFacultyByID(std::string);
     Faculty* getAllFaculty(int&);
