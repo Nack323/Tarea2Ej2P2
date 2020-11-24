@@ -81,13 +81,7 @@ void UserManager::editUser(User* usuarioAux)
 
 void UserManager::showUser(User* usuario)
 {
-  	
-    std::cout<<"Usuario:"<< usuarios[i].getUsuario()<<std::endl;
-    std::cout<<"Banner ID:"<< usuarios[i].getBannerID()<<std::endl;
-    std::cout<<"Contrasenia:"<< usuarios[i].getContrasenia()<<std::endl;
-    std::cout<<"Nombre:"<< usuarios[i].getNombre()<<std::endl;
-	std::cout<<"Apellido:"<< usuarios[i].getApellido()<<std::endl;
-
+    std::cout << usuario->to_string() << std::endl;
 };
 
 std::string UserManager::getNewBannerID(){

@@ -47,7 +47,7 @@ void FacultyManager::createNewFaculty(UserManager* um){
     Faculty _newFac{};
     _profesores[totalProfesores - 1] = _newFac;
     delete[] profesores;
-    profesores = _profesores;
+    profesores = _profesores;//ayuda
 };
 
 Faculty* FacultyManager::getFacultyByID(string BannerID){

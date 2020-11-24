@@ -91,7 +91,7 @@ Student* StudentManager::getAllStudents(int &total){
 
 void StudentManager::editStudent(Student* estudiante){//cambiar polimosfismo
     for (int i = 0; i < totalEstudiantes; i ++){
-        if( estudiantes[i].getBannerID() == estudiante->getBannerID()){
+        if(estudiantes[i].getBannerID() == estudiante->getBannerID()){
             estudiantes[i] = *estudiante;
         }
     }
