@@ -37,13 +37,14 @@ FacultyManager::FacultyManager(string path) : pathFaculty(path){
 };
 
 
-void FacultyManager::createNewFaculty(UserManager* um){
+void FacultyManager::createNewFaculty(UserManager* um){//terminar
     totalProfesores ++;
     string _bannerId = um->getNewBannerID();
     Faculty* _profesores = new Faculty[totalProfesores];
     for (int i = 0; i < totalProfesores - 1; i ++){
         _profesores[i] = profesores[i];
     }//cambiar, como obtengo los nuevos valores de la nueva faculty?
+    //pedir los datos en cin
     Faculty _newFac{};
     _profesores[totalProfesores - 1] = _newFac;
     delete[] profesores;
@@ -77,7 +78,6 @@ void FacultyManager::editFaculty(Faculty* profesor){
 void FacultyManager::showFaculty(string BannerId){
     for (int i = 0; i < totalProfesores; i ++)  {
         if (profesores[i].getBannerID() == BannerId) {
-            //cout << profesores[i].getBannerID() << "\t" << profesores[i].getNombre() << "\t" << profesores[i].getApellido() << "\t" << profesores[i].getUsuario() << "\t" << profesores[i].getContrasenia() << "\t" << profesores[i].getCarrera() << endl;
             cout << profesores[i].to_string() << endl;
         }
     }

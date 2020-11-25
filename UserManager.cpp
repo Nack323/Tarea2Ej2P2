@@ -86,6 +86,6 @@ void UserManager::showUser(User* usuario)
 
 std::string UserManager::getNewBannerID(){
   //averiguar como modificar funciones de user (setBannerID)
- 	std::string s{""};
+ 	std::string s{""};//transformar a int y sumarle uno al maximo.
  	return s;
 };

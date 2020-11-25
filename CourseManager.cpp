@@ -25,7 +25,7 @@ void CourseManager::loadCourses(){
             if(profeAux==profesores[j].getBannerID()){
                 profesor=profesores[j];
             }
-        }
+        }// llamar a getFacultyById
 
         std::string* BannerID;
         std::ifstream fileEst;
@@ -128,7 +128,7 @@ void CourseManager::editCourse(){
                 std::cin>>nrcAux;
 
                 std::string newPath=nrcAux+"_"+cursos[i].getProfesor()->getBannerID()+".txt";
-                rename(cursos[i].getPath(),newPath);
+                rename(cursos[i].getPath(),newPath);//bien :)
                 cursos[i].setPath(newPath);
                 cursos[i].setNRC(nrcAux);
 

@@ -72,7 +72,6 @@ StudentManager::StudentManager(char* pathUndergrad, char* pathGrad) : pathUnderg
 };
 
 void StudentManager::createNewStudent(UserManager* um){
-    //preguntar como se hace esto :<
 };
 
 Student* StudentManager::getStudentByID(string BannerID){
