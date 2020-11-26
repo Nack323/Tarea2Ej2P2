@@ -11,27 +11,17 @@
 
 Course::Course(){ }
 
-Course::~Course(){
-    std::cout<<"La clase con NRC:"<<nrc<<" fue eliminada.";
+Course::Course(std::string _nrc, int totalCreditos):nrc(nrc),totalCreditos(totalCreditos){
+    ArrayList<Student> est;
+    this->estudiantes=est;
+
+    ArrayList<Grade> notas;
+    this->notas+notas;
 }
 
-Course::Course(std::string _nrc, Faculty* _profesor, Student* _estudiantes, Grade *_notas, int _totalEstudiantes, int _totalCreditos,std::string _path):
-nrc(_nrc), profesor(_profesor), estudiantes(_estudiantes), totalEstudiantes(_totalEstudiantes),totalCreditos(_totalCreditos), notas(_notas),path(_path)
-{
-}
-
-void Course::setProfesor(Faculty* _profesor){
-    profesor = _profesor;
-}
-
-void Course::setNotas(Student* _estudiantes, Grade* _notas, int _totalEstudiantes){
-    estudiantes = _estudiantes;
-    notas = _notas;
-    totalEstudiantes = _totalEstudiantes;
-}
-
-Faculty* Course::getProfesor(){
-    return profesor;
+void Course::addStudentGrade(Student*,Grade*){
+    estudiantes.addObject(Student*);
+    notas.addObject(Grade);
 }
 
 Grade* Course::getGradeByStudent(Student * estudiante){
@@ -43,25 +33,35 @@ Grade* Course::getGradeByStudent(Student * estudiante){
     return nullptr;
 }
 
-Student* Course::getStudents(){
-    return estudiantes;
+
+ArrayList<Student> Course::getAllStudents(){
+    return this->estudiantes;
 }
 
-int Course::getTotalEstudiantes(){
-    return totalEstudiantes;
+ArrayList<Grade> Course::getAllGrades(){
+    return this->notas:
 }
 
-std::string Course::getNRC(){
-    return nrc;
+void Course::setProfesor(Faculty* _profesor){
+    this->profesor = _profesor;
+}
+
+Faculty* Course::getProfesor(){
+    return this->profesor;
 }
 
 int Course::getCreditos(){
-    return totalCreditos;
+    return this->totalCreditos;
+}
+
+void Course::setCreditos(int creditos){
+    this->totalCreditos=creditos;
+
 }
 
 
-std::string Course::getPath(){
-    return path;
+std::string Course::getNRC(){
+    return nrc;
 }
 
 void Course::setNRC(std::string NRC_){
@@ -69,9 +69,8 @@ void Course::setNRC(std::string NRC_){
 
 }
 
-void Course::setCreditos(int creditos){
-    this->totalCreditos=creditos;
-
+std::string Course::getPath(){
+    return path;
 }
 
 void Course::setPath(std::string path_){

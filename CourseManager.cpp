@@ -1,64 +1,54 @@
 #include <iostream>
 #include "CourseManager.hpp"
 
+
 void CourseManager::loadCourses(){
 
     std::ifstream input;
     input.open(this->pathCursos);
     input>>numCursos;
-    cursos=new Course[this->numCursos];
+    ArrayList<Course> cursosAux:
+    cursos=cursosAux;
+    
 
     for(int i=0;i<this->numCursos;i++){
 
         std::string nrcAux,creditosAux,profeAux,pathAux;
-
-        //Cambiar esto 
-        int x=3;
-        Faculty* profesores=fm->getAllFaculty(x);
-        Student* estudiantes=sm->getAllStudents(x);
-        int numberEst;
-        Faculty profesor;
+        Faculty* profesor;
 
         input>>nrcAux>>creditosAux>>profeAux>>pathAux;
 
-        for(int j=0;j<(sizeof(profesores)/sizeof(profesores[0]));i++){
-            if(profeAux==profesores[j].getBannerID()){
-                profesor=profesores[j];
-            }
-        }// llamar a getFacultyById
+        Curso cursoAux;
+        cursoAux=Curso(nrcAux,creditosAux);
 
-        std::string* BannerID;
-        std::ifstream fileEst;
-        Student* clase;
-        Grade* notas;
-        
+        cursos.add(cursoAux);
+
+        profesor=fm->getFacultyByID(profeAux);
+        cursos[i].setProfesor(profesor);
+
+        std::ifstream fileEst;    
         
         fileEst.open(pathAux);
         fileEst>>numberEst;
 
-        clase=new Student[numberEst];
-        notas=new Grade[numberEst];
-        std::string line;
-
         for(int j=0;j<numberEst;j++){
-            getline(fileEst,line);
-            std::string ban,nota;
-            int k=0;
-            while(line[k]!=' '){
-                ban+=line[k];
-                k++;
-            }
-            k++;
-            while(line[k]){
-                nota+=line[k];
-            }
-            notas[i].setNota(stoi(nota));
-            //Problema con la funcion getStudentByID
-            //clase[i]=sm.getStudentByID(ban);
+
+            std::string BannerIDAux;
+            std::string notaAux;
+            Student* studentAux;
+            Grade* nota;
+
+            fileEst>>BannerIDAux>>notaAux;
+
+            studentAux=sm.getStudentByID(BannerIDAux);
+            notaAux=Grade(stof(notaAux));
+
+            cursos[i].addStudentGrade(studentAux,notaAux);
+
         }
+
         fileEst.close();
 
-        cursos[i]=Course(nrcAux,&profesor,clase,notas,numberEst,stoi(creditosAux),pathAux);
     }
     input.close();
 };
@@ -104,8 +94,11 @@ void CourseManager::createNewCourse(){
     
     file.open(pathCursos,std::ios::app);
     file<<NRCAux<<" "<<creditosAux<<" "<<ProfesorAux<<" "<<newpath<<std::endl;
-    delete[] cursos;
-    loadCourses(); 
+    
+    Course* cursoAux{NRCAux,stof(creditosAux)};
+    cursoAux.setProfesor(fm.getFacultyByID(ProfesorAux));
+    cursos.add(cursoAux);
+    updateCourses();
 } 
 
 void CourseManager::editCourse(){
@@ -267,7 +260,7 @@ Course* CourseManager::getCourseByNRC(std::string nrc_){
     }
 
 }
-
+/*
 void CourseManager::addStudentToClass(Course* curso_,Student* estudiante_){
     
     for(int i =0; i <numCursos;i++){
@@ -302,4 +295,4 @@ void CourseManager::addFacultyToClass(Course* curso_,Faculty* profesor_){
 
         }
     }
-}
+}*/

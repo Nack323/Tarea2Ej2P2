@@ -19,34 +19,42 @@ class Faculty;
 #include "Student.hpp"
 #include "Faculty.hpp"
 #include "Grade.hpp"
+#include "ArrayList.hpp" 
 
 class Course{
 private:
     std::string nrc;
     std::string name;
     Faculty *profesor;
-    Student *estudiantes;
-    Grade *notas;
+    ArrayList<Student> estudiantes;
+    ArrayList<Grade> notas;
     int totalEstudiantes;
     int totalCreditos;
     std::string path;
 public:
     Course();
-    ~Course();
-    Course(std::string, Faculty*, Student*, Grade*, int, int,std::string);
-    void setProfesor(Faculty*);
-    void setNotas(Student*, Grade*, int);
-    Faculty* getProfesor();
+    Course(std::string, int);
+
+    void addStudentGrade(Student*,Grade*);
     Grade *getGradeByStudent(Student*);
-    Student* getStudents();
-    int getTotalEstudiantes();
-    int getCreditos();
-    void setTotalEstudiantes();
-    std::string getNRC();
-    std::string getPath();
-    void setNRC(std::string);
+
+    ArrayList<Student> getAllStudents();
+    ArrayList<Grade> getAllGrades();
+
+    void setProfesor(Faculty*);
+    Faculty getProfesor();
+
     void setCreditos(int);
+    int getCreditos();
+
+    void setNRC(std::string);
+    std::string getNRC();
+    
     void setPath(std::string);
+    std::string getPath();
+
+    std::string to_string();
+   
 };
 
 #endif /* Course_hpp */

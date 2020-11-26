@@ -35,7 +35,7 @@ public:
         this->prev= prev;
     }
     NodeD* getPrevNode(){
-        return prev;
+        return this->prev;
     }
 };
 

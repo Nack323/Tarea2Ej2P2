@@ -7,6 +7,7 @@
 #include <iomanip>
 #include <fstream>
 #include "Grade.hpp"
+#include "ArraysList.hpp"
 
 #ifndef CourseManager_hpp
 #define CourseManager_hpp
@@ -17,7 +18,7 @@ class FacultyManager;
 
 class CourseManager{
 private:
-    Course* cursos;
+    ArrayList<Course> cursos;
     int numCursos;
     std::string pathCursos;
     StudentManager* sm;
@@ -33,8 +34,7 @@ public:
     void deleteCourse(std::string);
 
     Course* getCourseByNRC(std::string);
-    void addStudentToClass(Course*,Student*);
-    void addFacultyToClass(Course*,Faculty*);
+    
 };
 
 #endif /* CourseManager_hpp */
