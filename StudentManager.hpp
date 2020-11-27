@@ -27,7 +27,7 @@ public:
     void createNewStudent(UserManager*);
     Student* getStudentByID(std::string);
     std::deque<Student*> getAllStudents();
-    void editStudent(Student*);
+    void editStudent();
     void showStudents();
     void showStudent(std::string);
     void showStudent(Student*);
