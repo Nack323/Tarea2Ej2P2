@@ -120,7 +120,7 @@ void StudentManager::editStudent(){//preguntar
     Student* Edit{0};//estudiante para editar
     bool found = false;
     //encontrar el estudiante con ese bannerID
-    for(auto estud: estudiantes) {
+    for(auto &estud: estudiantes) {
         if (estud->getBannerID() == _bannerId){
             cout << "ESTUDIANTE ENCONTRADO." << endl;
             GraduateStudent* GradStud = dynamic_cast<GraduateStudent*>(estud);
