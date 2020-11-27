@@ -30,6 +30,7 @@ public:
     void editStudent(Student*);
     void showStudents();
     void showStudent(std::string);
+    void showStudent(Student*);
     void deleteStudent(std::string);
 };
 

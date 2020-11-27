@@ -116,11 +116,6 @@ deque<Student*> StudentManager::getAllStudents(){
 }
 
 void StudentManager::editStudent(Student* estudiante){//preguntar
-    for (int i = 0; i < estudiantes.size(); i ++){
-        if(estudiantes[i]->getBannerID() == estudiante->getBannerID()){
-            estudiantes[i] = estudiante;
-        }
-    }
 };
 
 void StudentManager::showStudents(){
@@ -149,3 +144,8 @@ void StudentManager::showStudent(string bannerId) {
         }
     }
 }
+
+void StudentManager::showStudent(Student* estud) {//para que no se le dañe lo que hizo el roberto 
+    cout << estud->to_string() << endl;
+}
+
