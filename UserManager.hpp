@@ -7,6 +7,7 @@
 #include "User.hpp"
 #include "StudentManager.hpp"
 #include "FacultyManager.hpp"
+#include "ArrayList.hpp"
 
 
 
@@ -24,6 +25,7 @@ public:
     void editUser(User*);
     void showUser(User*);
     std::string getNewBannerID();
+    void addNewUser(User*)
 };
 
 

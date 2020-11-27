@@ -13,7 +13,6 @@
 // forward declared dependencies
 class Student;
 class Faculty;
-
 #include <stdio.h>
 #include <string>
 #include "Student.hpp"
@@ -24,7 +23,6 @@ class Faculty;
 class Course{
 private:
     std::string nrc;
-    std::string name;
     Faculty *profesor;
     ArrayList<Student> estudiantes;
     ArrayList<Grade> notas;

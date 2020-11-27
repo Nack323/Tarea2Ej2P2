@@ -22,9 +22,8 @@ void Student::setCarrera(std::string _carrera){
     carrera = _carrera;
 }
 
-void Student::setClases(Course* _clases, int _totalClases){
-    clases = _clases;
-    totalClases = _totalClases;
+void Student::addClass(Course* curso){
+    this->clases.add(curso);
 }
 
 float Student::getGPA(){
@@ -43,8 +42,7 @@ void Student::calculateGPA(){
     gpa = gpa / totalClases;
 }
 
-Course* Student::getClases(int &_totalClases){
-    _totalClases = totalClases;
+ArrayList<Course> Student::getClases(){
     return clases;
 }
 

@@ -12,16 +12,11 @@
 Course::Course(){ }
 
 Course::Course(std::string _nrc, int totalCreditos):nrc(nrc),totalCreditos(totalCreditos){
-    ArrayList<Student> est;
-    this->estudiantes=est;
-
-    ArrayList<Grade> notas;
-    this->notas+notas;
 }
 
-void Course::addStudentGrade(Student*,Grade*){
-    estudiantes.addObject(Student*);
-    notas.addObject(Grade);
+void Course::addStudentGrade(Student* student,Grade* grade){
+    estudiantes.addObject(student);
+    notas.addObject(grade);
 }
 
 Grade* Course::getGradeByStudent(Student * estudiante){
@@ -75,4 +70,8 @@ std::string Course::getPath(){
 
 void Course::setPath(std::string path_){
     this->path=path_;
+}
+
+std::string Course::to_string(){
+    string=std::cout<<nrc<<std::setw(10)<<creditos<<" "<<this->profesor.getName()<<this->profesor.getApellido()<<std::endl;
 }

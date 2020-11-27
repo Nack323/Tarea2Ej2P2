@@ -7,8 +7,8 @@ void CourseManager::loadCourses(){
     std::ifstream input;
     input.open(this->pathCursos);
     input>>numCursos;
-    ArrayList<Course> cursosAux:
-    cursos=cursosAux;
+    ArrayList<Course*> cursosAux:
+    this->cursos=cursosAux;
     
 
     for(int i=0;i<this->numCursos;i++){
@@ -35,15 +35,13 @@ void CourseManager::loadCourses(){
 
             std::string BannerIDAux;
             std::string notaAux;
-            Student* studentAux;
             Grade* nota;
 
             fileEst>>BannerIDAux>>notaAux;
 
-            studentAux=sm.getStudentByID(BannerIDAux);
             notaAux=Grade(stof(notaAux));
 
-            cursos[i].addStudentGrade(studentAux,notaAux);
+            cursos[i].addStudentGrade(sm.getStudentByID(BannerIDAux),notaAux);
 
         }
 
@@ -121,13 +119,12 @@ void CourseManager::editCourse(){
                 std::cin>>nrcAux;
 
                 std::string newPath=nrcAux+"_"+cursos[i].getProfesor()->getBannerID()+".txt";
-                rename(cursos[i].getPath(),newPath);//bien :)
+                rename(cursos[i].getPath().c_str(),newPath.c_str());//bien :)
                 cursos[i].setPath(newPath);
                 cursos[i].setNRC(nrcAux);
 
                 updateCourses();
-                std::cout<<"Su Curso ha sido actualizado (Enter para volver al inicio)"<<std::endl;
-                system("PAUSE");
+                std::cout<<"Su Curso ha sido actualizado"<<std::endl;
 
             }else if(option=="2"){
 
@@ -137,13 +134,13 @@ void CourseManager::editCourse(){
                 
                 Faculty* nuevoProfesor=fm->getFacultyByID(ID);
                 std::string newPath=cursos[i].getNRC()+"_"+ID+".txt";
-                rename(c_str(cursos[i].getPath()),c_str(newPath));
+                rename(cursos[i].getPath().c_str(),newPath.c_str());
                 cursos[i].setPath(newPath);
                 cursos[i].setProfesor(nuevoProfesor);
+                nuevoProfesor->addClass(cursos[i]);
                 
                 updateCourses(); 
-                std::cout<<"Su Curso ha sido actualizado (Enter para volver al inicio)"<<std::endl;
-                system("PAUSE");
+                std::cout<<"Su Curso ha sido actualizado"<<std::endl;
 
             }else if(option=="3"){
 
@@ -154,12 +151,11 @@ void CourseManager::editCourse(){
                 cursos[i].setCreditos(creditosAux);
                 
                 updateCourses();
-                std::cout<<"Su Curso ha sido actualizado (Enter para volver al inicio)"<<std::endl;
-                system("PAUSE");
+                std::cout<<"Su Curso ha sido actualizado"<<std::endl;
+    
 
             }else{
-
-                system("clear");
+ 
                 std::cout<<"No se ingreso una opcion valida"<<std::endl,
                 editCourse();
 
@@ -177,11 +173,10 @@ void CourseManager::showCourses(){
     for(int i=0;i<numCursos;i++){
 
         std::cout<<"NRC"<<std::setw(10)<<"Creditos"<<std::setw(10)<<"Profesor"<<std::endl;
-        std::cout<<cursos[i].getNRC()<<std::setw(10)<<cursos[i].getCreditos()<<" "<<cursos[i].getProfesor()->getNombre()<<cursos[i].getProfesor()->getApellido()<<std::endl;
+        cursos[i].to_string():
     
     }
-    std::cout<<"\n\n Para regresar presione Enter"<<std::endl;
-    system("PAUSE");
+
 
 };
 
@@ -192,15 +187,14 @@ void CourseManager::showClassByID(std::string nrc){
 
         if(cursos[i].getNRC()==nrc){
 
-            std::cout<<"NRC:"<<cursos[i].getNRC()<<std::endl;
-            std::cout<<"Creditos:"<<cursos[i].getCreditos()<<std::endl;
-            std::cout<<"Profesor:"<<cursos[i].getProfesor()->getNombre()<<" "<<cursos[i].getProfesor()->getApellido()<<std::endl;
-            std::cout<<"Estudiantes:"<<std::endl;
+            std::cout<<"NRC"<<std::setw(10)<<"Creditos"<<std::setw(10)<<"Profesor"<<std::endl;
+            cursos[i].to_string():
+            std::cout<<"Estudiantes"<<std::endl;
+            ArrayLisy<Student> stu=cursos[i].getAllStudents();
 
-            for(int j=0;j<cursos[i].getTotalEstudiantes();j++){
 
-                std::cout<<cursos[i].getStudents()[j].getBannerID()<<"\t"<<cursos[i].getStudents()[j].getNombre()<<"\t"<<cursos[i].getStudents()[j].getApellido()<<std::endl;
-            
+            for(int j=0;j<stu.getSize();j++){
+                stu[j].to_string();
             }
 
             break;  
@@ -211,40 +205,22 @@ void CourseManager::showClassByID(std::string nrc){
 
     }
 
-    std::cout<<"Para regresar ingrese Enter"<<std::endl;
-    system("PAUSE");
 }
 
 void CourseManager::deleteCourse(std::string nrc){
 
-    for(int i=0;i<numCursos;i++){
+    for(int i=0;i<cursos.getSize();i++){
 
         if(cursos[i].getNRC()==nrc){
 
-            std::ofstream output;
-            output.open("courses.txt", std::ofstream::out | std::ofstream::trunc);
-            output<<numCursos-1<<"\n";
-
-            for(int j=0;j<i-1;j++){   
-
-                output<<cursos[i].getNRC()<<" "<<cursos[i].getCreditos()<<" "<<cursos[i].getProfesor()->getBannerID()<<" "<<cursos[i].getPath();
-
-            }
-
-            for(int j=i+1;j<numCursos;j++){
-
-                output<<cursos[i].getNRC()<<" "<<cursos[i].getCreditos()<<" "<<cursos[i].getProfesor()->getBannerID()<<" "<<cursos[i].getPath();
-
-            }
-
-            output.close();
+            numCursos--;
+            cursos.deleteAt(i);
 
         }
 
     }
 
-    delete[] cursos;
-    loadCourses();
+    updateCourses();
 };
 
 Course* CourseManager::getCourseByNRC(std::string nrc_){
@@ -260,39 +236,4 @@ Course* CourseManager::getCourseByNRC(std::string nrc_){
     }
 
 }
-/*
-void CourseManager::addStudentToClass(Course* curso_,Student* estudiante_){
-    
-    for(int i =0; i <numCursos;i++){
 
-        if(curso_==&cursos[i]){
-
-            std::ofstream estudiantes;
-            estudiantes.open(cursos[i].getPath(),std::ios::app);
-            estudiantes<<estudiante_->getBannerID()<<" "<<"0";
-            estudiantes.close();
-            delete[] cursos;
-            loadCourses();
-
-        }
-
-    }
-
-}
-
-
-void CourseManager::addFacultyToClass(Course* curso_,Faculty* profesor_){
-
-    for(int i=0 ;i<numCursos;i++){
-
-        if(curso_==&cursos[i]){
-
-            cursos[i].setProfesor(profesor_);
-            std::string newPath=cursos[i].getNRC()+"_"+profesor_->getBannerID()+".txt";
-            rename(cursos[i].getPath(),newPath)
-            cursos[i].setPath(newPath);
-            updateCourses();
-
-        }
-    }
-}*/

@@ -8,14 +8,11 @@ UserManager::UserManager(FacultyManager* _facultyManager, StudentManager* _stude
 
 User* UserManager::validateCredentials(std::string userName, std::string contrasenia){
 
-	int x=3;
-	Student* estudiantes=sm->getAllStudents(x);
-	Faculty* profesores=fm->  getAllFaculty(x);
 
-	int studentSize= sizeof(estudiantes)/sizeof(estudiantes[0]);
-	int facultySize= sizeof(profesores)/sizeof(profesores[0]);
+	ArrayList<Student> estudiantes=sm->getAllStudents(x);
+	ArrayList<Faculty> profesores=fm->getAllFaculty(x);
 
-  	for(int i=0;i<studentSize;i++){
+  	for(int i=0;i<estudiantes.getSize();i++){
 
 		if(estudiantes[i].getUsuario()==userName and estudiantes[i].getContrasenia()==contrasenia){
 			
@@ -24,7 +21,7 @@ User* UserManager::validateCredentials(std::string userName, std::string contras
      	}
 
  	}
- 	for(int i=0;i<facultySize;i++){
+ 	for(int i=0;i<profesores.getSize();i++){
 
  		if(profesores[i].getUsuario()==userName and profesores[i].getContrasenia()==contrasenia){
 
@@ -68,7 +65,6 @@ void UserManager::editUser(User* usuarioAux)
  		std::cin>>apellido_;
  		usuarioAux->setApellido(apellido_);
 	}else{
-		system("cls");
 		std::cout<<"Ingrese una opcion correcta"<<std::endl;
 		editUser(usuarioAux);
 	}       
@@ -89,3 +85,7 @@ std::string UserManager::getNewBannerID(){
  	std::string s{""};//transformar a int y sumarle uno al maximo.
  	return s;
 };
+
+void UserManager::addNewUser(User* usuario){
+
+}
