@@ -9,17 +9,15 @@
 #include "UserManager.hpp"
 #include "GraduateStudent.hpp"
 #include <fstream>
+#include <deque>
 
 class UserManager;
 
 class StudentManager{
 private:
-    Student* estudiantes;
-    int totalEstudiantes;//cambiar por arraylist
-    int totalUnderGraduate;
-    int totalGraduate;
+    std::deque<Student*> estudiantes;// tiene que ser un deque de punteros para poder hacer el cast
     char* pathUndergraduate;
-    void loadUnderGrads();//cambiar agregar lo mismo para grads
+    void loadUnderGrads();
     char* pathGraduate;
     void loadGrads();
     void updateUnderGrads();
@@ -28,10 +26,10 @@ public:
     StudentManager(){};
     void createNewStudent(UserManager*);
     Student* getStudentByID(std::string);
-    Student* getAllStudents(int&);//cambiar quitar int por referencia cuando sepamos arraylist
+    std::deque<Student*> getAllStudents();
     void editStudent(Student*);
     void showStudents();
-    void showStudent(Student*);
+    void showStudent(std::string);
     void deleteStudent(std::string);
 };
 
