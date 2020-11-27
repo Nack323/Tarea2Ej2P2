@@ -59,5 +59,5 @@ std::string User::getUsuario(){
 
 
 std::string User::to_string(){
-    return this->getBannerID() + " " + this->getNombre() + " " + this->getApellido() + " " + this->getUsuario() + " " + this->getContrasenia();
+    return this->getBannerID() + "\t" + this->getNombre() + "\t" + this->getApellido() + "\t" + this->getUsuario() + "\t" + this->getContrasenia();
 }

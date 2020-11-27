@@ -17,14 +17,16 @@ private:
     void updateFaculty();
 public:
     ~FacultyManager();
-    FacultyManager(std::string);
+    FacultyManager(std::string);//funciona
     FacultyManager(){};
-    void createNewFaculty(UserManager*);
-    Faculty* getFacultyByID(std::string);//listo
-    std::deque<Faculty> getAllFaculty();//listo
-    void editFaculty();//listo
-    void showFaculty(std::string);//listo. Depende de to_string
-    void deleteFaculty(std::string);//listo. Posible core dumped
+    void createNewFaculty(UserManager*);//funciona
+    Faculty* getFacultyByID(std::string);//funciona
+    std::deque<Faculty> getAllFaculty();//funciona
+    void editFaculty();//ya funciona
+    void showFaculty(std::string);//funciona
+    void showAllFaculties();//no era necesario hacia mas facil debugear
+    void deleteFaculty(std::string);//funciona
+    void deleteFaculty();//sobrecarga
 };
 
 #endif /* FacultyManager_hpp */
