@@ -22,7 +22,7 @@ public:
     void createNewFaculty(UserManager*);
     Faculty* getFacultyByID(std::string);//listo
     std::deque<Faculty> getAllFaculty();//listo
-    void editFaculty(Faculty*);//listo
+    void editFaculty();//listo
     void showFaculty(std::string);//listo. Depende de to_string
     void deleteFaculty(std::string);//listo. Posible core dumped
 };

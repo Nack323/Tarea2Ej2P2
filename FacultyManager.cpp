@@ -72,13 +72,21 @@ deque<Faculty> FacultyManager::getAllFaculty(){
     return profesores;
 };
 
-void FacultyManager::editFaculty(Faculty* profesor){
-    //buscar la que tiene el mismo banner id y reemplazarle en la memoria
-    for(int i = 0; i < this->profesores.size(); i ++){
-        if (profesor->getBannerID() == profesores[i].getBannerID()){
-            profesores[i] = *profesor;
+void FacultyManager::editFaculty(){
+    string ID = consoleInput<string>("Banner ID del profesor que desea editar:");
+    for(auto prof: profesores) {
+        if (prof.getBannerID() == ID) {
+            cout << "PROFESOR ENCONTRADO" << endl;
+//2001    Andrea  HARRIS  AHARRIS AHARRIS6770     QUIMICA
+            prof.setNombre(consoleInput<string>("Nombre: "));
+            prof.setApellido(consoleInput<string>("Apellido: "));
+            prof.setUsuario(consoleInput<string>("Usuario: "));
+            prof.setContrasenia(consoleInput<string>("Contrasenia: "));
+            prof.setCarrera(consoleInput<string>("Carrera: "));
+            return;
         }
     }
+    cout << "No hay profesor con ese banner ID" << endl;
 };
 
 void FacultyManager::showFaculty(string BannerId){
