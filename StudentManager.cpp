@@ -51,10 +51,7 @@ void StudentManager::loadGrads(){
         std::string carreraAux;
         std::string nivelAux;
         input>>bannerIDAux>>nombreAux>>apellidoAux>>usuarioAux>>contraseniaAux>>carreraAux>>nivelAux;
-
-        GraduateStudent* newGrad = new GraduateStudent(bannerIDAux,nombreAux,apellidoAux,contraseniaAux,usuarioAux,carreraAux,nivelAux);
-        Student *stpt{&*newGrad};
-        estudiantes.push_back(stpt);
+        estudiantes.push_back(new GraduateStudent(bannerIDAux,nombreAux,apellidoAux,contraseniaAux,usuarioAux,carreraAux,nivelAux));
     }
 };
 void StudentManager::updateUnderGrads(){
@@ -81,9 +78,7 @@ void StudentManager::createNewStudent(UserManager* um){
         std::string contraseniaAux = consoleInput<string>("Contrasenia: ");
         std::string carreraAux = consoleInput<string>("Carrera: ");
         std::string nivelAux = consoleInput<string>("Nivel: ");
-        GraduateStudent* newGrad = new GraduateStudent(_bannerId,nombreAux,apellidoAux,contraseniaAux,usuarioAux,carreraAux,nivelAux);
-        Student *stpt{&*newGrad};
-        estudiantes.push_back(stpt);
+        estudiantes.push_back( new GraduateStudent(_bannerId,nombreAux,apellidoAux,contraseniaAux,usuarioAux,carreraAux,nivelAux));
     }
     else if (opt == 1) {
         std::string bannerIDAux = um->getNewBannerID();
@@ -98,9 +93,7 @@ void StudentManager::createNewStudent(UserManager* um){
         std::string ptelefAux = consoleInput<string>("Telefono del representante: ");
         Proxy proxyAux(pnombreAux,papellidoAux,pemailAux,ptelefAux);
 
-        UnderGraduateStudent* newUnder = new UnderGraduateStudent(bannerIDAux,nombreAux,apellidoAux,usuarioAux,contraseniaAux,carreraAux,proxyAux);
-        Student *Stptr(&*newUnder);
-        estudiantes.push_back(Stptr);
+        estudiantes.push_back(new UnderGraduateStudent(bannerIDAux,nombreAux,apellidoAux,usuarioAux,contraseniaAux,carreraAux,proxyAux));
 
     }
     else {
@@ -114,6 +107,7 @@ Student* StudentManager::getStudentByID(string BannerID){
             return estudiantes[i];
         }
     }//cambiar por array list
+    cerr << "No se encontró el estudiante, retornando nullptr" << endl;
     return nullptr;
 };
 
@@ -130,9 +124,11 @@ void StudentManager::editStudent(Student* estudiante){//preguntar
 };
 
 void StudentManager::showStudents(){
+    cout << "LISTA DE TODOS LOS ESTUDIANTES: \n";
     for (auto stud : estudiantes) {
-        cout << stud->to_string() << endl;
+        cout << stud->to_string() << "\n";
     }
+    cout << flush; //revisar si hay errores al compilar 
 };
 
 void StudentManager::deleteStudent(std::string bannerID_){
