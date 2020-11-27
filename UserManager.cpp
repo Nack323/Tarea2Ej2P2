@@ -73,17 +73,26 @@ void UserManager::editUser(User* usuarioAux)
 
 };
 
-
-
 void UserManager::showUser(User* usuario)
 {
     std::cout << usuario->to_string() << std::endl;
 };
 
 std::string UserManager::getNewBannerID(){
-  //averiguar como modificar funciones de user (setBannerID)
- 	std::string s{""};//transformar a int y sumarle uno al maximo.
- 	return s;
+  	std::priority_queue<int> bannerID;
+  	ArrayList<Student>* estudiantes= sm.getAllStudent();
+  	ArrayList<Faculty>* profesores= sm.getAllFaculty();
+
+  	for(int i=0;i<estudiantes.getSize();i++){
+  		bannerID.push(stoi(estudiantes[i].getNewBannerID()));
+  	}
+
+  	for(int i=0;i<profesores.getSize();i++){
+  		bannerID.push(stoi(profesores[i].getNewBannerID()));
+  	}
+
+  	int banMax=bannerID.top();
+  	return banMax+1;
 };
 
 void UserManager::addNewUser(User* usuario){
