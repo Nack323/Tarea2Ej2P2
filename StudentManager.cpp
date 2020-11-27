@@ -2,13 +2,21 @@
 #include "StudentManager.hpp"
 using namespace std;
 
+template <typename T>
+T consoleInput(const char * askfor){
+    cout << askfor << endl;
+    T retValue;
+    cin >> retValue;
+    return retValue;
+}
+
+
 void StudentManager::loadUnderGrads(){
-    int numberUnder;
-    std::ifstream input;
+    int total;
+    ifstream input;
     input.open(this->pathUndergraduate);
-    input>>numberUnder;
-    UnderGraduateStudent* UnderGrad= new UnderGraduateStudent[numberUnder];
-    for(int i=0;i<numberUnder;i++){
+    input>>total;
+    for(int i=0;i<total;i++){
         std::string bannerIDAux;
         std::string nombreAux;
         std::string apellidoAux;
@@ -22,21 +30,19 @@ void StudentManager::loadUnderGrads(){
         input>>bannerIDAux>>nombreAux>>apellidoAux>>usuarioAux>>contraseniaAux>>carreraAux>>pnombreAux>>papellidoAux>>pemailAux>>ptelefAux;
         Proxy proxyAux(pnombreAux,papellidoAux,pemailAux,ptelefAux);
 
-        UnderGrad[i]=UnderGraduateStudent(bannerIDAux,nombreAux,apellidoAux,usuarioAux,contraseniaAux,carreraAux,proxyAux);
-    }
-    for(int i = 0; i < numberUnder; i ++){
-        estudiantes[i] = UnderGrad[i];
+
+        UnderGraduateStudent* newUnder = new UnderGraduateStudent(bannerIDAux,nombreAux,apellidoAux,usuarioAux,contraseniaAux,carreraAux,proxyAux);
+        Student *Stptr(&*newUnder);
+        estudiantes.push_back(Stptr);
     }
 };
 
 void StudentManager::loadGrads(){
-    int numberGrad;
+    int total;
     std::ifstream input;
     input.open(this->pathGraduate);
-    input>>numberGrad;
-
-    GraduateStudent* Grad= new GraduateStudent[numberGrad];
-    for(int i=0;i<numberGrad;i++){
+    input>>total;
+    for(int i=0;i<total;i++){
         std::string bannerIDAux;
         std::string nombreAux;
         std::string apellidoAux;
@@ -45,63 +51,130 @@ void StudentManager::loadGrads(){
         std::string carreraAux;
         std::string nivelAux;
         input>>bannerIDAux>>nombreAux>>apellidoAux>>usuarioAux>>contraseniaAux>>carreraAux>>nivelAux;
-
-        Grad[i + totalUnderGraduate]=GraduateStudent(bannerIDAux,nombreAux,apellidoAux,contraseniaAux,usuarioAux,carreraAux,nivelAux);
-    }
-    for(int i = 0; i < numberGrad; i ++){
-        estudiantes[i] = Grad[i];
+        estudiantes.push_back(new GraduateStudent(bannerIDAux,nombreAux,apellidoAux,contraseniaAux,usuarioAux,carreraAux,nivelAux));
     }
 };
 void StudentManager::updateUnderGrads(){
     // Esto actualiza el archivo
 };
 
-//para poder hacer esta parte pongamos primero los undergrads y luego los grads en el
-//arreglo de estudiantes. así cuando queramos iterar por la lista de undergrads podemos 
-//ir desde 0 hasta numUndergrads y si queremos iterar por los grads vamos desde numundergrads+1 hasta 
-//num undergrads+numgrads
+
 StudentManager::StudentManager(char* pathUndergrad, char* pathGrad) : pathUndergraduate(pathUndergrad), pathGraduate(pathGrad){
-    ifstream Under(this->pathUndergraduate);//leo la primera linea para saber el total de cada tipo
-    ifstream Grad(this->pathGraduate);
-    Under >> totalUnderGraduate;//creé una variable de total para poder iterar despues
-    Grad >> totalGraduate;
-    totalEstudiantes = totalUnderGraduate + totalGraduate;
-    estudiantes=new Student[totalEstudiantes]; //cambiar, hay que hacer que sume los graduados tambien
     loadUnderGrads();
     loadGrads();
 };
 
 void StudentManager::createNewStudent(UserManager* um){
+    cout << "Pregrado o posgrado? \n1. Pregrado\n2. Posgrado" << endl;
+    int opt;
+    cin >> opt;
+    cout << endl;
+
+    if (opt == 2){
+        string _bannerId = um->getNewBannerID();
+        std::string nombreAux = consoleInput<string>("Nombre: ");
+        std::string apellidoAux = consoleInput<string>("Apellido: ");
+        std::string usuarioAux = consoleInput<string>("Usuario: ");
+        std::string contraseniaAux = consoleInput<string>("Contrasenia: ");
+        std::string carreraAux = consoleInput<string>("Carrera: ");
+        std::string nivelAux = consoleInput<string>("Nivel: ");
+        estudiantes.push_back( new GraduateStudent(_bannerId,nombreAux,apellidoAux,contraseniaAux,usuarioAux,carreraAux,nivelAux));
+    }
+    else if (opt == 1) {
+        std::string bannerIDAux = um->getNewBannerID();
+        std::string nombreAux = consoleInput<string>("Nombre: ");
+        std::string apellidoAux = consoleInput<string>("Apellido: ");
+        std::string usuarioAux = consoleInput<string>("Usuario: ");
+        std::string contraseniaAux = consoleInput<string>("Contrasenia: ");
+        std::string carreraAux = consoleInput<string>("Carrera: ");
+        std::string pnombreAux = consoleInput<string>("Nombre del representante: ");
+        std::string papellidoAux = consoleInput<string>("Apellido del representante: ");
+        std::string pemailAux = consoleInput<string>("Email del representante: ");
+        std::string ptelefAux = consoleInput<string>("Telefono del representante: ");
+        Proxy proxyAux(pnombreAux,papellidoAux,pemailAux,ptelefAux);
+
+        estudiantes.push_back(new UnderGraduateStudent(bannerIDAux,nombreAux,apellidoAux,usuarioAux,contraseniaAux,carreraAux,proxyAux));
+
+    }
+    else {
+        cout << "No es una opcion valida" << endl;
+    }
 };
 
 Student* StudentManager::getStudentByID(string BannerID){
-    for(int i = 0; i < totalEstudiantes; i ++){
-        if (estudiantes[i].getBannerID() == BannerID){
-            return &estudiantes[i];
+    for(int i = 0; i < estudiantes.size(); i ++){
+        if (estudiantes[i]->getBannerID() == BannerID){
+            return estudiantes[i];
         }
     }//cambiar por array list
+    cerr << "No se encontró el estudiante, retornando nullptr" << endl;
     return nullptr;
 };
 
-Student* StudentManager::getAllStudents(int &total){
-    total = totalEstudiantes;
-    return estudiantes;
+deque<Student*> StudentManager::getAllStudents(){
+    return this->estudiantes;
 }
 
-void StudentManager::editStudent(Student* estudiante){//cambiar polimosfismo
-    for (int i = 0; i < totalEstudiantes; i ++){
-        if(estudiantes[i].getBannerID() == estudiante->getBannerID()){
-            estudiantes[i] = *estudiante;
+void StudentManager::editStudent(){//preguntar
+    string _bannerId = consoleInput<string>("Banner ID del estudiante que quiere editar:");
+    Student* Edit{0};//estudiante para editar
+    bool found = false;
+    //encontrar el estudiante con ese bannerID
+    for(auto estud: estudiantes) {
+        if (estud->getBannerID() == _bannerId){
+            cout << "ESTUDIANTE ENCONTRADO." << endl;
+            GraduateStudent* GradStud = dynamic_cast<GraduateStudent*>(estud);
+            UnderGraduateStudent* UnderGradStud = dynamic_cast<UnderGraduateStudent*>(estud);//uno de los dos dynamic cas tiene que ser 0
+            if (UnderGradStud){
+                UnderGradStud->setNombre(consoleInput<string>("Nombre: "));
+                UnderGradStud->setApellido(consoleInput<string>("Apellido: "));
+                UnderGradStud->setUsuario(consoleInput<string>("Usuario: "));
+                UnderGradStud->setContrasenia(consoleInput<string>("Contrasenia: "));
+                UnderGradStud->setCarrera(consoleInput<string>("Carrera: "));
+                Proxy repr{consoleInput<string>("Nombre del Representante: "), consoleInput<string>("Apellido del representante: "), consoleInput<string>("Correo del representante: "), consoleInput<string>("Telefono del representante: ")};
+                UnderGradStud->setRepresentante(repr);
+            }
+            if (GradStud){
+                GradStud->setNombre(consoleInput<string>("Nombre: "));
+                GradStud->setApellido(consoleInput<string>("Apellido: "));
+                GradStud->setUsuario(consoleInput<string>("Usuario: "));
+                GradStud->setContrasenia(consoleInput<string>("Contrasenia: "));
+                GradStud->setCarrera(consoleInput<string>("Carrera: "));
+                GradStud->setNivel(consoleInput<string>("Nivel: "));
+            }
+            break;
         }
     }
 };
 
 void StudentManager::showStudents(){
-    for (int i = 0; i < totalEstudiantes; i ++) {
-        cout << estudiantes[i].to_string() << endl;
+    cout << "LISTA DE TODOS LOS ESTUDIANTES: \n";
+    for (auto stud : estudiantes) {
+        cout << stud->to_string() << "\n";
     }
+    cout << flush; //revisar si hay errores al compilar 
 };
 
 void StudentManager::deleteStudent(std::string bannerID_){
-    //preguntar aqui se tendria que pasar un banner id?
+    int pos = 0;
+    for(auto stud : estudiantes) {
+        if (stud->getBannerID() == bannerID_) {
+            estudiantes.erase(estudiantes.begin() + pos);
+            break;
+        }
+        pos ++;
+    }
 };
+
+void StudentManager::showStudent(string bannerId) {
+    for(auto stud : estudiantes) {
+        if (stud->getBannerID() == bannerId) {
+            cout << stud->to_string() << endl;
+        }
+    }
+}
+
+void StudentManager::showStudent(Student* estud) {//para que no se le dañe lo que hizo el roberto 
+    cout << estud->to_string() << endl;
+}
+

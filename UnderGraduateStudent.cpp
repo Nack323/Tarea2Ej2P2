@@ -26,5 +26,5 @@ Proxy UnderGraduateStudent::getRepresentante(){
 UnderGraduateStudent::~UnderGraduateStudent(){}
 
 std::string UnderGraduateStudent::to_string(){
-    return Student::to_string() + " " + this->getRepresentante()->to_string();
+    return Student::to_string() + " " + this->getRepresentante().to_string();
 }

@@ -35,7 +35,7 @@ void FacultyManager::updateFaculty(){
     if (output.is_open()) {
         output << profesores.size() << endl;
         for (int i = 0; i < profesores.size() ; i++) {
-            output << profesores[i].getBannerID() << " " << profesores[i].getNombre() << " " << profesores[i].getApellido() << " " << profesores[i].getUsuario() << profesores[i].getContrasenia() << profesores[i].getCarrera() << endl;
+            output << profesores[i].getBannerID() << "\t" << profesores[i].getNombre() << "\t" << profesores[i].getApellido() << "\t" << profesores[i].getUsuario()<< "\t" << profesores[i].getContrasenia() << "\t" << profesores[i].getCarrera() << endl;
         }
     } else {
         cerr << "No se pudo encontrar el archivo para guardar. No se pudo actualizar." << this->pathFaculty<< endl;
@@ -48,7 +48,7 @@ FacultyManager::FacultyManager(string path) : pathFaculty(path){
 };
 
 
-void FacultyManager::createNewFaculty(UserManager* um){//terminar
+void FacultyManager::createNewFaculty(UserManager* um){
     string _bannerId = um->getNewBannerID();
     string _nombre = consoleInput<string>("Nombre del profesor: ");
     string _apellido = consoleInput<string>("Apellido del profesor: ");
@@ -72,13 +72,22 @@ deque<Faculty> FacultyManager::getAllFaculty(){
     return profesores;
 };
 
-void FacultyManager::editFaculty(Faculty* profesor){
-    //buscar la que tiene el mismo banner id y reemplazarle en la memoria
-    for(int i = 0; i < this->profesores.size(); i ++){
-        if (profesor->getBannerID() == profesores[i].getBannerID()){
-            profesores[i] = *profesor;
+void FacultyManager::editFaculty(){
+    string ID = consoleInput<string>("Banner ID del profesor que desea editar:");
+    for(auto &prof: profesores) {
+        if (prof.getBannerID() == ID) {
+            cout << "PROFESOR ENCONTRADO" << endl;
+            cout << prof.to_string() << endl;
+//2001    Andrea  HARRIS  AHARRIS AHARRIS6770     QUIMICA
+            prof.setNombre(consoleInput<string>("Nombre: "));
+            prof.setApellido(consoleInput<string>("Apellido: "));
+            prof.setUsuario(consoleInput<string>("Usuario: "));
+            prof.setContrasenia(consoleInput<string>("Contrasenia: "));
+            prof.setCarrera(consoleInput<string>("Carrera: "));
+            return;
         }
     }
+    cout << "No hay profesor con ese banner ID" << endl;
 };
 
 void FacultyManager::showFaculty(string BannerId){
@@ -89,18 +98,42 @@ void FacultyManager::showFaculty(string BannerId){
     }
 };
 
-void FacultyManager::deleteFaculty(string _BannerId){
+void FacultyManager::deleteFaculty(string _BannerId){ //sobrecarga cuando se le pasa el bannerId
     //encontrar el profesor:
     int pos = 0;
     for (auto prof : profesores) {
         if (prof.getBannerID() == _BannerId) {
-            profesores.erase(profesores.begin() + pos);
-            break;
+            profesores.erase(profesores.begin() + pos);//borrar el profesor
+            cout << "Profesor Borrado con exito" << endl;
+            return;
         }
         pos ++;
     }
+    cout << "No se encontro el profesor con ese Banner ID" << endl;
 };
+
+void FacultyManager::deleteFaculty(){//sobrecarga cuando no se le pasa nada
+    //encontrar el profesor:
+    string _BannerId = consoleInput<string>("Banner Id del profesor que quiere borrar: ");
+    int pos = 0;
+    for (auto prof : profesores) {
+        if (prof.getBannerID() == _BannerId) {
+            profesores.erase(profesores.begin() + pos);
+            cout << "Profesor Borrado con exito" << endl;
+            return;
+        }
+        pos ++;
+    }
+    cout << "No se encontro el profesor con ese Banner ID" << endl;
+};
+
+void FacultyManager::showAllFaculties(){
+    for(auto prof : profesores){
+        cout << prof.to_string() << endl;
+    }
+}
 
 FacultyManager::~FacultyManager(){
     updateFaculty();
 }
+

@@ -25,7 +25,7 @@ public:
     void editUser(User*);
     void showUser(User*);
     std::string getNewBannerID();
-    void addNewUser(User*)
+    void addNewUser(User*);
 };
 
 
