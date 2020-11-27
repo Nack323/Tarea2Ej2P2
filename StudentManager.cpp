@@ -2,6 +2,15 @@
 #include "StudentManager.hpp"
 using namespace std;
 
+template <typename T>
+T consoleInput(const char * askfor){
+    cout << askfor << endl;
+    T retValue;
+    cin >> retValue;
+    return retValue;
+}
+
+
 void StudentManager::loadUnderGrads(){
     int total;
     ifstream input;
@@ -59,6 +68,44 @@ StudentManager::StudentManager(char* pathUndergrad, char* pathGrad) : pathUnderg
 };
 
 void StudentManager::createNewStudent(UserManager* um){
+    cout << "Pregrado o posgrado? \n1. Pregrado\n2. Posgrado" << endl;
+    int opt;
+    cin >> opt;
+    cout << endl;
+
+    if (opt == 2){
+        string _bannerId = um->getNewBannerID();
+        std::string nombreAux = consoleInput<string>("Nombre: ");
+        std::string apellidoAux = consoleInput<string>("Apellido: ");
+        std::string usuarioAux = consoleInput<string>("Usuario: ");
+        std::string contraseniaAux = consoleInput<string>("Contrasenia: ");
+        std::string carreraAux = consoleInput<string>("Carrera: ");
+        std::string nivelAux = consoleInput<string>("Nivel: ");
+        GraduateStudent* newGrad = new GraduateStudent(_bannerId,nombreAux,apellidoAux,contraseniaAux,usuarioAux,carreraAux,nivelAux);
+        Student *stpt{&*newGrad};
+        estudiantes.push_back(stpt);
+    }
+    else if (opt == 1) {
+        std::string bannerIDAux = um->getNewBannerID();
+        std::string nombreAux = consoleInput<string>("Nombre: ");
+        std::string apellidoAux = consoleInput<string>("Apellido: ");
+        std::string usuarioAux = consoleInput<string>("Usuario: ");
+        std::string contraseniaAux = consoleInput<string>("Contrasenia: ");
+        std::string carreraAux = consoleInput<string>("Carrera: ");
+        std::string pnombreAux = consoleInput<string>("Nombre del representante: ");
+        std::string papellidoAux = consoleInput<string>("Apellido del representante: ");
+        std::string pemailAux = consoleInput<string>("Email del representante: ");
+        std::string ptelefAux = consoleInput<string>("Telefono del representante: ");
+        Proxy proxyAux(pnombreAux,papellidoAux,pemailAux,ptelefAux);
+
+        UnderGraduateStudent* newUnder = new UnderGraduateStudent(bannerIDAux,nombreAux,apellidoAux,usuarioAux,contraseniaAux,carreraAux,proxyAux);
+        Student *Stptr(&*newUnder);
+        estudiantes.push_back(Stptr);
+
+    }
+    else {
+        cout << "No es una opcion valida" << endl;
+    }
 };
 
 Student* StudentManager::getStudentByID(string BannerID){
@@ -71,7 +118,7 @@ Student* StudentManager::getStudentByID(string BannerID){
 };
 
 deque<Student*> StudentManager::getAllStudents(){
-    return estudiantes;
+    return this->estudiantes;
 }
 
 void StudentManager::editStudent(Student* estudiante){//preguntar
@@ -83,8 +130,8 @@ void StudentManager::editStudent(Student* estudiante){//preguntar
 };
 
 void StudentManager::showStudents(){
-    for (int i = 0; i < estudiantes.size(); i ++) {
-        cout << estudiantes[i]->to_string() << endl;
+    for (auto stud : estudiantes) {
+        cout << stud->to_string() << endl;
     }
 };
 
