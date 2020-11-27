@@ -4,14 +4,14 @@
 #include "UserManager.hpp"
 #include <fstream>
 #include <iostream>
+#include <deque>
 
 class UserManager;
 
 
 class FacultyManager{
 private:
-    Faculty* profesores;
-    int totalProfesores; // cambiar cuando aprendamos array lists
+    std::deque<Faculty> profesores;
     std::string pathFaculty;
     void loadFaculty();
     void updateFaculty();
@@ -21,7 +21,7 @@ public:
     FacultyManager(){};
     void createNewFaculty(UserManager*);
     Faculty* getFacultyByID(std::string);//listo
-    Faculty* getAllFaculty(int&);//cambiar si aprendemos arraylist
+    std::deque<Faculty> getAllFaculty();//listo
     void editFaculty(Faculty*);//listo
     void showFaculty(std::string);//listo. Depende de to_string
     void deleteFaculty(std::string);//listo. Posible core dumped
