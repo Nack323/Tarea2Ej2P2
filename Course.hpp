@@ -18,14 +18,14 @@ class Faculty;
 #include "Student.hpp"
 #include "Faculty.hpp"
 #include "Grade.hpp"
-#include "ArrayList.hpp" 
+#include <deque>
 
 class Course{
 private:
     std::string nrc;
     Faculty *profesor;
-    ArrayList<Student*> estudiantes;
-    ArrayList<Grade> notas;
+    std::deque<Student*> estudiantes;
+    std::deque<Grade> notas;
     int totalEstudiantes;
     int totalCreditos;
     std::string path;
@@ -36,8 +36,8 @@ public:
     void addStudentGrade(Student*,Grade);
     Grade *getGradeByStudent(Student*);
 
-    ArrayList<Student*> getAllStudents();
-    ArrayList<Grade> getAllGrades();
+    std::deque<Student*> getAllStudents();
+    std::deque<Grade> getAllGrades();
 
     void setProfesor(Faculty*);
     Faculty* getProfesor();

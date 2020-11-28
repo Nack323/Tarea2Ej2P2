@@ -15,8 +15,8 @@ Course::Course(std::string _nrc, int totalCreditos):nrc(nrc),totalCreditos(total
 }
 
 void Course::addStudentGrade(Student* student,Grade grade){
-    estudiantes.add(student);
-    notas.add(grade);
+    this->estudiantes.push_back(student);
+    notas.push_back(grade);
 }
 
 Grade* Course::getGradeByStudent(Student * estudiante){
@@ -29,11 +29,11 @@ Grade* Course::getGradeByStudent(Student * estudiante){
 }
 
 
-ArrayList<Student*> Course::getAllStudents(){
+std::deque<Student*> Course::getAllStudents(){
     return this->estudiantes;
 }
 
-ArrayList<Grade> Course::getAllGrades(){
+std::deque<Grade> Course::getAllGrades(){
     return this->notas;
 }
 

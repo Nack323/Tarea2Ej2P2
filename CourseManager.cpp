@@ -191,10 +191,10 @@ void CourseManager::showClassByID(std::string nrc){
             std::cout<<"NRC"<<std::setw(10)<<"Creditos"<<std::setw(10)<<"Profesor"<<std::endl;
             cursos[i].to_string();
             std::cout<<"Estudiantes"<<std::endl;
-            ArrayList<Student*> stu=cursos[i].getAllStudents();
+            std::deque<Student*> stu=cursos[i].getAllStudents();
 
 
-            for(int j=0;j<stu.getSize();j++){
+            for(int j=0;j<stu.size();j++){
                 stu[j]->to_string();
             }
 
