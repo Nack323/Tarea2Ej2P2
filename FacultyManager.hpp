@@ -23,6 +23,7 @@ public:
     Faculty* getFacultyByID(std::string);//funciona
     std::deque<Faculty> getAllFaculty();//funciona
     void editFaculty();//ya funciona
+    void editFaculty(Faculty* );
     void showFaculty(std::string);//funciona
     void showAllFaculties();//no era necesario hacia mas facil debugear
     void deleteFaculty(std::string);//funciona

@@ -90,6 +90,24 @@ void FacultyManager::editFaculty(){
     cout << "No hay profesor con ese banner ID" << endl;
 };
 
+void FacultyManager::editFaculty(Faculty *fac){
+    string ID = fac->getBannerID();
+    for(auto &prof: profesores) {
+        if (prof.getBannerID() == ID) {
+            cout << "PROFESOR ENCONTRADO" << endl;
+            cout << prof.to_string() << endl;
+//2001    Andrea  HARRIS  AHARRIS AHARRIS6770     QUIMICA
+            prof.setNombre(consoleInput<string>("Nombre: "));
+            prof.setApellido(consoleInput<string>("Apellido: "));
+            prof.setUsuario(consoleInput<string>("Usuario: "));
+            prof.setContrasenia(consoleInput<string>("Contrasenia: "));
+            prof.setCarrera(consoleInput<string>("Carrera: "));
+            return;
+        }
+    }
+    cout << "No hay profesor con ese banner ID" << endl;
+};
+
 void FacultyManager::showFaculty(string BannerId){
     for (int i = 0; i < profesores.size(); i ++)  {
         if (profesores[i].getBannerID() == BannerId) {

@@ -147,6 +147,38 @@ void StudentManager::editStudent(){//preguntar
     }
 };
 
+void StudentManager::editStudent(Student* stud){//preguntar
+    string _bannerId = stud->getBannerID;
+    Student* Edit{0};//estudiante para editar
+    bool found = false;
+    //encontrar el estudiante con ese bannerID
+    for(auto &estud: estudiantes) {
+        if (estud->getBannerID() == _bannerId){
+            cout << "ESTUDIANTE ENCONTRADO." << endl;
+            GraduateStudent* GradStud = dynamic_cast<GraduateStudent*>(estud);
+            UnderGraduateStudent* UnderGradStud = dynamic_cast<UnderGraduateStudent*>(estud);//uno de los dos dynamic cas tiene que ser 0
+            if (UnderGradStud){
+                UnderGradStud->setNombre(consoleInput<string>("Nombre: "));
+                UnderGradStud->setApellido(consoleInput<string>("Apellido: "));
+                UnderGradStud->setUsuario(consoleInput<string>("Usuario: "));
+                UnderGradStud->setContrasenia(consoleInput<string>("Contrasenia: "));
+                UnderGradStud->setCarrera(consoleInput<string>("Carrera: "));
+                Proxy repr{consoleInput<string>("Nombre del Representante: "), consoleInput<string>("Apellido del representante: "), consoleInput<string>("Correo del representante: "), consoleInput<string>("Telefono del representante: ")};
+                UnderGradStud->setRepresentante(repr);
+            }
+            if (GradStud){
+                GradStud->setNombre(consoleInput<string>("Nombre: "));
+                GradStud->setApellido(consoleInput<string>("Apellido: "));
+                GradStud->setUsuario(consoleInput<string>("Usuario: "));
+                GradStud->setContrasenia(consoleInput<string>("Contrasenia: "));
+                GradStud->setCarrera(consoleInput<string>("Carrera: "));
+                GradStud->setNivel(consoleInput<string>("Nivel: "));
+            }
+            break;
+        }
+    }
+};
+
 void StudentManager::showStudents(){
     cout << "LISTA DE TODOS LOS ESTUDIANTES: \n";
     for (auto stud : estudiantes) {
