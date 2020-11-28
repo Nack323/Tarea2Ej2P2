@@ -14,6 +14,7 @@
 #define CourseManager_hpp
 #include <iostream>
 #include "Course.hpp"
+
 class StudentManager;
 class FacultyManager;
 
@@ -34,7 +35,7 @@ public:
     void showClassByID(std::string);
     void deleteCourse(std::string);
 
-    Course* getCourseByNRC(std::string);
+    Course getCourseByNRC(std::string);
     
 };
 

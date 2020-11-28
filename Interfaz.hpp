@@ -10,6 +10,11 @@
 #include "CourseManager.hpp"
 #include <deque>
 
+class StudentManager;
+class FacultyManager;
+class UserManager;
+class CourseManager;
+
 class Interfaz{
     StudentManager* sm;
     FacultyManager* fm;

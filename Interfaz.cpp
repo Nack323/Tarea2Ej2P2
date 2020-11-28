@@ -291,7 +291,7 @@ void Interfaz::pantalla1_4(){
         std::cin>>nrc_;
         std::cout<<"Ingrese el bannerID del profesor"<<std::endl;
         std::cin>>bannerID_;
-        cm->getCourseByNRC(nrc_)->setProfesor(fm->getFacultyByID(bannerID_));
+        cm->getCourseByNRC(nrc_).setProfesor(fm->getFacultyByID(bannerID_));
 
         cm->showClassByID(nrc_);
        
@@ -308,7 +308,7 @@ void Interfaz::pantalla1_4(){
 
         Grade aux{0};
         
-        cm->getCourseByNRC(nrc_)->addStudentGrade(sm->getStudentByID(bannerID_),aux);
+        cm->getCourseByNRC(nrc_).addStudentGrade(sm->getStudentByID(bannerID_),aux);
 
         pantalla1_4();
 

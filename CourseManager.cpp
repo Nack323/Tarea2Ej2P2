@@ -138,7 +138,7 @@ void CourseManager::editCourse(){
                 rename(cursos[i].getPath().c_str(),newPath.c_str());
                 cursos[i].setPath(newPath);
                 cursos[i].setProfesor(nuevoProfesor);
-                nuevoProfesor->addClass(&cursos[i]);
+                nuevoProfesor->addClass(cursos[i]);
                 
                 updateCourses(); 
                 std::cout<<"Su Curso ha sido actualizado"<<std::endl;
@@ -224,13 +224,13 @@ void CourseManager::deleteCourse(std::string nrc){
     updateCourses();
 };
 
-Course* CourseManager::getCourseByNRC(std::string nrc_){
+Course CourseManager::getCourseByNRC(std::string nrc_){
 
     for(int i = 0; i<numCursos;i++){
 
         if(cursos[i].getNRC()==nrc_){
 
-            return &cursos[i];
+            return cursos[i];
 
         }
     

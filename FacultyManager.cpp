@@ -37,7 +37,7 @@ void FacultyManager::updateFaculty(){
             output << profesores[i].getBannerID() << "\t" << profesores[i].getNombre() << "\t" << profesores[i].getApellido() << "\t" << profesores[i].getUsuario()<< "\t" << profesores[i].getContrasenia() << "\t" << profesores[i].getCarrera() << endl;
         }
     } else {
-        cerr << "No se pudo encontrar el archivo para guardar. No se pudo actualizar." << this->pathFaculty<< endl;
+        cerr << "No se pudo encontrar el archivo para  guardar. No se pudo actualizar." << this->pathFaculty<< endl;
     }
     output.close();
 };
