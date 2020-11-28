@@ -9,19 +9,19 @@ UserManager::UserManager(FacultyManager* _facultyManager, StudentManager* _stude
 User* UserManager::validateCredentials(std::string userName, std::string contrasenia){
 
 
-	ArrayList<Student> estudiantes=sm->getAllStudents(x);
-	ArrayList<Faculty> profesores=fm->getAllFaculty(x);
+	std::deque<Student*> estudiantes=sm->getAllStudents();
+	std::deque<Faculty> profesores=fm->getAllFaculty();
 
-  	for(int i=0;i<estudiantes.getSize();i++){
+  	for(int i=0;i<estudiantes.size();i++){
 
-		if(estudiantes[i].getUsuario()==userName and estudiantes[i].getContrasenia()==contrasenia){
+		if(estudiantes[i]->getUsuario()==userName and estudiantes[i]->getContrasenia()==contrasenia){
 			
-    		return &estudiantes[i];  	
+    		return estudiantes[i];  	
 
      	}
 
  	}
- 	for(int i=0;i<profesores.getSize();i++){
+ 	for(int i=0;i<profesores.size();i++){
 
  		if(profesores[i].getUsuario()==userName and profesores[i].getContrasenia()==contrasenia){
 
@@ -80,19 +80,19 @@ void UserManager::showUser(User* usuario)
 
 std::string UserManager::getNewBannerID(){
   	std::priority_queue<int> bannerID;
-  	ArrayList<Student>* estudiantes= sm.getAllStudent();
-  	ArrayList<Faculty>* profesores= sm.getAllFaculty();
+  	std::deque<Student*> estudiantes= sm->getAllStudents();
+  	std::deque<Faculty> profesores= fm->getAllFaculty();
 
-  	for(int i=0;i<estudiantes.getSize();i++){
-  		bannerID.push(stoi(estudiantes[i].getNewBannerID()));
+  	for(int i=0;i<estudiantes.size();i++){
+  		bannerID.push(stoi(estudiantes[i]->getBannerID()));
   	}
 
-  	for(int i=0;i<profesores.getSize();i++){
-  		bannerID.push(stoi(profesores[i].getNewBannerID()));
+  	for(int i=0;i<profesores.size();i++){
+  		bannerID.push(stoi(profesores[i].getBannerID()));
   	}
 
   	int banMax=bannerID.top();
-  	return banMax+1;
+  	return std::to_string(banMax+1);
 };
 
 void UserManager::addNewUser(User* usuario){

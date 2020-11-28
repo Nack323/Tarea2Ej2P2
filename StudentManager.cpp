@@ -59,7 +59,7 @@ void StudentManager::updateUnderGrads(){
 };
 
 
-StudentManager::StudentManager(char* pathUndergrad, char* pathGrad) : pathUndergraduate(pathUndergrad), pathGraduate(pathGrad){
+StudentManager::StudentManager(std::string pathUndergrad, std::string pathGrad) : pathUndergraduate(pathUndergrad), pathGraduate(pathGrad){
     loadUnderGrads();
     loadGrads();
 };
@@ -208,5 +208,5 @@ void StudentManager::showStudent(string bannerId) {
 
 void StudentManager::showStudent(Student* estud) {//para que no se le dañe lo que hizo el roberto 
     cout << estud->to_string() << endl;
-}
+} //<3 
 
