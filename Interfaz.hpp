@@ -1,10 +1,3 @@
-//
-//  Interfaz.hpp
-//  Interfaz
-//
-//  Created by Domenica Alvarado on 11/2/20.
-//
-
 #ifndef Interfaz_hpp
 #define Interfaz_hpp
 
@@ -15,15 +8,16 @@
 #include "StudentManager.hpp"
 #include "FacultyManager.hpp"
 #include "CourseManager.hpp"
+#include <deque>
 
 class Interfaz{
-    StudentManager sm;
-    FacultyManager fm;
-    CourseManager cm;
-    UserManager um;
+    StudentManager* sm;
+    FacultyManager* fm;
+    CourseManager* cm;
+    UserManager* um;
     User* userActual;
 public:
-    Interfaz();
+    Interfaz(StudentManager*,FacultyManager*,CourseManager*,UserManager*);
     void pantallaInit();
     void pantalla1();
     void pantalla2(User*);

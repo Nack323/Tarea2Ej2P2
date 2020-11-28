@@ -7,8 +7,7 @@ void CourseManager::loadCourses(){
     std::ifstream input;
     input.open(this->pathCursos);
     input>>numCursos;
-    ArrayList<Course*> cursosAux:
-    this->cursos=cursosAux;
+    ArrayList<Course> cursosAux=cursos;
     
 
     for(int i=0;i<this->numCursos;i++){
@@ -18,8 +17,8 @@ void CourseManager::loadCourses(){
 
         input>>nrcAux>>creditosAux>>profeAux>>pathAux;
 
-        Curso cursoAux;
-        cursoAux=Curso(nrcAux,creditosAux);
+        Course cursoAux;
+        cursoAux=Course(nrcAux,std::stoi(creditosAux));
 
         cursos.add(cursoAux);
 
@@ -27,21 +26,21 @@ void CourseManager::loadCourses(){
         cursos[i].setProfesor(profesor);
 
         std::ifstream fileEst;    
-        
+        int numberEst;
+
         fileEst.open(pathAux);
         fileEst>>numberEst;
-
         for(int j=0;j<numberEst;j++){
 
             std::string BannerIDAux;
             std::string notaAux;
-            Grade* nota;
+            Grade nota;
 
             fileEst>>BannerIDAux>>notaAux;
 
-            notaAux=Grade(stof(notaAux));
+            nota=Grade(std::stof(notaAux));
 
-            cursos[i].addStudentGrade(sm.getStudentByID(BannerIDAux),notaAux);
+            cursos[i].addStudentGrade(sm->getStudentByID(BannerIDAux),nota);
 
         }
 
@@ -63,7 +62,7 @@ void CourseManager::updateCourses(){
     }
 
     file.close();
-    delete[] cursos;
+    delete[] &cursos;
     loadCourses();
 };
 
@@ -92,9 +91,11 @@ void CourseManager::createNewCourse(){
     
     file.open(pathCursos,std::ios::app);
     file<<NRCAux<<" "<<creditosAux<<" "<<ProfesorAux<<" "<<newpath<<std::endl;
+
+
     
-    Course* cursoAux{NRCAux,stof(creditosAux)};
-    cursoAux.setProfesor(fm.getFacultyByID(ProfesorAux));
+    Course cursoAux{NRCAux,std::stoi(creditosAux)};
+    cursoAux.setProfesor(fm->getFacultyByID(ProfesorAux));
     cursos.add(cursoAux);
     updateCourses();
 } 
@@ -137,7 +138,7 @@ void CourseManager::editCourse(){
                 rename(cursos[i].getPath().c_str(),newPath.c_str());
                 cursos[i].setPath(newPath);
                 cursos[i].setProfesor(nuevoProfesor);
-                nuevoProfesor->addClass(cursos[i]);
+                nuevoProfesor->addClass(&cursos[i]);
                 
                 updateCourses(); 
                 std::cout<<"Su Curso ha sido actualizado"<<std::endl;
@@ -173,7 +174,7 @@ void CourseManager::showCourses(){
     for(int i=0;i<numCursos;i++){
 
         std::cout<<"NRC"<<std::setw(10)<<"Creditos"<<std::setw(10)<<"Profesor"<<std::endl;
-        cursos[i].to_string():
+        cursos[i].to_string();
     
     }
 
@@ -188,13 +189,13 @@ void CourseManager::showClassByID(std::string nrc){
         if(cursos[i].getNRC()==nrc){
 
             std::cout<<"NRC"<<std::setw(10)<<"Creditos"<<std::setw(10)<<"Profesor"<<std::endl;
-            cursos[i].to_string():
+            cursos[i].to_string();
             std::cout<<"Estudiantes"<<std::endl;
-            ArrayLisy<Student> stu=cursos[i].getAllStudents();
+            ArrayList<Student*> stu=cursos[i].getAllStudents();
 
 
             for(int j=0;j<stu.getSize();j++){
-                stu[j].to_string();
+                stu[j]->to_string();
             }
 
             break;  

@@ -16,13 +16,13 @@ class UserManager;
 class StudentManager{
 private:
     std::deque<Student*> estudiantes;// tiene que ser un deque de punteros para poder hacer el cast
-    char* pathUndergraduate;
+    std::string pathUndergraduate;
     void loadUnderGrads();
-    char* pathGraduate;
+    std::string pathGraduate;
     void loadGrads();
     void updateUnderGrads();
 public:
-    StudentManager(char*, char*);
+    StudentManager(std::string, std::string);
     StudentManager(){};
     void createNewStudent(UserManager*);
     Student* getStudentByID(std::string);

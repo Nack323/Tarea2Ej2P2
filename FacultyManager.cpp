@@ -22,8 +22,7 @@ void FacultyManager::loadFaculty(){
     string _contrasenia;
     string _carrera;
     for (int i = 0; i < total ; i ++){
-        input >> _bannerId >> _nombre >> _apellido >> _usuario >>
-            _contrasenia >> _carrera;
+        input >> _bannerId >> _nombre >> _apellido >> _usuario >>_contrasenia >> _carrera;
         this->profesores.push_back(Faculty{_bannerId, _nombre, _apellido, _usuario, _contrasenia, _carrera});
     }
     input.close();

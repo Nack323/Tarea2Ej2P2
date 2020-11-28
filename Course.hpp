@@ -24,7 +24,7 @@ class Course{
 private:
     std::string nrc;
     Faculty *profesor;
-    ArrayList<Student> estudiantes;
+    ArrayList<Student*> estudiantes;
     ArrayList<Grade> notas;
     int totalEstudiantes;
     int totalCreditos;
@@ -33,14 +33,14 @@ public:
     Course();
     Course(std::string, int);
 
-    void addStudentGrade(Student*,Grade*);
+    void addStudentGrade(Student*,Grade);
     Grade *getGradeByStudent(Student*);
 
-    ArrayList<Student> getAllStudents();
+    ArrayList<Student*> getAllStudents();
     ArrayList<Grade> getAllGrades();
 
     void setProfesor(Faculty*);
-    Faculty getProfesor();
+    Faculty* getProfesor();
 
     void setCreditos(int);
     int getCreditos();

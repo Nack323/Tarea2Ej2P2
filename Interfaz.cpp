@@ -1,12 +1,9 @@
-//
-//  Interfaz.cpp
-//  Interfaz
-//
-//  Created by Domenica Alvarado on 11/2/20.
-//
-
 #include "Interfaz.hpp"
 #include "UserManager.hpp"
+
+Interfaz::Interfaz(StudentManager* sm,FacultyManager* fm,CourseManager* cm,UserManager* um):sm(sm),fm(fm),cm(cm),um(um){
+
+}
 
 void Interfaz::pantallaInit(){
     std::string option;
@@ -15,13 +12,10 @@ void Interfaz::pantallaInit(){
     while(option!="3"){
         std::cin>>option;
         if(option=="1"){
-            system("cls");
             pantalla1();
         }else if(option=="2"){
-            system("cls");
             pantallaVer();
         }else{
-            system("cls");
             std::cout<<"Ingrese una opción válida"<<std::endl;
             pantallaInit();
             
@@ -56,7 +50,7 @@ void Interfaz::pantalla1(){
     }else{
    
         std::cout<<"Ingrese una de las opciones"<<std::endl;
-        system("cls");
+        
         pantalla1();
     
     }
@@ -80,12 +74,11 @@ void Interfaz::pantallaVer(){
     
     }
     
-    this->userActual=um.validateCredentials(userAux,contraseniaAux);
+    this->userActual=um->validateCredentials(userAux,contraseniaAux);
 
 
     if (userActual==nullptr){
     
-        system("cls");
         std::cout<<"Credenciales invalidas"<<std::endl;
         pantallaVer();
     
@@ -101,22 +94,19 @@ void Interfaz::pantalla1_1(){
     std::cout<<"1.Mostrar Usuarios\n2.Editar Usuarios\n3.Regresar"<<std::endl;
     std::string option;
     std::cin>>option;
-
-    int x=3;
-    Student* estudiantes=sm.getAllStudents(x);
-    Faculty* profesores=fm.getAllFaculty(x);
+    std::deque<Student*> estudiantes=sm->getAllStudents();
+    
+    std::deque<Faculty> profesores=fm->getAllFaculty();
     
     if(option=="1"){
 
-        for(int i=0;i<(sizeof(estudiantes)/sizeof(estudiantes[0]));i++){
-            sm.showStudent(&estudiantes[i]);
+        for(int i=0;i<estudiantes.size();i++){
+            estudiantes[i]->to_string();
         }
-        for(int i=0;i<(sizeof(profesores)/sizeof(profesores[0]));i++){
-            fm.showFaculty(profesores[i].getBannerID());   
+        for(int i=0;i<profesores.size();i++){
+            profesores[i].to_string();
         }
-        
-        std::cout<<"Para regresar presione enter"<<std::endl,
-        system("PAUSE");
+
         pantalla1_1();
     
 
@@ -127,32 +117,30 @@ void Interfaz::pantalla1_1(){
         std::cin>>banner;
         
 
-        for(int i=0;i<(sizeof(estudiantes)/sizeof(estudiantes[0]));i++){
+        for(int i=0;i<estudiantes.size();i++){
             
-            if(banner==estudiantes[i].getBannerID()){
+            if(banner==estudiantes[i]->getBannerID()){
         
-                sm.editStudent(&estudiantes[i]);
+                sm->editStudent();
+                break;
         
             }
 
         }
-
-        for(int i=0;i<(sizeof(profesores)/sizeof(profesores[0]));i++){
+        for(int i=0;i<profesores.size();i++){
             
             if(banner==profesores[i].getBannerID()){
         
-                fm.editFaculty(&profesores[i]);
-        
+                fm->editFaculty();
+                break; 
             }
 
         }
         
-        system("cls");
-        pantalla1();
+        pantalla1_1();
 
     }else if(option=="3"){
-    
-        system("cls");
+
         pantalla1();
     
     }else{
@@ -171,30 +159,25 @@ void Interfaz::pantalla1_2(){
 
         std::string bannerID_;
         std::cout<<"BannerId del nuevo Estudiante "<<std::endl;
-        //sm.createNewStudent();
+        sm->createNewStudent(um);
         
-        std::cout<<"Para regresar presione enter"<<std::endl; 
-        system("PAUSE");
+       
         pantalla1_4();
         
     }else if(option=="2"){
 
-        std::string bannerID_;
-        std::cout<<"BannerID del estudiante a editar"<<std::endl; 
-        sm.editStudent(sm.getStudentByID(bannerID_));
+        sm->editStudent();
 
-        std::cout<<"Para regresar presione enter"<<std::endl; 
-        system("PAUSE");
+        
         pantalla1_4();
         
     }else if(option=="3"){
         std::string bannerID_;
         std::cout<<"BannerID del estudiante a mostrar"<<std::endl;
         std::cin>>bannerID_;
-        sm.showStudent(sm.getStudentByID(bannerID_));
+        sm->getStudentByID(bannerID_)->to_string();
+        std::cout<<"\n\n"<<    std::endl;
 
-        std::cout<<"Para regresar presione enter"<<std::endl; 
-        system("PAUSE");
         pantalla1_4();
         
     }else if(option=="4"){
@@ -202,19 +185,18 @@ void Interfaz::pantalla1_2(){
         std::string bannerID_;
         std::cout<<"BannerID del estudiante a eliminar"<<std::endl;
         std::cin>>bannerID_;
-        sm.deleteStudent(bannerID_);
+        sm->deleteStudent(bannerID_);
 
-        std::cout<<"Para regresar presione enter"<<std::endl; 
-        system("PAUSE");
+
         pantalla1_4();
 
 
     }else if(option=="5"){
-        system("cls");
+    ;
         pantalla1();
         
     }else{
-        system("cls");
+        std::cout<<"Ingrese una opcion correcta"<<std::endl; 
         pantalla1_2();
     }
 }
@@ -225,34 +207,29 @@ void Interfaz::pantalla1_3(){
     std::cin>>option;
     if(option=="1"){
     
-        std::string bannerID_;
-        std::cout<<"BannerId del nuevo profesor"<<std::endl;
-        fm.createNewFaculty();
         
-        std::cout<<"Para regresar presione enter"<<std::endl; 
-        system("PAUSE");
+        fm->createNewFaculty(um);
+        
+       
         pantalla1_4();
     
     }else if(option=="2"){
         
-        std::string bannerID_;
-        std::cout<<"BannerID del profesor a editar"<<std::endl; 
-        fm.editFaculty(fm.getFacultyByID(bannerID_));
+     
+        fm->editFaculty();
 
-        std::cout<<"Para regresar presione enter"<<std::endl; 
-        system("PAUSE");
+      
         pantalla1_4();
 
     }else if(option=="3"){
-        int x=3;
-        Faculty* profesores=fm.getAllFaculty(x);
         
-        for (int i = 0; i< sizeof(profesores)/sizeof(profesores[0]);i++){
-            fm.showFaculty(profesores[i].getBannerID());
+        std::deque<Faculty> profesores=fm->getAllFaculty();
+        
+        for (int i = 0; i<profesores.size();i++){
+            profesores[i].to_string();
         }
 
-        std::cout<<"Para regresar presione enter"<<std::endl; 
-        system("PAUSE");
+        
         pantalla1_4();
 
     }else if(option=="4"){
@@ -260,18 +237,15 @@ void Interfaz::pantalla1_3(){
         std::string bannerID_;
         std::cout<<"BannerID del profesor a eliminar"<<std::endl;
         std::cin>>bannerID_;
-        fm.deleteFaculty(bannerID_);
-
-        std::cout<<"Para regresar presione enter"<<std::endl; 
-        system("PAUSE");
+        fm->deleteFaculty(bannerID_);
+      
         pantalla1_4();
         
     }else if(option=="5"){
-        system("cls");
+       
         pantalla1();
 
     }else{
-        system("cls");
         std::cout<<"Ingrese una opcion valida"<<std::endl; 
         pantalla1_3();
     }
@@ -285,36 +259,29 @@ void Interfaz::pantalla1_4(){
 
     if(option=="1"){
         
-        cm.createNewCourse();
+        cm->createNewCourse();
 
-        std::cout<<"Para regresar presione enter"<<std::endl; 
-        system("PAUSE");
         pantalla1_4();
     
     }else if(option=="2"){
     
-        cm.editCourse();
+        cm->editCourse();
 
-        std::cout<<"Para regresar presione enter"<<std::endl; 
-        system("PAUSE");
         pantalla1_4();
 
     }else if(option=="3")  {
     
-        cm.showCourses();
+        cm->showCourses();
 
-        std::cout<<"Para regresar presione enter"<<std::endl; 
-        system("PAUSE");
         pantalla1_4();
 
     }else if(option=="4"){
 
         std::string nrc_;
         std::cout<<"Ingrese el NRC de la clase que busca eliminar"<<std::endl;
-        cm.deleteCourse(nrc_);
+        cm->deleteCourse(nrc_);
 
-        std::cout<<"Para regresar presione enter"<<std::endl; 
-        system("PAUSE");
+        std::cout<<"La clase ha sido eliminada"<<std::endl;
         pantalla1_4();
 
     }else if(option=="5"){
@@ -324,11 +291,10 @@ void Interfaz::pantalla1_4(){
         std::cin>>nrc_;
         std::cout<<"Ingrese el bannerID del profesor"<<std::endl;
         std::cin>>bannerID_;
-        cm.addFacultyToClass(cm.getCourseByNRC(nrc_),fm.getFacultyByID(bannerID_));
+        cm->getCourseByNRC(nrc_)->setProfesor(fm->getFacultyByID(bannerID_));
 
-        cm.showClassByID(nrc_);
-        std::cout<<"Para regresar presione enter"<<std::endl; 
-        system("PAUSE");
+        cm->showClassByID(nrc_);
+       
         pantalla1_4();
 
 
@@ -339,11 +305,11 @@ void Interfaz::pantalla1_4(){
         std::cin>>nrc_;
         std::cout<<"Ingrese el bannerID del estudiante"<<std::endl;
         std::cin>>bannerID_;
-        cm.addStudentToClass(cm.getCourseByNRC(nrc_),sm.getStudentByID(bannerID_));
 
-        cm.showClassByID(nrc_);
-        std::cout<<"Para regresar presione enter"<<std::endl; 
-        system("PAUSE");
+        Grade aux{0};
+        
+        cm->getCourseByNRC(nrc_)->addStudentGrade(sm->getStudentByID(bannerID_),aux);
+
         pantalla1_4();
 
 
@@ -352,20 +318,18 @@ void Interfaz::pantalla1_4(){
         std::string nrc_;
         std::cout<<"Cual es el NRC del curso que desea revisar?"<<std::endl;
         std::cin>>nrc_;
-        cm.showClassByID(nrc_);
-
-        std::cout<<"Para regresar presione enter"<<std::endl; 
-        system("PAUSE");
+        cm->showClassByID(nrc_);
+        
         pantalla1_4();
 
     }else if(option=="8"){
     
-        system("cls");
+        
         pantalla1();
     
     }else{
         std::cout<<"Ingrese una de las opciones"<<std::endl;
-        system("cls");
+        
         pantalla1_4();
     }
 }
@@ -378,22 +342,22 @@ void Interfaz::pantalla2(User* usuario_){
     
     if(option=="1"){
     
-        system("cls");
+        
         pantalla2_1(usuario_);
     
     }else if(option=="2"){
     
-        system("cls");
+        
         pantalla2_2(usuario_);
     
     }else if(option=="3"){
     
-        system("cls");
+        
         pantallaVer();
     
     }else{
     
-        system("cls");
+        
         std::cout<<"Ingresar una opción correcta"<<std::endl;
         pantalla2(usuario_);
     
@@ -404,20 +368,17 @@ void Interfaz::pantalla2(User* usuario_){
 
 void Interfaz::pantalla2_1(User* usuario_){
 
-    um.showUser(usuario_);
+    um->showUser(usuario_);
 
-    std::cout<<"Para regresar presione enter"<<std::endl;
-    system("PAUSE");
 
     pantalla2(usuario_);
 }
 
 void Interfaz::pantalla2_2(User* usuario_){
 
-    um.editUser(usuario_);
+    um->editUser(usuario_);
 
-    std::cout<<"Para regresar presione enter"<<std::endl;
-    system("PAUSE");
+    
 
     pantalla2(usuario_);
 

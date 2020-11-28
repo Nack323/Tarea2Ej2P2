@@ -14,14 +14,14 @@ Course::Course(){ }
 Course::Course(std::string _nrc, int totalCreditos):nrc(nrc),totalCreditos(totalCreditos){
 }
 
-void Course::addStudentGrade(Student* student,Grade* grade){
-    estudiantes.addObject(student);
-    notas.addObject(grade);
+void Course::addStudentGrade(Student* student,Grade grade){
+    estudiantes.add(student);
+    notas.add(grade);
 }
 
 Grade* Course::getGradeByStudent(Student * estudiante){
     for(int i=0; i<totalEstudiantes; i++){
-        if(estudiantes[i].getBannerID() == estudiante->getBannerID()){
+        if(estudiantes[i]->getBannerID() == estudiante->getBannerID()){
             return &notas[i];
         }
     }
@@ -29,12 +29,12 @@ Grade* Course::getGradeByStudent(Student * estudiante){
 }
 
 
-ArrayList<Student> Course::getAllStudents(){
+ArrayList<Student*> Course::getAllStudents(){
     return this->estudiantes;
 }
 
 ArrayList<Grade> Course::getAllGrades(){
-    return this->notas:
+    return this->notas;
 }
 
 void Course::setProfesor(Faculty* _profesor){
@@ -73,5 +73,6 @@ void Course::setPath(std::string path_){
 }
 
 std::string Course::to_string(){
-    string=std::cout<<nrc<<std::setw(10)<<creditos<<" "<<this->profesor.getName()<<this->profesor.getApellido()<<std::endl;
+    std::string stringA=nrc+"\t"+std::to_string(totalCreditos)+"\t"+this->profesor->getNombre()+this->profesor->getApellido();
+    return stringA;
 }

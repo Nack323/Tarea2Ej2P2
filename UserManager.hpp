@@ -8,7 +8,8 @@
 #include "StudentManager.hpp"
 #include "FacultyManager.hpp"
 #include "ArrayList.hpp"
-
+#include <deque>
+#include <queue>
 
 
 class FacultyManager;

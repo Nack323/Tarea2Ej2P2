@@ -7,7 +7,7 @@
 #include <iomanip>
 #include <fstream>
 #include "Grade.hpp"
-#include "ArraysList.hpp"
+#include "ArrayList.hpp"
 
 
 #ifndef CourseManager_hpp
@@ -19,7 +19,7 @@ class FacultyManager;
 
 class CourseManager{
 private:
-    ArrayList<Course> cursos;
+    ArrayList<Course > cursos;
     int numCursos;
     std::string pathCursos;
     StudentManager* sm;
