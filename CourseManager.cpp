@@ -235,6 +235,7 @@ Course CourseManager::getCourseByNRC(std::string nrc_){
         }
     
     }
+    return Course{"0", 0};
 
 }
 
