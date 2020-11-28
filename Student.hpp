@@ -33,7 +33,7 @@ public:
     void calculateGPA();
     void addClass(Course*);
     std::string getCarrera();
-    ArrayList<Course>* getClases();
+    ArrayList<Course> getClases();
     float getGPA();
     std::string to_string() override;
 };

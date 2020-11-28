@@ -16,9 +16,9 @@
 using namespace std;
 
 int main(int argc, const char * argv[]) {
-    StudentManager sm{"estudiantes_pregrado.txt","estudiantes_posgrado.txt"};
-    FacultyManager fm{"profesores.txt"};
-    CourseManager cm{"Courses.txt",&sm,&fm};
+    StudentManager sm{"./data/estudiantes_pregrado.txt","./data/estudiantes_posgrado.txt"};
+    FacultyManager fm{"./data/profesores.txt"};
+    CourseManager cm{"./data/Courses.txt",&sm,&fm};//sale error en courseManager
     UserManager um{&fm,&sm};
     Interfaz interfaz{&sm,&fm,&cm,&um};
     interfaz.pantallaInit();

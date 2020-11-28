@@ -148,7 +148,7 @@ void StudentManager::editStudent(){//preguntar
 };
 
 void StudentManager::editStudent(Student* stud){//preguntar
-    string _bannerId = stud->getBannerID;
+    string _bannerId = stud->getBannerID();
     Student* Edit{0};//estudiante para editar
     bool found = false;
     //encontrar el estudiante con ese bannerID

@@ -12,7 +12,6 @@
 Faculty::Faculty(){ }
 
 Faculty::Faculty(std::string _bannerID, std::string _nombre, std::string _apellido, std::string _contrasenia, std::string _usuario, std::string _carrera):User(_bannerID, _nombre, _apellido, _contrasenia, _usuario), carrera(_carrera){
-    std::cout << "Faculty constructor" << std::endl;
 }
 
 void Faculty::setCarrera(std::string _carrera){

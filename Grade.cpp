@@ -13,7 +13,6 @@ Grade::Grade(){ }
 
 Grade::Grade(float _nota){
     setNota(_nota);
-    std::cout << "Grade constructor" << std::endl;
 }
 
 void Grade::setNota(float _nota){

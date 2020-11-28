@@ -12,7 +12,6 @@
 GraduateStudent::GraduateStudent(){ }
 
 GraduateStudent::GraduateStudent(std::string _bannerID, std::string _nombre, std::string _apellido, std::string _contrasenia, std::string _usuario, std::string _carrera, std::string _nivel): Student(_bannerID, _nombre, _apellido, _contrasenia, _usuario, _carrera), nivel(_nivel){
-    std::cout << "GraduateStudent constructor" << std::endl;
 }
 
 void GraduateStudent::setNivel(std::string _nivel){

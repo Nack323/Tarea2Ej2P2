@@ -48,6 +48,7 @@ void CourseManager::loadCourses(){
 
     }
     input.close();
+    std::cout << "CourseManager::loadcourses sanity check 1" << std::endl;
 };
 
 void CourseManager::updateCourses(){

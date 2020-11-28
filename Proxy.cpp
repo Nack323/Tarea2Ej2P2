@@ -14,7 +14,6 @@ Proxy::Proxy(){ }
 Proxy::Proxy(std::string _nombre, std::string _apellido, std::string _email, std::string _numeroTelefonico):
 nombre(_nombre), apellido(_apellido), email(_email), numeroTelefonico(_numeroTelefonico)
 {
-    std::cout << "Proxy constructor" << std::endl;
 }
 
 void Proxy::setNombre(std::string _nombre){

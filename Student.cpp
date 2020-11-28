@@ -15,7 +15,6 @@ Student::~Student(){}
 
 Student::Student(std::string _bannerID, std::string _nombre, std::string _apellido, std::string _contrasenia, std::string _usuario, std::string _carrera):User(_bannerID, _nombre, _apellido, _contrasenia, _usuario), carrera(_carrera)
 {
-    std::cout << "Student constructor" << std::endl;
 }
 
 void Student::setCarrera(std::string _carrera){
@@ -23,7 +22,7 @@ void Student::setCarrera(std::string _carrera){
 }
 
 void Student::addClass(Course* curso){
-    this->clases.add(curso);
+    this->clases.add(*curso);
 }
 
 float Student::getGPA(){
