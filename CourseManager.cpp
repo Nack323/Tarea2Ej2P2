@@ -21,6 +21,7 @@ void CourseManager::loadCourses(){
         cursoAux=Course(nrcAux,std::stoi(creditosAux));
 
         cursos.add(cursoAux);
+        cursos[i].setPath(pathAux);
 
         profesor=fm->getFacultyByID(profeAux);
         cursos[i].setProfesor(profesor);
@@ -28,12 +29,14 @@ void CourseManager::loadCourses(){
         std::ifstream fileEst;    
         int numberEst;
 
-        fileEst.open(pathAux);
+        fileEst.open(cursos[i].getPath());
         fileEst>>numberEst;
+
         for(int j=0;j<numberEst;j++){
 
             std::string BannerIDAux;
             std::string notaAux;
+            
             Grade nota;
 
             fileEst>>BannerIDAux>>notaAux;
