@@ -22,13 +22,13 @@ class Faculty;
 
 class Course{
 private:
-    std::string nrc;
+    std::string nrc{"-1"};
     Faculty *profesor;
     std::deque<Student*> estudiantes;
     std::deque<Grade> notas;
-    int totalEstudiantes;
-    int totalCreditos;
-    std::string path;
+    int totalEstudiantes{0};
+    int totalCreditos{0};
+    std::string path{""};
 public:
     Course();
     Course(std::string, int);

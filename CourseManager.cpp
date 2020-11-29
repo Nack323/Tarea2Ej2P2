@@ -18,8 +18,11 @@ void CourseManager::loadCourses(){
         input>>nrcAux>>creditosAux>>profeAux>>pathAux;
 
         Course* cursoAux;
-        cursoAux= new Course(nrcAux,std::stoi(creditosAux));
-
+        std::cout << "Check 1" << std::endl;
+        cursoAux= new Course();
+        std::cout << "Check 2" << std::endl;
+        cursoAux->setNRC(nrcAux);
+        cursoAux->setCreditos(std::stoi(creditosAux));
         cursos.add(cursoAux);
         cursos[i]->setPath(pathAux);
 
@@ -178,8 +181,7 @@ void CourseManager::showCourses(){
     
     for(int i=0;i<numCursos;i++){
 
-        std::cout<<"NRC"<<std::setw(10)<<"Creditos"<<std::setw(10)<<"Profesor"<<std::endl;
-        cursos[i]->to_string();
+        std::cout << cursos[i]->to_string() << std::endl;;
     
     }
 
