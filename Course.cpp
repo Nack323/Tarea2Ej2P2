@@ -11,7 +11,7 @@
 
 Course::Course(){ }
 
-Course::Course(std::string _nrc, int totalCreditos):nrc(nrc),totalCreditos(totalCreditos){
+Course::Course(std::string _nrc, int totalCreditos):nrc(_nrc),totalCreditos(totalCreditos){
     std::cout << "Check from course 1" << std::endl;
 }
 
