@@ -9,6 +9,7 @@
 #include "FacultyManager.hpp"
 #include "CourseManager.hpp"
 #include <deque>
+#include <stdlib.h>  
 
 class StudentManager;
 class FacultyManager;

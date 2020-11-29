@@ -9,19 +9,18 @@ void Interfaz::pantallaInit(){
     std::string option;
     std::cout<<"Bienvenido al sistema de registro\nIngrese la opción que desea"<<std::endl;
     std::cout<<"1.Administrar Sistema\n2.Acceder Usuario\n3.Salir"<<std::endl;
-    while(option!="3"){
-        std::cin>>option;
-        if(option=="1"){
-            pantalla1();
-        }else if(option=="2"){
-            pantallaVer();
-        }else{
-            std::cout<<"Ingrese una opción válida"<<std::endl;
-            pantallaInit();
-            
-        }
+    std::cin>>option;
+    if(option=="1"){
+        pantalla1();
+    }else if(option=="2"){
+        pantallaVer();
+    }else if(option=="3"){
+        exit(-1);
+    
+    }else{
+        std::cout<<"Ingrese una opción válida"<<std::endl;
+        pantallaInit();
     }
-    exit(-1);
 }
 
 void Interfaz::pantalla1(){
