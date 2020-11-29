@@ -29,7 +29,9 @@ void CourseManager::loadCourses(){
         std::ifstream fileEst;    
         int numberEst;
 
-        fileEst.open(cursos[i].getPath());
+        std::string pathEstudiantes="./data/"+cursos[i].getPath();
+         
+        fileEst.open(pathEstudiantes);
         fileEst>>numberEst;
 
         for(int j=0;j<numberEst;j++){
