@@ -18,7 +18,7 @@ void Faculty::setCarrera(std::string _carrera){
     carrera = _carrera;
 }
 
-void Faculty::setCursos(ArrayList<Course>_cursos, int _totalCursos){
+void Faculty::setCursos(ArrayList<Course*>_cursos, int _totalCursos){
     totalCursos = _totalCursos;
     cursos = _cursos;
 }
@@ -27,7 +27,7 @@ std::string Faculty::getCarrera(){
     return carrera;
 }
 
-ArrayList<Course> Faculty::getCursos(int & _totalCursos){
+ArrayList<Course*> Faculty::getCursos(int & _totalCursos){
     _totalCursos = totalCursos;
     return cursos;
 }
@@ -36,6 +36,6 @@ std::string Faculty::to_string(){
     return User::to_string() + "\t" + this->getCarrera();
 }
 
-void Faculty::addClass(Course cursoNuevo){
+void Faculty::addClass(Course* cursoNuevo){
 	cursos.add(cursoNuevo);
 }

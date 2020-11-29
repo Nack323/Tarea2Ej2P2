@@ -21,16 +21,16 @@ class Course;
 class Faculty : public User{
 private:
     std::string carrera;
-    ArrayList<Course> cursos;
+    ArrayList<Course*> cursos;
     int totalCursos;
 public:
     Faculty();
     Faculty(std::string, std::string, std::string, std::string, std::string, std::string);
     void setCarrera(std::string);
-    void setCursos(ArrayList<Course>, int);
+    void setCursos(ArrayList<Course*>, int);
     std::string getCarrera();
-    ArrayList<Course> getCursos(int&);
-    void addClass(Course);
+    ArrayList<Course*> getCursos(int&);
+    void addClass(Course*);
     std::string to_string() override;
 };
 

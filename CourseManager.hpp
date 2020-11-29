@@ -20,7 +20,7 @@ class FacultyManager;
 
 class CourseManager{
 private:
-    ArrayList<Course > cursos;
+    ArrayList<Course*> cursos;
     int numCursos;
     std::string pathCursos;
     StudentManager* sm;
@@ -35,7 +35,7 @@ public:
     void showClassByID(std::string);
     void deleteCourse(std::string);
 
-    Course getCourseByNRC(std::string);
+    Course* getCourseByNRC(std::string);
     
 };
 
