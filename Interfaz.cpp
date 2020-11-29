@@ -95,21 +95,12 @@ void Interfaz::pantalla1_1(){
     std::string option;
     std::cin>>option;
     std::deque<Student*> estudiantes=sm->getAllStudents();
-    
     std::deque<Faculty> profesores=fm->getAllFaculty();
     
     if(option=="1"){
-
-        for(int i=0;i<estudiantes.size();i++){
-            estudiantes[i]->to_string();
-        }
-        for(int i=0;i<profesores.size();i++){
-            profesores[i].to_string();
-        }
-
+        sm->showStudents();
+        fm->showAllFaculties();
         pantalla1_1();
-    
-
     } else if(option=="2"){
         
         std::string banner;
@@ -203,6 +194,7 @@ void Interfaz::pantalla1_2(){
 
 void Interfaz::pantalla1_3(){
     std::cout<<"1.Crear Profesor\n2.Editar Profesor\n3.Mostrar Profesores\n4.Borrar Profesor\n5.Regresar"<<std::endl;
+
     std::string option;
     std::cin>>option;
     if(option=="1"){
