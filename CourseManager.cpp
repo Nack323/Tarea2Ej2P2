@@ -18,7 +18,9 @@ void CourseManager::loadCourses(){
         input>>nrcAux>>creditosAux>>profeAux>>pathAux;
 
         Course cursoAux;
+        std::cout << "Check 1" << std::endl;
         cursoAux=Course(nrcAux,std::stoi(creditosAux));
+        std::cout << "Check 2" << std::endl;
 
         cursos.add(cursoAux);
         cursos[i].setPath(pathAux);
@@ -53,7 +55,6 @@ void CourseManager::loadCourses(){
 
     }
     input.close();
-    std::cout << "CourseManager::loadcourses sanity check 1" << std::endl;
 };
 
 void CourseManager::updateCourses(){
