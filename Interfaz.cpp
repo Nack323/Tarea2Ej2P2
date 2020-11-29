@@ -159,17 +159,21 @@ void Interfaz::pantalla1_2(){
 
         sm->editStudent();
 
-        
-        pantalla1_4();
+        pantalla1_2();
         
     }else if(option=="3"){
         std::string bannerID_;
         std::cout<<"BannerID del estudiante a mostrar"<<std::endl;
         std::cin>>bannerID_;
-        sm->getStudentByID(bannerID_)->to_string();
-        std::cout<<"\n\n"<<    std::endl;
-
-        pantalla1_4();
+        Student* showstud = sm->getStudentByID(bannerID_);
+        if (showstud){
+            std::cout << showstud->to_string()<< std::endl;
+        }
+        else {
+            std::cout << "Error" << std::endl;
+        }
+        std::cout<<"\n\n"<< std::endl;
+        pantalla1_2();
         
     }else if(option=="4"){
         
@@ -179,7 +183,7 @@ void Interfaz::pantalla1_2(){
         sm->deleteStudent(bannerID_);
 
 
-        pantalla1_4();
+        pantalla1_2();
 
 
     }else if(option=="5"){
@@ -198,45 +202,19 @@ void Interfaz::pantalla1_3(){
     std::string option;
     std::cin>>option;
     if(option=="1"){
-    
-        
         fm->createNewFaculty(um);
-        
-       
-        pantalla1_4();
-    
+        pantalla1_3();
     }else if(option=="2"){
-        
-     
         fm->editFaculty();
-
-      
-        pantalla1_4();
-
+        pantalla1_3();
     }else if(option=="3"){
-        
-        std::deque<Faculty> profesores=fm->getAllFaculty();
-        
-        for (int i = 0; i<profesores.size();i++){
-            profesores[i].to_string();
-        }
-
-        
-        pantalla1_4();
-
+        fm->showAllFaculties();
+        pantalla1_3();
     }else if(option=="4"){
-
-        std::string bannerID_;
-        std::cout<<"BannerID del profesor a eliminar"<<std::endl;
-        std::cin>>bannerID_;
-        fm->deleteFaculty(bannerID_);
-      
-        pantalla1_4();
-        
+        fm->deleteFaculty();
+        pantalla1_3();
     }else if(option=="5"){
-       
         pantalla1();
-
     }else{
         std::cout<<"Ingrese una opcion valida"<<std::endl; 
         pantalla1_3();
