@@ -29,6 +29,7 @@ public:
     std::deque<Student*> getAllStudents();
     void editStudent();
     void editStudent(Student*);
+    void editStudent(std::string);
     void showStudents();
     void showStudent(std::string);
     void showStudent(Student*);

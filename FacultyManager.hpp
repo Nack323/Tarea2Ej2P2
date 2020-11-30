@@ -24,6 +24,7 @@ public:
     std::deque<Faculty> getAllFaculty();//funciona
     void editFaculty();//ya funciona
     void editFaculty(Faculty* );
+    void editFaculty(std::string);
     void showFaculty(std::string);//funciona
     void showAllFaculties();//no era necesario hacia mas facil debugear
     void deleteFaculty(std::string);//funciona

@@ -15,8 +15,7 @@ void Interfaz::pantallaInit(){
     }else if(option=="2"){
         pantallaVer();
     }else if(option=="3"){
-        exit(-1);
-    
+        exit(0);
     }else{
         std::cout<<"Ingrese una opción válida"<<std::endl;
         pantallaInit();
@@ -111,7 +110,7 @@ void Interfaz::pantalla1_1(){
             
             if(banner==estudiantes[i]->getBannerID()){
         
-                sm->editStudent();
+                sm->editStudent(banner);
                 break;
         
             }
@@ -121,7 +120,7 @@ void Interfaz::pantalla1_1(){
             
             if(banner==profesores[i].getBannerID()){
         
-                fm->editFaculty();
+                fm->editFaculty(banner);
                 break; 
             }
 
@@ -152,7 +151,7 @@ void Interfaz::pantalla1_2(){
         sm->createNewStudent(um);
         
        
-        pantalla1_4();
+        pantalla1_2();
         
     }else if(option=="2"){
 

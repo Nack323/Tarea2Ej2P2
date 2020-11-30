@@ -115,7 +115,7 @@ deque<Student*> StudentManager::getAllStudents(){
     return this->estudiantes;
 }
 
-void StudentManager::editStudent(){//preguntar
+void StudentManager::editStudent(){// sobrecarga para no mandarle nada por si acaso se necesita
     string _bannerId = consoleInput<string>("Banner ID del estudiante que quiere editar:");
     Student* Edit{0};//estudiante para editar
     bool found = false;
@@ -123,6 +123,7 @@ void StudentManager::editStudent(){//preguntar
     for(auto &estud: estudiantes) {
         if (estud->getBannerID() == _bannerId){
             cout << "ESTUDIANTE ENCONTRADO." << endl;
+            cout << estud->to_string() << endl;
             GraduateStudent* GradStud = dynamic_cast<GraduateStudent*>(estud);
             UnderGraduateStudent* UnderGradStud = dynamic_cast<UnderGraduateStudent*>(estud);//uno de los dos dynamic cas tiene que ser 0
             if (UnderGradStud){
@@ -147,7 +148,40 @@ void StudentManager::editStudent(){//preguntar
     }
 };
 
-void StudentManager::editStudent(Student* stud){//preguntar
+void StudentManager::editStudent(string bid){ //sobrecarga para mandarle el banner ID, facilita la interfaz
+    string _bannerId = bid;
+    Student* Edit{0};//estudiante para editar
+    bool found = false;
+    //encontrar el estudiante con ese bannerID
+    for(auto &estud: estudiantes) {
+        if (estud->getBannerID() == _bannerId){
+            cout << "ESTUDIANTE ENCONTRADO." << endl;
+            cout << estud->to_string() << endl;
+            GraduateStudent* GradStud = dynamic_cast<GraduateStudent*>(estud);
+            UnderGraduateStudent* UnderGradStud = dynamic_cast<UnderGraduateStudent*>(estud);//uno de los dos dynamic cas tiene que ser 0
+            if (UnderGradStud){
+                UnderGradStud->setNombre(consoleInput<string>("Nombre: "));
+                UnderGradStud->setApellido(consoleInput<string>("Apellido: "));
+                UnderGradStud->setUsuario(consoleInput<string>("Usuario: "));
+                UnderGradStud->setContrasenia(consoleInput<string>("Contrasenia: "));
+                UnderGradStud->setCarrera(consoleInput<string>("Carrera: "));
+                Proxy repr{consoleInput<string>("Nombre del Representante: "), consoleInput<string>("Apellido del representante: "), consoleInput<string>("Correo del representante: "), consoleInput<string>("Telefono del representante: ")};
+                UnderGradStud->setRepresentante(repr);
+            }
+            if (GradStud){
+                GradStud->setNombre(consoleInput<string>("Nombre: "));
+                GradStud->setApellido(consoleInput<string>("Apellido: "));
+                GradStud->setUsuario(consoleInput<string>("Usuario: "));
+                GradStud->setContrasenia(consoleInput<string>("Contrasenia: "));
+                GradStud->setCarrera(consoleInput<string>("Carrera: "));
+                GradStud->setNivel(consoleInput<string>("Nivel: "));
+            }
+            break;
+        }
+    }
+};
+
+void StudentManager::editStudent(Student* stud){//sobrecarga a la que se le pasa un student*
     string _bannerId = stud->getBannerID();
     Student* Edit{0};//estudiante para editar
     bool found = false;
@@ -155,6 +189,7 @@ void StudentManager::editStudent(Student* stud){//preguntar
     for(auto &estud: estudiantes) {
         if (estud->getBannerID() == _bannerId){
             cout << "ESTUDIANTE ENCONTRADO." << endl;
+            cout << estud->to_string() << endl;
             GraduateStudent* GradStud = dynamic_cast<GraduateStudent*>(estud);
             UnderGraduateStudent* UnderGradStud = dynamic_cast<UnderGraduateStudent*>(estud);//uno de los dos dynamic cas tiene que ser 0
             if (UnderGradStud){
