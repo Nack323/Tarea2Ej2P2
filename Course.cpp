@@ -74,6 +74,6 @@ void Course::setPath(std::string path_){
 }
 
 std::string Course::to_string(){
-    std::string stringA=nrc+"\t"+std::to_string(totalCreditos)+" "+this->profesor->getNombre()+" "+this->profesor->getApellido();
-    return stringA;
+
+    return nrc+"\t"+std::to_string(totalCreditos)+" "+this->profesor->getNombre()+" "+this->profesor->getApellido();;
 }

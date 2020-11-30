@@ -26,30 +26,32 @@ void CourseManager::loadCourses(){
 
         profesor=fm->getFacultyByID(profeAux);
         cursos[i]->setProfesor(profesor);
-
+        
+        
         std::ifstream fileEst;    
         int numberEst;
 
         std::string pathEstudiantes="./data/"+cursos[i]->getPath();
-
+    
         fileEst.open(pathEstudiantes);
         fileEst>>numberEst;
+        if(fileEst.is_open()){
+            for(int j=0;j<numberEst;j++){
 
-        for(int j=0;j<numberEst;j++){
+                std::string BannerIDAux;
+                float notaAux;
+                
+                Grade nota;
 
-            std::string BannerIDAux;
-            std::string notaAux;
-            
-            Grade nota;
-
-            fileEst>>BannerIDAux>>notaAux;
-
-            nota=Grade(std::stof(notaAux));
-
-            cursos[i]->addStudentGrade(sm->getStudentByID(BannerIDAux),nota);
-
+                fileEst>>BannerIDAux>>notaAux;
+              
+                nota=Grade(notaAux);
+                cursos[i]->addStudentGrade(sm->getStudentByID(BannerIDAux),nota);
+            }
+        }else{
+            std::cout<<"Error con el programa"<<std::endl;
         }
-
+        
         fileEst.close();
 
     }
@@ -91,11 +93,11 @@ void CourseManager::createNewCourse(){
     std::ofstream file;
     std::string newpath=NRCAux+"_"+ProfesorAux+".txt";
     std::ofstream newfile;
-    newfile.open(newpath);
+    newfile.open("./data/"+newpath);
     newfile<<"0";
     newfile.close();
     
-    file.open(pathCursos,std::ios::app);
+    file.open("./data/"+pathCursos,std::ios::app);
     file<<NRCAux<<" "<<creditosAux<<" "<<ProfesorAux<<" "<<newpath<<std::endl;
 
 
@@ -126,7 +128,7 @@ void CourseManager::editCourse(){
                 std::cin>>nrcAux;
 
                 std::string newPath=nrcAux+"_"+cursos[i]->getProfesor()->getBannerID()+".txt";
-                rename(cursos[i]->getPath().c_str(),newPath.c_str());//bien :)
+                rename(("./data/"+cursos[i]->getPath()).c_str(),("./data/"+newPath).c_str());
                 cursos[i]->setPath(newPath);
                 cursos[i]->setNRC(nrcAux);
 
@@ -141,7 +143,7 @@ void CourseManager::editCourse(){
                 
                 Faculty* nuevoProfesor=fm->getFacultyByID(ID);
                 std::string newPath=cursos[i]->getNRC()+"_"+ID+".txt";
-                rename(cursos[i]->getPath().c_str(),newPath.c_str());
+                rename(("./data/"+cursos[i]->getPath()).c_str(),("./data/"+newPath).c_str());
                 cursos[i]->setPath(newPath);
                 cursos[i]->setProfesor(nuevoProfesor);
                 nuevoProfesor->addClass(cursos[i]);
@@ -189,27 +191,22 @@ void CourseManager::showCourses(){
 
 void CourseManager::showClassByID(std::string nrc){
 
-    for(int i=0;i<numCursos;i++){
-
+    for(int i=0;i<cursos.getSize();i++){
         if(cursos[i]->getNRC()==nrc){
 
-            std::cout<<"NRC"<<std::setw(10)<<"Creditos"<<std::setw(10)<<"Profesor"<<std::endl;
-            cursos[i]->to_string();
-            std::cout<<"Estudiantes"<<std::endl;
+            std::cout<<"NRC"<<std::setw(12)<<"Creditos"<<std::setw(10)<<"Profesor"<<std::endl;
+            std::cout<<cursos[i]->to_string()<<std::endl;
+            std::cout<<"Estudiantes:"<<std::endl;
             std::deque<Student*> stu=cursos[i]->getAllStudents();
 
             for(int j=0;j<stu.size();j++){
-                stu[j]->to_string();
+                std::cout<<stu[j]->to_string()<<std::endl;;
             }
-
-            break;  
 
         }  
 
-             
-
     }
-    std::cout<<"No se encontro clase con ese NRC"<<std::endl;
+
 
 }
 
