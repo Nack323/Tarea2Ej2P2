@@ -54,9 +54,50 @@ void StudentManager::loadGrads(){
         estudiantes.push_back(new GraduateStudent(bannerIDAux,nombreAux,apellidoAux,contraseniaAux,usuarioAux,carreraAux,nivelAux));
     }
 };
+
 void StudentManager::updateUnderGrads(){
-    // Esto actualiza el archivo
+    std::ofstream file;
+    file.open(pathUndergraduate,std::ofstream::out | std::ofstream::trunc);
+    int counter=0;
+    for(auto &estud: estudiantes) {
+        UnderGraduateStudent* UnderGradStud = dynamic_cast<UnderGraduateStudent*>(estud);//uno de los dos dynamic cas tiene que ser 0
+        if (UnderGradStud){
+            counter++;
+        }
+    }
+    file<<counter<<"\n";
+    for(auto &estud: estudiantes) {
+        UnderGraduateStudent* UnderGradStud = dynamic_cast<UnderGraduateStudent*>(estud);//uno de los dos dynamic cas tiene que ser 0
+
+        if (UnderGradStud){
+            file<<estud->getNombre()<<" "<<estud->getApellido()<<" "<<estud->getUsuario()<<" "<<estud->getContrasenia()<<" "<<estud->getCarrera()<<" "<<UnderGradStud->getRepresentante().getNombre()<<" "<<UnderGradStud->getRepresentante().getApellido()<<" "<<UnderGradStud->getRepresentante().getNumeroTelefonico()<<" "<<UnderGradStud->getRepresentante().getEmail()<<"\n";
+        }
+    }
+    loadUnderGrads();
 };
+
+void StudentManager::updateGrads(){
+    
+    std::ofstream file;
+    file.open(pathUndergraduate,std::ofstream::out | std::ofstream::trunc);
+    int counter=0;
+    for(auto &estud: estudiantes) {
+        GraduateStudent* GradStud = dynamic_cast<GraduateStudent*>(estud);
+        if (GradStud){
+            counter++;
+        }
+    }
+    file<<counter<<"\n";
+    for(auto &estud: estudiantes) {
+        GraduateStudent* GradStud = dynamic_cast<GraduateStudent*>(estud);//uno de los dos dynamic cas tiene que ser 0
+        //1100    Ethan    HAYES    EHAYES    EHAYES8667    QUIMICA    Doctorado
+        if (GradStud){
+            file<<estud->getNombre()<<" "<<estud->getApellido()<<" "<<estud->getUsuario()<<" "<<estud->getContrasenia()<<" "<<estud->getCarrera()<<" "<<GradStud->getNivel()<<"\n";
+        }
+    }
+    loadGrads();
+};
+
 
 
 StudentManager::StudentManager(std::string pathUndergrad, std::string pathGrad) : pathUndergraduate(pathUndergrad), pathGraduate(pathGrad){
@@ -79,6 +120,7 @@ void StudentManager::createNewStudent(UserManager* um){
         std::string carreraAux = consoleInput<string>("Carrera: ");
         std::string nivelAux = consoleInput<string>("Nivel: ");
         estudiantes.push_back( new GraduateStudent(_bannerId,nombreAux,apellidoAux,contraseniaAux,usuarioAux,carreraAux,nivelAux));
+        updateGrads();
     }
     else if (opt == 1) {
         std::string bannerIDAux = um->getNewBannerID();
@@ -94,11 +136,14 @@ void StudentManager::createNewStudent(UserManager* um){
         Proxy proxyAux(pnombreAux,papellidoAux,pemailAux,ptelefAux);
 
         estudiantes.push_back(new UnderGraduateStudent(bannerIDAux,nombreAux,apellidoAux,usuarioAux,contraseniaAux,carreraAux,proxyAux));
+        updateUnderGrads();
 
     }
     else {
         cout << "No es una opcion valida" << endl;
     }
+   
+    
 };
 
 Student* StudentManager::getStudentByID(string BannerID){
@@ -134,6 +179,7 @@ void StudentManager::editStudent(){// sobrecarga para no mandarle nada por si ac
                 UnderGradStud->setCarrera(consoleInput<string>("Carrera: "));
                 Proxy repr{consoleInput<string>("Nombre del Representante: "), consoleInput<string>("Apellido del representante: "), consoleInput<string>("Correo del representante: "), consoleInput<string>("Telefono del representante: ")};
                 UnderGradStud->setRepresentante(repr);
+                updateUnderGrads();
             }
             if (GradStud){
                 GradStud->setNombre(consoleInput<string>("Nombre: "));
@@ -142,6 +188,7 @@ void StudentManager::editStudent(){// sobrecarga para no mandarle nada por si ac
                 GradStud->setContrasenia(consoleInput<string>("Contrasenia: "));
                 GradStud->setCarrera(consoleInput<string>("Carrera: "));
                 GradStud->setNivel(consoleInput<string>("Nivel: "));
+                updateGrads();
             }
             break;
         }
@@ -167,6 +214,7 @@ void StudentManager::editStudent(string bid){ //sobrecarga para mandarle el bann
                 UnderGradStud->setCarrera(consoleInput<string>("Carrera: "));
                 Proxy repr{consoleInput<string>("Nombre del Representante: "), consoleInput<string>("Apellido del representante: "), consoleInput<string>("Correo del representante: "), consoleInput<string>("Telefono del representante: ")};
                 UnderGradStud->setRepresentante(repr);
+                updateUnderGrads();
             }
             if (GradStud){
                 GradStud->setNombre(consoleInput<string>("Nombre: "));
@@ -175,6 +223,7 @@ void StudentManager::editStudent(string bid){ //sobrecarga para mandarle el bann
                 GradStud->setContrasenia(consoleInput<string>("Contrasenia: "));
                 GradStud->setCarrera(consoleInput<string>("Carrera: "));
                 GradStud->setNivel(consoleInput<string>("Nivel: "));
+                updateGrads();
             }
             break;
         }
@@ -200,6 +249,7 @@ void StudentManager::editStudent(Student* stud){//sobrecarga a la que se le pasa
                 UnderGradStud->setCarrera(consoleInput<string>("Carrera: "));
                 Proxy repr{consoleInput<string>("Nombre del Representante: "), consoleInput<string>("Apellido del representante: "), consoleInput<string>("Correo del representante: "), consoleInput<string>("Telefono del representante: ")};
                 UnderGradStud->setRepresentante(repr);
+                updateUnderGrads();
             }
             if (GradStud){
                 GradStud->setNombre(consoleInput<string>("Nombre: "));
@@ -208,6 +258,7 @@ void StudentManager::editStudent(Student* stud){//sobrecarga a la que se le pasa
                 GradStud->setContrasenia(consoleInput<string>("Contrasenia: "));
                 GradStud->setCarrera(consoleInput<string>("Carrera: "));
                 GradStud->setNivel(consoleInput<string>("Nivel: "));
+                updateGrads();
             }
             break;
         }
@@ -231,6 +282,8 @@ void StudentManager::deleteStudent(std::string bannerID_){
         }
         pos ++;
     }
+    updateUnderGrads();
+    updateGrads();
 };
 
 void StudentManager::showStudent(string bannerId) {

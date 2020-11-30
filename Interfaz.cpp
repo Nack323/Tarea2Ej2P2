@@ -49,10 +49,11 @@ void Interfaz::pantalla1(){
    
         std::cout<<"Ingrese una de las opciones"<<std::endl;
         
-        pantalla1();
+        pantallaInit();
     
     }else{
         std::cout<<"Ingrese una opcion correcta"<<std::endl;
+        pantalla1();
     }
 }
 
@@ -324,7 +325,7 @@ void Interfaz::pantalla2(User* usuario_){
     }else if(option=="3"){
     
         
-        pantallaVer();
+        pantallaInit();
     
     }else{
     

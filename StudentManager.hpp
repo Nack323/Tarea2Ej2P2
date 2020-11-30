@@ -21,6 +21,7 @@ private:
     std::string pathGraduate;
     void loadGrads();
     void updateUnderGrads();
+    void updateGrads();
 public:
     StudentManager(std::string, std::string);
     StudentManager(){};
