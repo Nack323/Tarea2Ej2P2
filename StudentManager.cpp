@@ -70,7 +70,8 @@ void StudentManager::updateUnderGrads(){
         UnderGraduateStudent* UnderGradStud = dynamic_cast<UnderGraduateStudent*>(estud);//uno de los dos dynamic cas tiene que ser 0
 
         if (UnderGradStud){
-            file<<estud->getNombre()<<" "<<estud->getApellido()<<" "<<estud->getUsuario()<<" "<<estud->getContrasenia()<<" "<<estud->getCarrera()<<" "<<UnderGradStud->getRepresentante().getNombre()<<" "<<UnderGradStud->getRepresentante().getApellido()<<" "<<UnderGradStud->getRepresentante().getNumeroTelefonico()<<" "<<UnderGradStud->getRepresentante().getEmail()<<"\n";
+//87      Jordan  PATTERSON       JPATTERSON      JPATTERSON7638  MATEMATICA      Danielle        PATTERSON       DPATTERSON@outlook.com  716-457-4008
+            file<<estud->getBannerID()<<"\t"<<estud->getNombre()<<"\t"<<estud->getApellido()<<"\t"<<estud->getUsuario()<<"\t"<<estud->getContrasenia()<<"\t"<<estud->getCarrera()<<"\t"<<UnderGradStud->getRepresentante().getNombre()<<"\t"<<UnderGradStud->getRepresentante().getApellido()<<"\t"<<UnderGradStud->getRepresentante().getEmail() <<"\t"<<UnderGradStud->getRepresentante().getNumeroTelefonico()<<"\n";
         }
     }
     loadUnderGrads();
