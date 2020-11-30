@@ -12,7 +12,6 @@
 Course::Course(){ }
 
 Course::Course(std::string _nrc, int totalCreditos):nrc(_nrc),totalCreditos(totalCreditos){
-    std::cout << "Check from course 1" << std::endl;
 }
 
 void Course::addStudentGrade(Student* student,Grade grade){
