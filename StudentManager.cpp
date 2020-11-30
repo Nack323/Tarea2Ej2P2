@@ -93,7 +93,7 @@ void StudentManager::updateGrads(){
         GraduateStudent* GradStud = dynamic_cast<GraduateStudent*>(estud);//uno de los dos dynamic cas tiene que ser 0
         //1100    Ethan    HAYES    EHAYES    EHAYES8667    QUIMICA    Doctorado
         if (GradStud){
-            file<<estud->getNombre()<<" "<<estud->getApellido()<<" "<<estud->getUsuario()<<" "<<estud->getContrasenia()<<" "<<estud->getCarrera()<<" "<<GradStud->getNivel()<<"\n";
+            file<<estud->getBannerID()<<"\t"<<estud->getNombre()<<"\t"<<estud->getApellido()<<"\t"<<estud->getUsuario()<<"\t"<<estud->getContrasenia()<<"\t"<<estud->getCarrera()<<"\t"<<GradStud->getNivel()<<"\n";
         }
     }
     loadGrads();
