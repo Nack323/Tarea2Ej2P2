@@ -82,7 +82,8 @@ CourseManager::CourseManager(std::string pathCursos_, StudentManager* sm, Facult
 
 void CourseManager::createNewCourse(){
     
-    std::string NRCAux,creditosAux,ProfesorAux;
+    std::string NRCAux,ProfesorAux;
+    int creditosAux;
     
     std::cout<<"NRC de la nueva Clase"<<std::endl;
     std::cin>>NRCAux;
@@ -100,7 +101,9 @@ void CourseManager::createNewCourse(){
     
 
     
-    Course cursoAux{NRCAux,std::stoi(creditosAux)};
+    Course cursoAux;
+    cursoAux.setNRC(NRCAux);
+    cursoAux.setCreditos(creditosAux);
     cursoAux.setProfesor(fm->getFacultyByID(ProfesorAux));
     cursoAux.setPath(NRCAux+"_"+ProfesorAux+".txt");
     cursos.add(&cursoAux);
