@@ -14,7 +14,6 @@ User::User(){ }
 User::User(std::string _bannerID, std::string _nombre, std::string _apellido, std::string _contrasenia, std::string _usuario):
 bannerID(_bannerID), nombre(_nombre), apellido(_apellido), contrasenia(_contrasenia), usuario(_usuario)
 {
-    std::cout << "User constructor" << std::endl;
 }
 
 void User::setBannerID(std::string _bannerID){

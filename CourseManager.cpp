@@ -18,9 +18,7 @@ void CourseManager::loadCourses(){
         input>>nrcAux>>creditosAux>>profeAux>>pathAux;
 
         Course* cursoAux;
-        std::cout << "Check 1" << std::endl;
         cursoAux= new Course();
-        std::cout << "Check 2" << std::endl;
         cursoAux->setNRC(nrcAux);
         cursoAux->setCreditos(std::stoi(creditosAux));
         cursos.add(cursoAux);
