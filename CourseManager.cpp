@@ -68,7 +68,7 @@ void CourseManager::updateCourses(){
     }
 
     file.close();
-    delete[] &cursos;
+
     loadCourses();
 };
 
@@ -198,7 +198,6 @@ void CourseManager::showClassByID(std::string nrc){
             std::cout<<"Estudiantes"<<std::endl;
             std::deque<Student*> stu=cursos[i]->getAllStudents();
 
-
             for(int j=0;j<stu.size();j++){
                 stu[j]->to_string();
             }
@@ -207,9 +206,10 @@ void CourseManager::showClassByID(std::string nrc){
 
         }  
 
-        std::cout<<"No se encontro clase con ese NRC"<<std::endl;     
+             
 
     }
+    std::cout<<"No se encontro clase con ese NRC"<<std::endl;
 
 }
 

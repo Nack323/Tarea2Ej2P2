@@ -25,7 +25,7 @@ void Interfaz::pantallaInit(){
 void Interfaz::pantalla1(){
     
     std::cout<<"1.Administrar Sistema\n"<<std::endl;
-    std::cout<<"1.Administrar Todos los Usuarios\n2.Administrar Todos los Estudiantes\n3.Administrar Todos los Profesores\n4.Administrar Todos los Cursos"<<std::endl;
+    std::cout<<"1.Administrar Todos los Usuarios\n2.Administrar Todos los Estudiantes\n3.Administrar Todos los Profesores\n4.Administrar Todos los Cursos\n5.Regresar"<<std::endl;
     std::string option;
     std::cin>>option;
     
@@ -45,12 +45,14 @@ void Interfaz::pantalla1(){
     
         pantalla1_4();
     
-    }else{
+    }else if(option=="5"){
    
         std::cout<<"Ingrese una de las opciones"<<std::endl;
         
         pantalla1();
     
+    }else{
+        std::cout<<"Ingrese una opcion correcta"<<std::endl;
     }
 }
 
