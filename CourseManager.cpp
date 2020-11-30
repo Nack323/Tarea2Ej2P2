@@ -66,12 +66,12 @@ void CourseManager::updateCourses(){
     file.open(pathCursos,std::ofstream::out | std::ofstream::trunc);
     file<<cursos.getSize()<<"\n";
 
-    for(int i=0;i<numCursos;i++){
+    for(int i=0;i<cursos.getSize();i++){
         file<<cursos[i]->getNRC()<<" "<<cursos[i]->getCreditos()<<" "<<cursos[i]->getProfesor()->getBannerID()<<" "<<cursos[i]->getPath()<<std::endl;
     }
 
     file.close();
-
+    numCursos=cursos.getSize();
     loadCourses();
 };
 
@@ -98,15 +98,19 @@ void CourseManager::createNewCourse(){
     newfile<<"0";
     newfile.close();
     
-    file.open("./data/"+pathCursos);
-    file<<NRCAux<<" "<<creditosAux<<" "<<ProfesorAux<<" "<<newpath<<std::endl;
-
 
     
     Course cursoAux{NRCAux,std::stoi(creditosAux)};
     cursoAux.setProfesor(fm->getFacultyByID(ProfesorAux));
+    cursoAux.setPath(NRCAux+"_"+ProfesorAux+".txt");
     cursos.add(&cursoAux);
+    std::cout<<cursos.getSize()<<std::endl;
+    
     updateCourses();
+    
+    
+    
+    
 } 
 
 void CourseManager::editCourse(){
