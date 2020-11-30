@@ -144,7 +144,7 @@ void Interfaz::pantalla1_1(){
 }
 
 void Interfaz::pantalla1_2(){
-    std::cout<<"1.Crear Estudiante\n2.Editar Estudiante\n3.Mostrar Estudiante\n4.Borrar Estudiante\n5.Regresar"<<std::endl;
+    std::cout<<"1.Crear Estudiante\n2.Editar Estudiante\n3.Mostrar Estudiantes\n4.Mostrar Estudiante\n5.Borrar Estudiante\n6.Regresar"<<std::endl;
     std::string option;
     std::cin>>option;
     if(option=="1"){
@@ -162,7 +162,10 @@ void Interfaz::pantalla1_2(){
 
         pantalla1_2();
         
-    }else if(option=="3"){
+    }else if(option == "3"){
+        sm->showStudents();
+        pantalla1_2();
+    }else if(option=="4"){
         std::string bannerID_;
         std::cout<<"BannerID del estudiante a mostrar"<<std::endl;
         std::cin>>bannerID_;
@@ -175,8 +178,7 @@ void Interfaz::pantalla1_2(){
         }
         std::cout<<"\n\n"<< std::endl;
         pantalla1_2();
-        
-    }else if(option=="4"){
+    }else if(option=="5"){
         
         std::string bannerID_;
         std::cout<<"BannerID del estudiante a eliminar"<<std::endl;
@@ -187,7 +189,7 @@ void Interfaz::pantalla1_2(){
         pantalla1_2();
 
 
-    }else if(option=="5"){
+    }else if(option=="6"){
     ;
         pantalla1();
         
