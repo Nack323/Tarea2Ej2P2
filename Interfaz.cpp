@@ -249,6 +249,7 @@ void Interfaz::pantalla1_4(){
 
         std::string nrc_;
         std::cout<<"Ingrese el NRC de la clase que busca eliminar"<<std::endl;
+        std::cin>>nrc_;
         cm->deleteCourse(nrc_);
 
         std::cout<<"La clase ha sido eliminada"<<std::endl;

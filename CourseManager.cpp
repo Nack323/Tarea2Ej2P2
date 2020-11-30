@@ -12,7 +12,8 @@ void CourseManager::loadCourses(){
 
     for(int i=0;i<this->numCursos;i++){
 
-        std::string nrcAux,creditosAux,profeAux,pathAux;
+        std::string nrcAux,profeAux,pathAux;
+        int creditosAux;
         Faculty* profesor;
 
         input>>nrcAux>>creditosAux>>profeAux>>pathAux;
@@ -20,7 +21,7 @@ void CourseManager::loadCourses(){
         Course* cursoAux;
         cursoAux= new Course();
         cursoAux->setNRC(nrcAux);
-        cursoAux->setCreditos(std::stoi(creditosAux));
+        cursoAux->setCreditos(creditosAux);
         cursos.add(cursoAux);
         cursos[i]->setPath(pathAux);
 
@@ -63,7 +64,7 @@ void CourseManager::updateCourses(){
 
     std::ofstream file;
     file.open(pathCursos,std::ofstream::out | std::ofstream::trunc);
-    file<<numCursos;
+    file<<cursos.getSize()<<"\n";
 
     for(int i=0;i<numCursos;i++){
         file<<cursos[i]->getNRC()<<" "<<cursos[i]->getCreditos()<<" "<<cursos[i]->getProfesor()->getBannerID()<<" "<<cursos[i]->getPath()<<std::endl;
@@ -97,7 +98,7 @@ void CourseManager::createNewCourse(){
     newfile<<"0";
     newfile.close();
     
-    file.open("./data/"+pathCursos,std::ios::app);
+    file.open("./data/"+pathCursos);
     file<<NRCAux<<" "<<creditosAux<<" "<<ProfesorAux<<" "<<newpath<<std::endl;
 
 
@@ -170,7 +171,7 @@ void CourseManager::editCourse(){
 
             }    
 
-            showClassByID(cursos[i]->getNRC());     
+            
         }
     }
 }    ;
@@ -200,9 +201,9 @@ void CourseManager::showClassByID(std::string nrc){
             std::deque<Student*> stu=cursos[i]->getAllStudents();
 
             for(int j=0;j<stu.size();j++){
-                std::cout<<stu[j]->to_string()<<std::endl;;
+                std::cout<<stu[j]->to_string()<<std::endl;
             }
-
+            break;
         }  
 
     }
