@@ -101,14 +101,12 @@ void CourseManager::createNewCourse(){
     
 
     
-    Course cursoAux;
-    cursoAux.setNRC(NRCAux);
-    cursoAux.setCreditos(creditosAux);
+    Course cursoAux{NRCAux,creditosAux};
     cursoAux.setProfesor(fm->getFacultyByID(ProfesorAux));
     cursoAux.setPath(NRCAux+"_"+ProfesorAux+".txt");
     cursos.add(&cursoAux);
     std::cout<<cursos.getSize()<<std::endl;
-    
+        
     updateCourses();
     
     
