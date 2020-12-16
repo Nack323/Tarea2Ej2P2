@@ -14,18 +14,23 @@ void FacultyManager::loadFaculty(){
     //formato:
     //bannerid nombre apellido usuario contrasenia carrera
     int total;
-    input >> total;
-    string _bannerId;
-    string _nombre;
-    string _apellido;
-    string _usuario;
-    string _contrasenia;
-    string _carrera;
-    for (int i = 0; i < total ; i ++){
-        input >> _bannerId >> _nombre >> _apellido >> _usuario >>_contrasenia >> _carrera;
-        this->profesores.push_back(Faculty{_bannerId, _nombre, _apellido, _contrasenia, _usuario, _carrera});
-    }
+    if (input.is_open()){
+        input >> total;
+        string _bannerId;
+        string _nombre;
+        string _apellido;
+        string _usuario;
+        string _contrasenia;
+        string _carrera;
+        for (int i = 0; i < total ; i ++){
+            input >> _bannerId >> _nombre >> _apellido >> _usuario >>_contrasenia >> _carrera;
+            this->profesores.push_back(Faculty{_bannerId, _nombre, _apellido, _contrasenia, _usuario, _carrera});
+        }
     input.close();
+    return;
+    }
+    throw FileNotFound();
+
 };
 
 void FacultyManager::updateFaculty(){
@@ -38,6 +43,7 @@ void FacultyManager::updateFaculty(){
         }
     } else {
         cerr << "No se pudo encontrar el archivo para  guardar. No se pudo actualizar." << this->pathFaculty<< endl;
+        throw FileNotFound();
     }
     output.close();
 };
@@ -63,8 +69,7 @@ Faculty* FacultyManager::getFacultyByID(string BannerID){
             return &profesores[i];
         }
     }
-    cerr << "No match found for banner Id " << BannerID << "\nReturning nullptr";
-    return nullptr;
+    throw BannerIDNotFound();
 };
 
 deque<Faculty> FacultyManager::getAllFaculty(){ 
@@ -86,7 +91,7 @@ void FacultyManager::editFaculty(){
             return;
         }
     }
-    cout << "No hay profesor con ese banner ID" << endl;
+    throw BannerIDNotFound();
 };
 
 void FacultyManager::editFaculty(Faculty *fac){
@@ -104,7 +109,7 @@ void FacultyManager::editFaculty(Faculty *fac){
             return;
         }
     }
-    cout << "No hay profesor con ese banner ID" << endl;
+    throw BannerIDNotFound();
 };
 
 void FacultyManager::editFaculty(string bid){
@@ -122,7 +127,7 @@ void FacultyManager::editFaculty(string bid){
             return;
         }
     }
-    cout << "No hay profesor con ese banner ID" << endl;
+    throw BannerIDNotFound();
 };
 
 void FacultyManager::showFaculty(string BannerId){
@@ -131,6 +136,7 @@ void FacultyManager::showFaculty(string BannerId){
             cout << profesores[i].to_string() << endl;
         }
     }
+    throw BannerIDNotFound();
 };
 
 void FacultyManager::deleteFaculty(string _BannerId){ //sobrecarga cuando se le pasa el bannerId
@@ -144,7 +150,7 @@ void FacultyManager::deleteFaculty(string _BannerId){ //sobrecarga cuando se le 
         }
         pos ++;
     }
-    cout << "No se encontro el profesor con ese Banner ID" << endl;
+    throw BannerIDNotFound();
 };
 
 void FacultyManager::deleteFaculty(){//sobrecarga cuando no se le pasa nada
@@ -159,7 +165,7 @@ void FacultyManager::deleteFaculty(){//sobrecarga cuando no se le pasa nada
         }
         pos ++;
     }
-    cout << "No se encontro el profesor con ese Banner ID" << endl;
+    throw BannerIDNotFound();
 };
 
 void FacultyManager::showAllFaculties(){

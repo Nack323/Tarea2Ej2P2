@@ -26,18 +26,22 @@ public:
 };
 
 class BannerIDNotFound : public std::runtime_error{
+public:
     BannerIDNotFound(): std::runtime_error("Banner ID not found"){}
 };
 
 class InvalidCredentials: public std::runtime_error{
+public:
     InvalidCredentials():std::runtime_error("Invalid Credentials"){}
 };
 
 class NRCNotFound: public std::runtime_error{
+public:
     NRCNotFound() : std::runtime_error("NRC Not Found"){}
 };
 
 class FileNotFound: public std::runtime_error{
+public:
     FileNotFound(): std::runtime_error("File not found"){}
 };
 

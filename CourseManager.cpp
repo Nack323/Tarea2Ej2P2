@@ -9,54 +9,55 @@ void CourseManager::loadCourses(){
     input>>numCursos;
     ArrayList<Course*> cursosAux=cursos;
     
+    if (input.is_open()){
+        for(int i=0;i<this->numCursos;i++){
 
-    for(int i=0;i<this->numCursos;i++){
+            std::string nrcAux,profeAux,pathAux;
+            int creditosAux;
+            Faculty* profesor;
 
-        std::string nrcAux,profeAux,pathAux;
-        int creditosAux;
-        Faculty* profesor;
+            input>>nrcAux>>creditosAux>>profeAux>>pathAux;
 
-        input>>nrcAux>>creditosAux>>profeAux>>pathAux;
+            Course* cursoAux;
+            cursoAux= new Course();
+            cursoAux->setNRC(nrcAux);
+            cursoAux->setCreditos(creditosAux);
+            cursos.add(cursoAux);
+            cursos[i]->setPath(pathAux);
 
-        Course* cursoAux;
-        cursoAux= new Course();
-        cursoAux->setNRC(nrcAux);
-        cursoAux->setCreditos(creditosAux);
-        cursos.add(cursoAux);
-        cursos[i]->setPath(pathAux);
+            profesor=fm->getFacultyByID(profeAux);
+            cursos[i]->setProfesor(profesor);
+            
+            
+            std::ifstream fileEst;    
+            int numberEst;
 
-        profesor=fm->getFacultyByID(profeAux);
-        cursos[i]->setProfesor(profesor);
+            std::string pathEstudiantes="./data/"+cursos[i]->getPath();
         
-        
-        std::ifstream fileEst;    
-        int numberEst;
+            fileEst.open(pathEstudiantes);
+            fileEst>>numberEst;
+            if(fileEst.is_open()){
+                for(int j=0;j<numberEst;j++){
 
-        std::string pathEstudiantes="./data/"+cursos[i]->getPath();
-    
-        fileEst.open(pathEstudiantes);
-        fileEst>>numberEst;
-        if(fileEst.is_open()){
-            for(int j=0;j<numberEst;j++){
+                    std::string BannerIDAux;
+                    float notaAux;
+                    
+                    Grade nota;
 
-                std::string BannerIDAux;
-                float notaAux;
-                
-                Grade nota;
-
-                fileEst>>BannerIDAux>>notaAux;
-              
-                nota=Grade(notaAux);
-                cursos[i]->addStudentGrade(sm->getStudentByID(BannerIDAux),nota);
+                    fileEst>>BannerIDAux>>notaAux;
+                  
+                    nota=Grade(notaAux);
+                    cursos[i]->addStudentGrade(sm->getStudentByID(BannerIDAux),nota);
+                }
+            }else{
+                std::cout<<"Error con el programa"<<std::endl;
             }
-        }else{
-            std::cout<<"Error con el programa"<<std::endl;
-        }
-        
-        fileEst.close();
+            
+            fileEst.close();
 
-    }
-    input.close();
+        }
+        input.close();
+    } else { throw FileNotFound();}
 };
 
 void CourseManager::updateCourses(){
@@ -178,7 +179,9 @@ void CourseManager::editCourse(){
 
             
         }
+        return;
     }
+    throw NRCNotFound();
 }    ;
 
 void CourseManager::showCourses(){
@@ -208,11 +211,11 @@ void CourseManager::showClassByID(std::string nrc){
             for(int j=0;j<stu.size();j++){
                 std::cout<<stu[j]->to_string()<<std::endl;
             }
-            break;
+            return;
         }  
 
     }
-
+    throw NRCNotFound();
 
 }
 
@@ -224,12 +227,11 @@ void CourseManager::deleteCourse(std::string nrc){
 
             numCursos--;
             cursos.deleteAt(i);
-
+            updateCourses();
+            return;
         }
-
     }
-
-    updateCourses();
+    throw FileNotFound();
 };
 
 Course* CourseManager::getCourseByNRC(std::string nrc_){
@@ -243,8 +245,6 @@ Course* CourseManager::getCourseByNRC(std::string nrc_){
         }
     
     }
-    Course* Cour=nullptr;
-    return Cour;
-
+    throw NRCNotFound();
 }
 

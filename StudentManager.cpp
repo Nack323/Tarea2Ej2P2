@@ -15,25 +15,30 @@ void StudentManager::loadUnderGrads(){
     int total;
     ifstream input;
     input.open(this->pathUndergraduate);
-    input>>total;
-    for(int i=0;i<total;i++){
-        std::string bannerIDAux;
-        std::string nombreAux;
-        std::string apellidoAux;
-        std::string usuarioAux;
-        std::string contraseniaAux;
-        std::string carreraAux;
-        std::string pnombreAux;
-        std::string papellidoAux;
-        std::string pemailAux;
-        std::string ptelefAux;
-        input>>bannerIDAux>>nombreAux>>apellidoAux>>usuarioAux>>contraseniaAux>>carreraAux>>pnombreAux>>papellidoAux>>pemailAux>>ptelefAux;
-        Proxy proxyAux(pnombreAux,papellidoAux,pemailAux,ptelefAux);
+    if (input.is_open()){
+        input>>total;
+        for(int i=0;i<total;i++){
+            std::string bannerIDAux;
+            std::string nombreAux;
+            std::string apellidoAux;
+            std::string usuarioAux;
+            std::string contraseniaAux;
+            std::string carreraAux;
+            std::string pnombreAux;
+            std::string papellidoAux;
+            std::string pemailAux;
+            std::string ptelefAux;
+            input>>bannerIDAux>>nombreAux>>apellidoAux>>usuarioAux>>contraseniaAux>>carreraAux>>pnombreAux>>papellidoAux>>pemailAux>>ptelefAux;
+            Proxy proxyAux(pnombreAux,papellidoAux,pemailAux,ptelefAux);
 
 
-        UnderGraduateStudent* newUnder = new UnderGraduateStudent(bannerIDAux,nombreAux,apellidoAux,usuarioAux,contraseniaAux,carreraAux,proxyAux);
-        Student *Stptr(&*newUnder);
-        estudiantes.push_back(Stptr);
+            UnderGraduateStudent* newUnder = new UnderGraduateStudent(bannerIDAux,nombreAux,apellidoAux,usuarioAux,contraseniaAux,carreraAux,proxyAux);
+            Student *Stptr(&*newUnder);
+            estudiantes.push_back(Stptr);
+        }
+    }
+    else {
+        throw FileNotFound();
     }
 };
 
@@ -41,17 +46,22 @@ void StudentManager::loadGrads(){
     int total;
     std::ifstream input;
     input.open(this->pathGraduate);
-    input>>total;
-    for(int i=0;i<total;i++){
-        std::string bannerIDAux;
-        std::string nombreAux;
-        std::string apellidoAux;
-        std::string usuarioAux;
-        std::string contraseniaAux;
-        std::string carreraAux;
-        std::string nivelAux;
-        input>>bannerIDAux>>nombreAux>>apellidoAux>>usuarioAux>>contraseniaAux>>carreraAux>>nivelAux;
-        estudiantes.push_back(new GraduateStudent(bannerIDAux,nombreAux,apellidoAux,contraseniaAux,usuarioAux,carreraAux,nivelAux));
+    if(input.is_open()){
+        input>>total;
+        for(int i=0;i<total;i++){
+            std::string bannerIDAux;
+            std::string nombreAux;
+            std::string apellidoAux;
+            std::string usuarioAux;
+            std::string contraseniaAux;
+            std::string carreraAux;
+            std::string nivelAux;
+            input>>bannerIDAux>>nombreAux>>apellidoAux>>usuarioAux>>contraseniaAux>>carreraAux>>nivelAux;
+            estudiantes.push_back(new GraduateStudent(bannerIDAux,nombreAux,apellidoAux,contraseniaAux,usuarioAux,carreraAux,nivelAux));
+        }
+    }
+    else {
+        throw FileNotFound();
     }
 };
 
@@ -153,8 +163,7 @@ Student* StudentManager::getStudentByID(string BannerID){
             return estudiantes[i];
         }
     }//cambiar por array list
-    cerr << "No se encontró el estudiante, retornando nullptr" << endl;
-    return nullptr;
+    throw BannerIDNotFound();
 };
 
 deque<Student*> StudentManager::getAllStudents(){
@@ -191,9 +200,10 @@ void StudentManager::editStudent(){// sobrecarga para no mandarle nada por si ac
                 GradStud->setNivel(consoleInput<string>("Nivel: "));
                 updateGrads();
             }
-            break;
+            return;
         }
     }
+    throw BannerIDNotFound();
 };
 
 void StudentManager::editStudent(string bid){ //sobrecarga para mandarle el banner ID, facilita la interfaz
@@ -226,9 +236,10 @@ void StudentManager::editStudent(string bid){ //sobrecarga para mandarle el bann
                 GradStud->setNivel(consoleInput<string>("Nivel: "));
                 updateGrads();
             }
-            break;
+            return;
         }
     }
+    throw BannerIDNotFound();
 };
 
 void StudentManager::editStudent(Student* stud){//sobrecarga a la que se le pasa un student*
@@ -261,9 +272,10 @@ void StudentManager::editStudent(Student* stud){//sobrecarga a la que se le pasa
                 GradStud->setNivel(consoleInput<string>("Nivel: "));
                 updateGrads();
             }
-            break;
+            return;
         }
     }
+    throw BannerIDNotFound();
 };
 
 void StudentManager::showStudents(){
@@ -291,8 +303,10 @@ void StudentManager::showStudent(string bannerId) {
     for(auto stud : estudiantes) {
         if (stud->getBannerID() == bannerId) {
             cout << stud->to_string() << endl;
+            return;
         }
     }
+    throw BannerIDNotFound();
 }
 
 void StudentManager::showStudent(Student* estud) {//para que no se le dañe lo que hizo el roberto 

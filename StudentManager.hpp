@@ -10,6 +10,7 @@
 #include "GraduateStudent.hpp"
 #include <fstream>
 #include <deque>
+#include "Exceptions.hpp"
 
 class UserManager;
 

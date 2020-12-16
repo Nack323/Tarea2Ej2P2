@@ -1,5 +1,6 @@
 #include <iostream>
 #include "UserManager.hpp"
+#include "Exceptions.hpp"
 
 UserManager::UserManager(FacultyManager* _facultyManager, StudentManager* _studentManager){
 	this->fm=_facultyManager;
@@ -30,7 +31,7 @@ User* UserManager::validateCredentials(std::string userName, std::string contras
  		}
 
  	}
- 	return nullptr;
+    throw InvalidCredentials();
 };
 
 
@@ -68,9 +69,6 @@ void UserManager::editUser(User* usuarioAux)
 		std::cout<<"Ingrese una opcion correcta"<<std::endl;
 		editUser(usuarioAux);
 	}       
-
-  	
-
 };
 
 void UserManager::showUser(User* usuario)

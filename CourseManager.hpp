@@ -7,6 +7,7 @@
 #include <iomanip>
 #include <fstream>
 #include "Grade.hpp"
+#include "Exceptions.hpp"
 #include "ArrayList.hpp"
 
 
