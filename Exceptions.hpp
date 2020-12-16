@@ -25,4 +25,20 @@ public:
     IndexOutOfBounds(): std::runtime_error("Index out of bounds"){}
 };
 
+class BannerIDNotFound : public std::runtime_error{
+    BannerIDNotFound(): std::runtime_error("Banner ID not found"){}
+};
+
+class InvalidCredentials: public std::runtime_error{
+    InvalidCredentials():std::runtime_error("Invalid Credentials"){}
+};
+
+class NRCNotFound: public std::runtime_error{
+    NRCNotFound() : std::runtime_error("NRC Not Found"){}
+};
+
+class FileNotFound: public std::runtime_error{
+    FileNotFound(): std::runtime_error("File not found"){}
+};
+
 #endif /* Exceptions_hpp */
